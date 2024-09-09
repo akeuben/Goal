@@ -5,7 +5,9 @@ const doesGameExist = (name: string) => {
 }
 
 export default function GamePage({params}: {params: {game: string}}) {
-    if(!doesGameExist(params.game)) notFound();
+    if(!doesGameExist(params.game)) {
+        notFound();
+    }
 
     return <h1>Game: {params.game}</h1>
 }
