@@ -1,4 +1,4 @@
-import { fakedata_getCompletionCategories, fakedata_getCompletions, fakedata_updateGameCompletionBuiltin } from "@/fakedata/completion";
+import { fakedata_getCompletionCategories, fakedata_getCompletions, fakedata_updateGameCompletionBuiltin, fakedata_updateGameCompletionCategoryName, fakedata_updateGameCompletionCustom } from "@/fakedata/completion";
 import { fakedata_getGame, fakedata_getGameList } from "@/fakedata/games";
 import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { Game, GameListFilter, GameListSearch, GameListSort } from "@/types/games";
@@ -20,6 +20,14 @@ export const getGameCompletionCategories = async (username: string): Promise<Res
     return Success(await fakedata_getCompletionCategories(username));
 }
 
+export const updateGameCompletionCategoryName = async (username: string, oldName: string, newName: string) => {
+    return Fail(await fakedata_updateGameCompletionCategoryName(username, oldName, newName));
+}
+
 export const updateGameCompletionBuiltin = async (username: string, game: string, completionCategory: GameCompletion["status"]) => {
-    return Success(await fakedata_updateGameCompletionBuiltin(username, game, completionCategory));
+    return Fail(await fakedata_updateGameCompletionBuiltin(username, game, completionCategory));
+}
+
+export const updateGameCompletionCustom = async (username: string, game: string, completionCategory: string) => {
+    return Fail(await fakedata_updateGameCompletionCustom(username, game, completionCategory));
 }

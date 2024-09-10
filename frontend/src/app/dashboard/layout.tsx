@@ -11,10 +11,11 @@ export default function Layout({children}: {children: ReactNode[]}) {
         <nav className={styles.sidebar}>
             <h1>Dashboard</h1>
             <Link className={path === "/dashboard/games" ? styles.active : undefined} href="/dashboard/games"><button>Your Games</button></Link>
+            <Link className={path === "/dashboard/categories" ? styles.active : undefined} href="/dashboard/categories"><button>Categories</button></Link>
             <Link className={path === "/dashboard/account" ? styles.active : undefined} href="/dashboard/account"><button>Account</button></Link>
         </nav>
         <div>
-            <h1>{path.split("/").findLast((a) => true)}</h1>
+            <h1>{path.split("/").findLast(() => true)}</h1>
             <main>
                 {children}
             </main>

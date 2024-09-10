@@ -1,0 +1,11 @@
+.coverart {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    background-size: cover;
+    background-position: center center;
+}
+
+.twoCol {
+    display: grid;
+    grid-template-columns: 300px 50%;
+}

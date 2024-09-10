@@ -1,7 +1,7 @@
 [
     {
         "identifier": "totk",
-        "name": "Tears of the Kingdom",
+        "name": "The Legend of Zelda: Tears of the Kingdom",
         "releaseYear": 2023,
         "developer": "Nintendo",
         "publisher": "Nintendo",
@@ -9,7 +9,7 @@
     },
     {
         "identifier": "botw",
-        "name": "Breath of the Wild",
+        "name": "The Legend of Zelda: Breath of the Wild",
         "releaseYear": 2017,
         "developer": "Nintendo",
         "publisher": "Nintendo",
@@ -30,5 +30,21 @@
         "developer": "Valve Software",
         "publisher": "Valve Software",
         "description": "Portal 2 is a 2011 puzzle-platform game developed by Valve for Windows, Mac OS X, Linux, PlayStation 3, and Xbox 360. The digital PC version is distributed online by Valve's Steam service, while all retail editions were distributed by Electronic Arts."
+    },
+    {
+        "identifier": "talos",
+        "name": "The Talos Principle",
+        "releaseYear": 2014,
+        "developer": "Croteam",
+        "publisher": "Devolver Digital",
+        "description": "The Talos Principle is a 2014 puzzle video game developed by Croteam and published by Devolver Digital. It was simultaneously released on Linux, OS X and Windows in December 2014."
+    },
+    {
+        "identifier": "talos2",
+        "name": "The Talos Principle II",
+        "releaseYear": 2024,
+        "developer": "Croteam",
+        "publisher": "Devolver Digital",
+        "description": "The Talos Principle 2 is a puzzle-adventure video game developed by Croteam and published by Devolver Digital. A sequel to The Talos Principle, the game was released for Windows, PlayStation 5 and Xbox Series X and Series S in November 2023 to generally positive reviews."
     }
 ]

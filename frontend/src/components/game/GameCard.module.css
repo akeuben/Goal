@@ -24,3 +24,8 @@
     background-size: cover;
     background-position: center center;
 }
+
+.gamecard>a>button {
+    height: 100%;
+    width: 100%;
+}

@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "user": "test",
+        "name": "100%",
+        "colour": "#016ACE",
+        "order": 1
+    }
+]

@@ -17,7 +17,7 @@ export const fakedata_getGameList = async (sort: GameListSort, filter: GameListF
         switch(sort.by) {
             case 'name':
                 if(sort.acending) return a.name.localeCompare(b.name);
-                return a.name.localeCompare(b.name);
+                return b.name.localeCompare(a.name);
             case 'release':
                 if(sort.acending) return a.releaseYear - b.releaseYear;
                 return b.releaseYear - a.releaseYear;
@@ -26,7 +26,7 @@ export const fakedata_getGameList = async (sort: GameListSort, filter: GameListF
         }
     }
 
-    const result = await fetch("/games.json");
+    const result = await fetch("http://localhost:3000/games.json");
     const games = (await result.json()) as Game[];
 
     const gameList = games
@@ -38,7 +38,7 @@ export const fakedata_getGameList = async (sort: GameListSort, filter: GameListF
 }
 
 export const fakedata_getGame = async (identifier: string) => {
-    const result = await fetch("/games.json");
+    const result = await fetch("http://localhost:3000/games.json");
     const games = (await result.json()) as Game[];
 
     return games.filter(game => game.identifier === identifier)[0];

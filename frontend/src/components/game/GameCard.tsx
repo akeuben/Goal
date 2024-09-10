@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./GameCard.module.css";
 import { Game } from "@/types/games";
 
@@ -9,7 +10,7 @@ export function GameCard({game}: {game: Game}) {
             <i>{game.releaseYear}</i>
             <p>{game.description}</p>
         </div>
-        <button>Details</button>
+        <Link href={`/g/${game.identifier}`}><button>Details</button></Link>
         <button>Track Progress</button>
     </div>
 }

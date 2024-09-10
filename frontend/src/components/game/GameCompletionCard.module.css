@@ -1,3 +1,10 @@
+.card {
+    width: 400px;
+}
+
+.card>h1 {
+    text-wrap: wrap;
+}
 .coverart {
     width: 400px;
     aspect-ratio: 2 / 1;

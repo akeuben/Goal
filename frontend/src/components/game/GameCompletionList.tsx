@@ -28,11 +28,11 @@ export function GameCompletionList({username, sort, filter, search, canEdit}: {u
     useEffect(() => {
         getGameCompletions(username, sort, filter, search).then(value => value.success ? setGameCompletions(value.value) : null);
         getGameCompletionCategories(username).then(value => value.success ? setCompletionCategories(value.value) : null);
-    }, [setGameCompletions])
+    }, [setGameCompletions, setCompletionCategories])
 
     if(!gameCompletions || !customCompletionCategories) return <></>
 
     return <div className={styles.gamelist}>
-        {gameCompletions.map(completion => <GameCompletionCard gameCompletion={completion} setCompletion={canEdit ? updateCompletion : undefined} categories={customCompletionCategories}/>)}
+        {gameCompletions.map(completion => <GameCompletionCard key={completion.game.identifier} gameCompletion={completion} setCompletion={canEdit ? updateCompletion : undefined} categories={customCompletionCategories}/>)}
     </div>
 }

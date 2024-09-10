@@ -11,7 +11,7 @@ export function GameList({sort, filter, search}: {sort: GameListSort, filter: Ga
 
     useEffect(() => {
         getGameList(sort, filter, search).then(value => setGames(value));
-    }, [setGames])
+    }, [setGames, sort, filter, search])
 
     if(!games) return <></>
 
@@ -19,6 +19,6 @@ export function GameList({sort, filter, search}: {sort: GameListSort, filter: Ga
 
 
     return <div className={styles.gamelist}>
-        {games.value.map(game => <GameCard game={game} />)}
+        {games.value.map(game => <GameCard key={game.identifier} game={game} />)}
     </div>
 }
