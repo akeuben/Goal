@@ -56,6 +56,6 @@
 
 .main main {
     width: 100%;
-    height: calc(100% - 2em - 50px);
+    height: calc(100vh - 2em - 90px);
     overflow-y: scroll;
 }
