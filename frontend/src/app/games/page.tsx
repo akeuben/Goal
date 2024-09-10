@@ -1,10 +1,13 @@
-import { getGameList } from "@/api/api";
+"use client"
+
 import { GameList } from "@/components/game/GameList";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-    const gameList = getGameList();
-    if(!gameList.success) throw new Error("Failed to load list of games");
+    const searchParams = useSearchParams();
 
+    let sortBy = searchParams.get("sortBy") as 'name' | 'release';
+    if(sortBy !== 'name' && sortBy !== 'release') sortBy = 'name';
 
-    return <GameList search="" sort={{by: 'release', acending: true}} filter={{}} />
+    return <GameList search="" sort={{by: sortBy, acending: true}} filter={{}} />
 }

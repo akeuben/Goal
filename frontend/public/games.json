@@ -1,0 +1,34 @@
+[
+    {
+        "identifier": "totk",
+        "name": "Tears of the Kingdom",
+        "releaseYear": 2023,
+        "developer": "Nintendo",
+        "publisher": "Nintendo",
+        "description": "The Legend of Zelda: Tears of the Kingdom is a 2023 action-adventure game developed and published by Nintendo for the Nintendo Switch. The player controls Link as he searches for Princess Zelda and fights to prevent Ganondorf from destroying Hyrule."
+    },
+    {
+        "identifier": "botw",
+        "name": "Breath of the Wild",
+        "releaseYear": 2017,
+        "developer": "Nintendo",
+        "publisher": "Nintendo",
+        "description": "The Legend of Zelda: Breath of the Wild is a 2017 action-adventure game developed and published by Nintendo for the Nintendo Switch and Wii U. Set at the end of the Zelda timeline, the player controls an amnesiac Link as he sets out to save Princess Zelda and prevent Calamity Ganon from destroying the world."
+    },
+    {
+        "identifier": "portal",
+        "name": "Portal",
+        "releaseYear": 2007,
+        "developer": "Valve Software",
+        "publisher": "Valve Software",
+        "description": "Portal is a 2007 puzzle-platform game developed and published by Valve. It was released in a bundle, The Orange Box, for Windows, Xbox 360 and PlayStation 3, and has been since ported to other systems, including Mac OS X, Linux, Android, and Nintendo Switch."
+    },
+    {
+        "identifier": "portal_2",
+        "name": "Portal 2",
+        "releaseYear": 2012,
+        "developer": "Valve Software",
+        "publisher": "Valve Software",
+        "description": "Portal 2 is a 2011 puzzle-platform game developed by Valve for Windows, Mac OS X, Linux, PlayStation 3, and Xbox 360. The digital PC version is distributed online by Valve's Steam service, while all retail editions were distributed by Electronic Arts."
+    }
+]

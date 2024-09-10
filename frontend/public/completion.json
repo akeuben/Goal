@@ -1,0 +1,14 @@
+[
+    {
+        "game": "botw",
+        "user": "test",
+        "status": "complete",
+        "customStatus": null
+    },
+    {
+        "game": "totk",
+        "user": "test",
+        "status": "in_progress",
+        "customStatus": null
+    }
+]

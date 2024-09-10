@@ -15,6 +15,7 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   margin: 0px;
+  min-height: 100dvh;
 }
 
 @layer utilities {

@@ -12,3 +12,10 @@ export function Success<V,E>(value: V): Result<V, E> {
         value: value
     }
 }
+
+export function Fail<V,E>(error: E): Result<V, E> {
+    return {
+        success: false,
+        error: error,
+    }
+}

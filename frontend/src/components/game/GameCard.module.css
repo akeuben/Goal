@@ -1,8 +1,9 @@
 .gamecard {
-    display: flex;
-    background: lightgray;
+    display: grid;
+    background: #323232;
     gap: 20px;
     padding: 20px;
+    grid-template-columns: 100px auto 100px 100px;
 }
 
 .details {
@@ -15,4 +16,11 @@
 
 .details>i {
     color: gray;
+}
+
+.coverart {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    background-size: cover;
+    background-position: center center;
 }
