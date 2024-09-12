@@ -26,7 +26,7 @@ export const AchievementCompletionList = ({user, game, canEdit = true}: {user: U
     locked = achievements.filter(a => !unlockedIdentifiers.includes(a.identifier));
 
     const toggleAchievement = (a: Achievement, v: boolean) => {
-        updateUserAchievementState("test", a.identifier, v).then(result => {
+        updateUserAchievementState(user.username, a.identifier, v).then(result => {
             console.log("result success");
             if(result.success) {
                 let clone = structuredClone(userAchievements);
@@ -39,8 +39,8 @@ export const AchievementCompletionList = ({user, game, canEdit = true}: {user: U
 
     return <div>
         {achievements.length === 0 ? <p>No achievements for this game</p> : <>
-            {unlocked.sort((a,b) => a.identifier - b.identifier).map(a => <AchievmentCompletionCard key={a.identifier} achievement={a} unlocked={true} user={"test"} updateAchievementCompletion={canEdit ? toggleAchievement.bind(null, a) : undefined} />)}
-            {locked.sort((a,b) => a.identifier - b.identifier).map(a => <AchievmentCompletionCard key={a.identifier} achievement={a} unlocked={false} user={"test"} updateAchievementCompletion={canEdit ? toggleAchievement.bind(null, a) : undefined} />)}
+            {unlocked.sort((a,b) => a.identifier - b.identifier).map(a => <AchievmentCompletionCard key={a.identifier} achievement={a} unlocked={true} updateAchievementCompletion={canEdit ? toggleAchievement.bind(null, a) : undefined} />)}
+            {locked.sort((a,b) => a.identifier - b.identifier).map(a => <AchievmentCompletionCard key={a.identifier} achievement={a} unlocked={false} updateAchievementCompletion={canEdit ? toggleAchievement.bind(null, a) : undefined} />)}
         </>}
     </div>
 }

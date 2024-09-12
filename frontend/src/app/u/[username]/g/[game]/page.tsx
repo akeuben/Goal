@@ -8,12 +8,10 @@ import { use } from "react";
 
 export default function Page({params}: {params: {username: string, game: string}}) {
     const game = use(getGame(params.game));
-    const user = use(getUser("test"));
+    const user = use(getUser(params.username));
     
     if(!user.success) notFound();
     if(!game.success) notFound();
-
-    console.log("a");
 
     const completion = use(getGameCompletion("test", game.value.identifier));
     const customCompletionCategoriesRaw = use(getGameCompletionCategories(user.value.username));

@@ -1,7 +1,7 @@
 import { Achievement } from "@/types/achievements";
 import styles from "./AchievementCard.module.css";
 
-export const AchievmentCompletionCard = ({achievement, unlocked, user, updateAchievementCompletion}:{achievement: Achievement, unlocked: boolean, user: string, updateAchievementCompletion?: (arg0: boolean) => void}) => {
+export const AchievmentCompletionCard = ({achievement, unlocked, updateAchievementCompletion}:{achievement: Achievement, unlocked: boolean, updateAchievementCompletion?: (arg0: boolean) => void}) => {
     return <div className={styles.card}>
         <div>
             <b>{achievement.name}</b>
