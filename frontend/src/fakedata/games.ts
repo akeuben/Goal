@@ -26,7 +26,7 @@ export const fakedata_getGameList = async (sort: GameListSort, filter: GameListF
         }
     }
 
-    const result = await fetch("http://localhost:3000/games.json");
+    const result = await fetch("http://localhost:3000/games.json", {cache: "no-store"});
     const games = (await result.json()) as Game[];
 
 
@@ -39,7 +39,7 @@ export const fakedata_getGameList = async (sort: GameListSort, filter: GameListF
 }
 
 export const fakedata_getGame = async (identifier: string) => {
-    const result = await fetch("http://localhost:3000/games.json");
+    const result = await fetch("http://localhost:3000/games.json", {cache: "no-store"});
     const games = (await result.json()) as Game[];
 
     return games.filter(game => game.identifier === identifier)[0];

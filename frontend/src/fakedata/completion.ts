@@ -34,7 +34,7 @@ export const fakedata_getCompletions = async (username: string, sort: GameListSo
         }
     }
 
-    const result = await fetch("http://localhost:3000/completion.json");
+    const result = await fetch("http://localhost:3000/completion.json", {cache: "no-store"});
     const completions = (await result.json()) as IncompleteGameCompletion[];
 
     const userCompletionList: GameCompletion[] = await Promise.all(completions.filter(c => c.user === username).map(async (completion) => {
@@ -57,7 +57,7 @@ export const fakedata_getCompletions = async (username: string, sort: GameListSo
 }
 
 export const fakedata_getCompletion = async (username: string, game: string) => {
-    const result = await fetch("http://localhost:3000/completion.json");
+    const result = await fetch("http://localhost:3000/completion.json", {cache: "no-store"});
     const completions = (await result.json()) as IncompleteGameCompletion[];
 
     const incomplete = completions.filter(c => c.user === username && c.game === game)[0] || null;
@@ -77,7 +77,7 @@ export const fakedata_getCompletion = async (username: string, game: string) => 
 }
 
 export const fakedata_updateGameCompletionBuiltin = async (username: string, game: string, completionCategory: GameCompletion["status"]) => {
-    const result = await fetch("http://localhost:3000/completion.json");
+    const result = await fetch("http://localhost:3000/completion.json", {cache: "no-store"});
     const completions = (await result.json()) as IncompleteGameCompletion[];
 
     const entry = completions.filter(c => c.user === username && c.game === game)[0];
@@ -88,7 +88,7 @@ export const fakedata_updateGameCompletionBuiltin = async (username: string, gam
 }
 
 export const fakedata_updateGameCompletionCustom = async (username: string, game: string, completionCategory: string) => {
-    const result = await fetch("http://localhost:3000/completion.json");
+    const result = await fetch("http://localhost:3000/completion.json", {cache: "no-store"});
     const completions = (await result.json()) as IncompleteGameCompletion[];
 
     const entry = completions.filter(c => c.user === username && c.game === game)[0];
@@ -99,14 +99,14 @@ export const fakedata_updateGameCompletionCustom = async (username: string, game
 }
 
 export const fakedata_getCompletionCategories = async (username: string) => {
-    const result = await fetch("http://localhost:3000/category.json");
+    const result = await fetch("http://localhost:3000/category.json", {cache: "no-store"});
     const categories = (await result.json()) as GameCompletionCategory[];
 
     return categories.filter(c => c.user === username).toSorted((a, b) => a.order - b.order);
 }
 
 export const fakedata_updateGameCompletionCategoryName = async (username: string, oldName: string, newName: string) => {
-    const result = await fetch("http://localhost:3000/category.json");
+    const result = await fetch("http://localhost:3000/category.json", {cache: "no-store"});
     const categories = (await result.json()) as GameCompletionCategory[];
 
     const category = categories.filter(c => c.user === username && c.name === oldName)[0];
@@ -116,7 +116,7 @@ export const fakedata_updateGameCompletionCategoryName = async (username: string
 }
 
 export const fakedata_updateGameCompletionCategoryColour = async (username: string, name: string, colour: string) => {
-    const result = await fetch("http://localhost:3000/category.json");
+    const result = await fetch("http://localhost:3000/category.json", {cache: "no-store"});
     const categories = (await result.json()) as GameCompletionCategory[];
 
     const category = categories.filter(c => c.user === username && c.name === name)[0];

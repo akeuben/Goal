@@ -5,7 +5,7 @@ import { fakedata_getUser, fakedata_getUserScore } from "@/fakedata/users";
 import { Achievement } from "@/types/achievements";
 import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { Game, GameListFilter, GameListSearch, GameListSort } from "@/types/games";
-import { Fail, MakeResult, MakeResultFromNull, Result, Success } from "@/types/result";
+import { Fail, MakeResultFromNull, Result, Success } from "@/types/result";
 
 export const getGameList = async (sort: GameListSort, filter: GameListFilter, search: GameListSearch): Promise<Result<Game[], undefined>> => {
     return Success(await fakedata_getGameList(sort, filter, search));
