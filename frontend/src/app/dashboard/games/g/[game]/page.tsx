@@ -1,12 +1,10 @@
-import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements, updateUserAchievementState } from "@/api/api"
-import { AchievmentCompletionCard } from "@/components/achievement/AchievementCompletionCard";
+import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements } from "@/api/api";
 import { AchievementCompletionList } from "@/components/achievement/AchievementCompletionList";
-import { GameCompletionCard } from "@/components/game/GameCompletionCard";
 import { WrappedGameCompletionCard } from "@/components/game/WrappedGameCompletionCard";
 import { Achievement } from "@/types/achievements";
 import { GameCompletionCategory } from "@/types/completion";
 import { notFound } from "next/navigation";
-import { use } from "react"
+import { use } from "react";
 
 export default function Page({params}: {params: {game: string}}) {
     const game = use(getGame(params.game));

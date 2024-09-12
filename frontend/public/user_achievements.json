@@ -2,5 +2,9 @@
     {
         "user": "test",
         "achievement": 1
+    },
+    {
+        "user": "test",
+        "achievement": 3
     }
 ]

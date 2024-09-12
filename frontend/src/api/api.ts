@@ -1,7 +1,7 @@
 import { fakedata_getGameAcheivements, fakedata_getUserAcheivements, fakedata_updateUserAchievementState } from "@/fakedata/achievements";
 import { fakedata_getCompletion, fakedata_getCompletionCategories, fakedata_getCompletions, fakedata_updateGameCompletionBuiltin, fakedata_updateGameCompletionCategoryColour, fakedata_updateGameCompletionCategoryName, fakedata_updateGameCompletionCustom } from "@/fakedata/completion";
 import { fakedata_getGame, fakedata_getGameList } from "@/fakedata/games";
-import { fakedata_getUser } from "@/fakedata/users";
+import { fakedata_getUser, fakedata_getUserScore } from "@/fakedata/users";
 import { Achievement } from "@/types/achievements";
 import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { Game, GameListFilter, GameListSearch, GameListSort } from "@/types/games";
@@ -58,6 +58,12 @@ export const getUser = async (username: string) => {
     const user = await fakedata_getUser(username);
 
     return MakeResultFromNull(user, "No such user");
+}
+
+export const getUserScore = async (username: string) => {
+    const score = await fakedata_getUserScore(username);
+
+    return Success(score);
 }
 
 export const getUserAchievements = async (user: string, game: string): Promise<Result<Achievement[], Error>> => {
