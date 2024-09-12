@@ -16,22 +16,23 @@ export function GameCompletionCard({gameCompletion, setCompletion, categories}: 
                 if(value.startsWith("custom/")) {
                     const customCategory = value.split("/").splice(1).join("/");
                     updateGameCompletionCustom(gameCompletion.user, gameCompletion.game.identifier, customCategory).then(result => {
-                        console.log("Result: " + result.success);
                         if(result.success && setCompletion) {
                             setCompletion(gameCompletion.game.identifier, 'custom', customCategory);
+                        } else if(gameCompletion.status !== "custom"){
+                            selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === gameCompletion.status)[0]?.index || 0;
                         } else {
-                            selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === gameCompletion.status)[0].index || 0;
+                            selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === "custom/" + gameCompletion.customStatus)[0]?.index || 0;
                         }
                     })
                     return;
                 }
-                console.log("test");
                 updateGameCompletionBuiltin(gameCompletion.user, gameCompletion.game.identifier, value).then(result => {
-                    console.log("Result: " + result.success);
                     if(result.success && setCompletion) {
                         setCompletion(gameCompletion.game.identifier, value, null);
+                    } else if(gameCompletion.status !== "custom"){
+                        selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === gameCompletion.status)[0]?.index || 0;
                     } else {
-                        selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === gameCompletion.status)[0].index || 0;
+                        selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === "custom/" + gameCompletion.customStatus)[0]?.index || 0;
                     }
                 })
             }} defaultValue={gameCompletion.status === "custom" ? `custom/${gameCompletion.customStatus}` : gameCompletion.status}>

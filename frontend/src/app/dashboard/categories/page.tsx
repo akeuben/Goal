@@ -1,7 +1,7 @@
 "use client"
 
 import styles from "./page.module.css";
-import { getGameCompletionCategories, updateGameCompletionCategoryName } from "@/api/api";
+import { getGameCompletionCategories, updateGameCompletionCategoryColour, updateGameCompletionCategoryName } from "@/api/api";
 import { CompletionToColor } from "@/lib/completions";
 import { GameCompletionCategory } from "@/types/completion";
 import { useEffect, useState } from "react";
@@ -26,7 +26,19 @@ export default function Page() {
         <p><input type="color" defaultValue={CompletionToColor('complete', null, [])} disabled={true} /><input type="text" disabled={true} value="Complete"/></p>
         <h2>Your Categories</h2>
         {
-            customCompletionCategories.map((c, i) => <p key={c.order}><input type="color" defaultValue={c.colour} /><input type="text" value={c.name} onChange={e => {
+            customCompletionCategories.map((c, i) => <p key={c.order}><input type="color" defaultValue={c.colour} onChange={(e) => {
+                const value = "" + e.target.value;
+                updateGameCompletionCategoryColour(c.user, c.name, value).then(result => {
+                    if(!result.success) {
+                        e.target.value = c.colour;
+                    } else {
+                        const newCategories = structuredClone(customCompletionCategories);
+                        newCategories[i].colour = value;
+                        
+                        setCompletionCategories(newCategories);
+                    }
+                });
+            }}/><input type="text" value={c.name} onChange={e => {
                 const newCategories = structuredClone(customCompletionCategories);
                 newCategories[i].name = e.target.value;
                 setCompletionCategories(newCategories);

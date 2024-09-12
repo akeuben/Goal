@@ -6,8 +6,9 @@ import styles from "./GameCompletionList.module.css";
 import { useEffect, useState } from "react";
 import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { GameCompletionCard } from "./GameCompletionCard";
+import Link from "next/link";
 
-export function GameCompletionList({username, sort, filter, search, canEdit}: {username: string, sort: GameListSort, filter: GameListFilter, search: GameListSearch, canEdit: boolean}) {
+export function GameCompletionList({username, sort, filter, search, canEdit, detailsPage}: {username: string, sort: GameListSort, filter: GameListFilter, search: GameListSearch, canEdit: boolean, detailsPage?: `${string}/`}) {
     const [gameCompletions, setGameCompletions] = useState<GameCompletion[]|null>(null);
     const [customCompletionCategories, setCompletionCategories] = useState<GameCompletionCategory[]|null>(null);
 
@@ -33,6 +34,9 @@ export function GameCompletionList({username, sort, filter, search, canEdit}: {u
     if(!gameCompletions || !customCompletionCategories) return <></>
 
     return <div className={styles.gamelist}>
-        {gameCompletions.map(completion => <GameCompletionCard key={completion.game.identifier} gameCompletion={completion} setCompletion={canEdit ? updateCompletion : undefined} categories={customCompletionCategories}/>)}
+        {gameCompletions.map(completion => <div>
+            <GameCompletionCard key={completion.game.identifier} gameCompletion={completion} setCompletion={canEdit ? updateCompletion : undefined} categories={customCompletionCategories}/>
+            {detailsPage && <Link href={detailsPage + completion.game.identifier}>More Details</Link>}
+        </div>)}
     </div>
 }

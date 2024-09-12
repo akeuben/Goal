@@ -1,31 +1,33 @@
-import { getGameList } from '@/api/api';
-import { Game } from '@/types/games';
+import { getGame, getGameAchievements } from '@/api/api';
+import { AchievementCard } from '@/components/achievement/AchievementCard';
 import { notFound } from 'next/navigation';
 import { use } from 'react';
 import styles from "./page.module.css";
 
-const getGames = async () => {
-    const games = await getGameList({by: 'name', acending: true}, {}, undefined)
-    if(games.success) return games.value;
-
-    return [];
-}
-
 export default function GamePage({params}: {params: {game: string}}) {
-    const game = use<Game[]>(getGames()).filter(g => g.identifier === params.game)[0];
+    const game = use(getGame(params.game));
+    
+    if(!game.success) notFound();
 
-    if(!game) notFound();
+    const achievements = use(getGameAchievements(game.value.identifier));
+
+
+    if(!achievements.success) throw new Error("Failed to fetch achievements for game!");
 
     return <>
         <div className={styles.twoCol}>
-            <div className={styles.coverart} style={{backgroundImage: `url(/assets/gameart/${game.identifier}.jpg)`}}/>
-            <div>
-                <h1>{game.name}</h1>
-                <p>Release Date: <i>{game.releaseYear}</i></p>
-                <p>Developer: <i>{game.developer}</i></p>
-                <p>Publisher: <i>{game.publisher}</i></p>
+            <div className={styles.coverart} style={{backgroundImage: `url(/assets/gameart/${game.value.identifier}.jpg)`}}/>
+            <div className={styles.details}>
+                <h1>{game.value.name}</h1>
+                <p>Release Date: <i>{game.value.releaseYear}</i></p>
+                <p>Developer: <i>{game.value.developer}</i></p>
+                <p>Publisher: <i>{game.value.publisher}</i></p>
+                <p>{game.value.description}</p>
             </div>
         </div>
-        <p>{game.description}</p>
+        <h1 style={{marginLeft: "50px"}}>Achievements:</h1>
+        {achievements.value.length > 0 ? achievements.value.map(achievement => (
+            <AchievementCard achievement={achievement} />
+        )) : <p>This game does not have any achievements!</p>}
     </>
 }

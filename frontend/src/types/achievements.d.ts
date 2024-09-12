@@ -1,7 +1,8 @@
 export type Achievement = {
     identifier: number,
+    game: string,
     name: string,
-    type: "basic" | "progress",
     description: string,
     spoiler: boolean,
+    score: number,
 }

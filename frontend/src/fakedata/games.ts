@@ -29,6 +29,7 @@ export const fakedata_getGameList = async (sort: GameListSort, filter: GameListF
     const result = await fetch("http://localhost:3000/games.json");
     const games = (await result.json()) as Game[];
 
+
     const gameList = games
         .filter(game => search ? game.name.includes(search) : true)
         .filter(filterGames)

@@ -1,7 +1,5 @@
-export type user = {
-    identifier: number,
+export type User = {
     username: string,
-    displayName: string,
     email: string,
     passwordHash: string
 }

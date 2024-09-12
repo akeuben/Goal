@@ -17,7 +17,6 @@ export function GameList({sort, filter, search}: {sort: GameListSort, filter: Ga
 
     if(!games.success) throw new DynamicServerError("Failed to load game list");
 
-
     return <div className={styles.gamelist}>
         {games.value.map(game => <GameCard key={game.identifier} game={game} />)}
     </div>

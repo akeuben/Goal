@@ -4,5 +4,11 @@
         "name": "100%",
         "colour": "#016ACE",
         "order": 1
+    },
+    {
+        "user": "test2",
+        "name": "My Custom Status",
+        "colour": "#016ACE",
+        "order": 1
     }
 ]

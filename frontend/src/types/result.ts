@@ -19,3 +19,15 @@ export function Fail<V,E>(error: E): Result<V, E> {
         error: error,
     }
 }
+
+export function MakeResult<V,E>(success: boolean, successValue: V, errorValue: E): Result<V,E> {
+    if(success) {
+        return Success(successValue);
+    }
+
+    return Fail(errorValue);
+}
+
+export function MakeResultFromNull<V>(successValue: V | null, errorMessage: string): Result<V, Error> {
+    return MakeResult(successValue !== null, successValue as V, new Error(errorMessage));
+}

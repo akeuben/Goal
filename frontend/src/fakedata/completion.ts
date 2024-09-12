@@ -37,7 +37,6 @@ export const fakedata_getCompletions = async (username: string, sort: GameListSo
     const result = await fetch("http://localhost:3000/completion.json");
     const completions = (await result.json()) as IncompleteGameCompletion[];
 
-
     const userCompletionList: GameCompletion[] = await Promise.all(completions.filter(c => c.user === username).map(async (completion) => {
         const game = await fakedata_getGame(completion.game);
         const completeCompletion: GameCompletion = {
@@ -55,6 +54,26 @@ export const fakedata_getCompletions = async (username: string, sort: GameListSo
         .toSorted(sortGames);
 
     return gameList;
+}
+
+export const fakedata_getCompletion = async (username: string, game: string) => {
+    const result = await fetch("http://localhost:3000/completion.json");
+    const completions = (await result.json()) as IncompleteGameCompletion[];
+
+    const incomplete = completions.filter(c => c.user === username && c.game === game)[0] || null;
+
+    console.log(completions);
+
+    if(!incomplete) return null;
+
+    const complete: GameCompletion = {
+        game: await fakedata_getGame(incomplete.game),
+        user: incomplete.user,
+        status: incomplete.status,
+        customStatus: incomplete.customStatus
+    };
+
+    return complete;
 }
 
 export const fakedata_updateGameCompletionBuiltin = async (username: string, game: string, completionCategory: GameCompletion["status"]) => {
@@ -92,6 +111,16 @@ export const fakedata_updateGameCompletionCategoryName = async (username: string
 
     const category = categories.filter(c => c.user === username && c.name === oldName)[0];
     category.name = newName;
+
+    console.log(JSON.stringify(categories, null, 4));
+}
+
+export const fakedata_updateGameCompletionCategoryColour = async (username: string, name: string, colour: string) => {
+    const result = await fetch("http://localhost:3000/category.json");
+    const categories = (await result.json()) as GameCompletionCategory[];
+
+    const category = categories.filter(c => c.user === username && c.name === name)[0];
+    category.colour = colour;
 
     console.log(JSON.stringify(categories, null, 4));
 }

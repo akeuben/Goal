@@ -10,5 +10,11 @@
         "user": "test",
         "status": "in_progress",
         "customStatus": null
+    },
+    {
+        "game": "portal",
+        "user": "test",
+        "status": "in_progress",
+        "customStatus": null
     }
 ]
