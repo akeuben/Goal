@@ -1,12 +1,55 @@
 import { Achievement } from "@/types/achievements";
+import { fakedata_getGame } from "./games";
 
-export const fakedata_getGameAcheivements = async (game: string) => {
+type IncompleteAchievement = {
+    identifier: number,
+    game: string
+    name: string
+    description: string
+    spoiler: boolean
+    score: number
+}
+
+export const fakedata_getGameAcheivements = async (game: string): Promise<Achievement[] | null> => {
     const result = await fetch("http://localhost:3000/achievements.json", {cache: "no-store"});
-    const achievements = (await result.json()) as Achievement[];
+    const achievements = (await result.json()) as IncompleteAchievement[];
 
-    const gameAchievements = achievements.filter(achievement => achievement.game === game);
+    const gameAchievementsIncomplete = achievements.filter(achievement => achievement.game === game);
+
+    const gameAchievements: Achievement[] = await Promise.all(gameAchievementsIncomplete.map(async (a): Promise<Achievement> => {
+        const game = await fakedata_getGame(a.game);
+        return {
+            identifier: a.identifier,
+            game: game,
+            name: a.name,
+            description: a.description,
+            spoiler: a.spoiler,
+            score: a.score
+        }
+    }));
 
     return gameAchievements.length > 0 ? gameAchievements : null;
+}
+
+export const fakedata_getAchievement = async (identifier: number): Promise<Achievement | null> => {
+    const result = await fetch("http://localhost:3000/achievements.json", {cache: "no-store"});
+    const achievements = (await result.json()) as IncompleteAchievement[];
+
+    const validAchievements = achievements.filter(a => a.identifier === identifier);
+
+    const gameAchievements: Achievement[] = await Promise.all(validAchievements.map(async (a): Promise<Achievement> => {
+        const game = await fakedata_getGame(a.game);
+        return {
+            identifier: a.identifier,
+            game: game,
+            name: a.name,
+            description: a.description,
+            spoiler: a.spoiler,
+            score: a.score
+        }
+    }));
+
+    return gameAchievements.length > 0 ? gameAchievements[0] : null;
 }
 
 export const fakedata_getUserAcheivements = async (user: string, game: string) => {

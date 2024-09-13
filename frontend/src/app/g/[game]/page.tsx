@@ -11,9 +11,6 @@ export default function GamePage({params}: {params: {game: string}}) {
 
     const achievements = use(getGameAchievements(game.value.identifier));
 
-
-    if(!achievements.success) throw new Error("Failed to fetch achievements for game!");
-
     return <>
         <div className={styles.twoCol}>
             <div className={styles.coverart} style={{backgroundImage: `url(/assets/gameart/${game.value.identifier}.jpg)`}}/>
@@ -26,7 +23,7 @@ export default function GamePage({params}: {params: {game: string}}) {
             </div>
         </div>
         <h1 style={{marginLeft: "50px"}}>Achievements:</h1>
-        {achievements.value.length > 0 ? achievements.value.map(achievement => (
+        {achievements.success && achievements.value.length > 0 ? achievements.value.map(achievement => (
             <AchievementCard achievement={achievement} />
         )) : <p>This game does not have any achievements!</p>}
     </>

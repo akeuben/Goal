@@ -1,5 +1,6 @@
 import { getUser, getUserScore } from "@/api/api"
 import { GameCompletionList } from "@/components/game/GameCompletionList"
+import { Timeline } from "@/components/timeline/Timeline";
 import { notFound } from "next/navigation";
 import { use } from "react"
 
@@ -20,6 +21,6 @@ export default function ProfilePage({params}: {params: {username: string}}) {
         <GameCompletionList username={params.username} sort={{by: 'name', acending: true}} filter={{}} search="" canEdit={false} detailsPage={`/u/${user.value.username}/g/`}/>
 
         <h2>Timeline</h2>
-        <p>TODO</p>
+        <Timeline user={user.value} />
     </div>
 }

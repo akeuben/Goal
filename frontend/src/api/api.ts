@@ -1,6 +1,7 @@
 import { fakedata_getGameAcheivements, fakedata_getUserAcheivements, fakedata_updateUserAchievementState } from "@/fakedata/achievements";
 import { fakedata_getCompletion, fakedata_getCompletionCategories, fakedata_getCompletions, fakedata_updateGameCompletionBuiltin, fakedata_updateGameCompletionCategoryColour, fakedata_updateGameCompletionCategoryName, fakedata_updateGameCompletionCustom } from "@/fakedata/completion";
 import { fakedata_getGame, fakedata_getGameList } from "@/fakedata/games";
+import { fakedata_getUserTimelineEntries } from "@/fakedata/timeline";
 import { fakedata_getUser, fakedata_getUserScore } from "@/fakedata/users";
 import { Achievement } from "@/types/achievements";
 import { GameCompletion, GameCompletionCategory } from "@/types/completion";
@@ -74,4 +75,9 @@ export const getUserAchievements = async (user: string, game: string): Promise<R
 
 export const updateUserAchievementState = async (user: string, achievement: number, unlocked: boolean) => {
     return Fail(fakedata_updateUserAchievementState(user, achievement, unlocked));
+}
+
+export const getUserTimelineEntries = async (user: string) => {
+    const entries = await fakedata_getUserTimelineEntries(user);
+    return MakeResultFromNull(entries, "No such timeline entries");
 }
