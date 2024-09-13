@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static spark.Spark.*;
 
@@ -19,16 +21,24 @@ public class Main {
             return "Hellon't, "+ req.params(":name");
         });
 
-        get("/test", (req, res)->{
+        get("/json", (req,res)->{
+            HashMap<String, Double> arrayList = new HashMap<>();
+            arrayList.put("Test", 5.0);
+            arrayList.put("Test1", -5.0);
+            arrayList.put("Test2", 65.0);
+            return arrayList;
+        });
+
+        get("/sql", (req, res)->{
             String returnString = "";
 
             try{
                 Class.forName("com.mysql.jdbc.Driver");
 
                 Connection connection = DriverManager.getConnection(
-                        "jdbc:mysql://127.0.0.1:3306/login_schema?useSSL=false",
+                        "jdbc:mysql://127.0.0.1:3306/login_schema?allowPublicKeyRetrieval=true&useSSL=false",
                         "read",
-                        "cpsc471!"
+                        "password1"
                 );
 
                 Statement statement = connection.createStatement();
