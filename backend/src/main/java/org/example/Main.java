@@ -31,22 +31,11 @@ public class Main {
         return statement.executeQuery(query);
     }
 
+    private static boolean checkAuth(String auth){
+        return true;
+    }
+
     public static void main(String[] args) {
-        get("/hello", (req, res)->"Hello, world");
-
-        get("/hello/:name/:name2", (req,res)->{
-            return "Hellon't, " + req.params(":name") + req.params(":name2");
-        });
-
-        get("/json", (req,res)->{
-            // response.type("application/json");
-            // Response response = new Response();
-
-            JSONObject jo = new JSONObject();
-            jo.put("data", "someData");
-            jo.put("status", 200);
-            return jo;
-        });
 
         get("/sql", (req, res)->{
             JSONObject returnObject = new JSONObject();
@@ -66,6 +55,7 @@ public class Main {
                 }
 
                 returnObject.put("data", returnArray);
+                res.status(200);
 
                 return returnObject;
             } catch (Exception e){
@@ -73,55 +63,135 @@ public class Main {
             }
         });
 
-        get("/testParams", "application/json", (req,res)->{
-            // http://localhost:4567/testParams?id=XYZ&id2=A
-
-            String id = req.queryParams("id");
-            String id2 = req.queryParams("id2");
-            return "HI " + id + " " + id2;
-        });
-
+        // https://github.com/Kappabyte/471-Project/tree/ui/frontend/src/types
         get("/getGameList", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String filter = req.queryParams("filter");
             String search = req.queryParams("search");
 
-            return "Not made";
+            ArrayList<Game> gameList = new ArrayList<>();
+            gameList.add(new Game(
+                    "aleksSecondFavoriteGame",
+                    "Starcraft 2",
+                    2016,
+                    "Iron Galaxy",
+                    "Blizzard Entertainment",
+                    "Overwatch was a 2016 team-based multiplayer first-person shooter game by Blizzard " +
+                            "Entertainment."
+            ));
+            gameList.add(new Game(
+                    "aleksIsSadTheyKilledIt",
+                    "Overwatch",
+                    2010,
+                    "Blizzard",
+                    "Blizzard Entertainment",
+                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                            "various fictional races of StarCraft."
+            ));
+
+            return gameList;
         });
 
         get("/getGame", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String game = req.queryParams("game");
 
-            return "Not made";
+            return new Game(
+                    "ABCXYZ",
+                    "Starcraft 2",
+                    2010,
+                    "Blizzard",
+                    "Blizzard Entertainment",
+                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                            "various fictional races of StarCraft."
+            );
         });
 
         get("/getGameCompletions", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             String filter = req.queryParams("filter");
             String search = req.queryParams("search");
 
-            return "Not made";
+            ArrayList<GameCompletion> gameCompletions = new ArrayList<>();
+
+            gameCompletions.add(new GameCompletion(
+                    "Starcraft 2",
+                    "aleks",
+                    "",
+                    "totallyRealStatus"
+            ));
+            gameCompletions.add(new GameCompletion(
+                    "Overwatch",
+                    "aleks",
+                    "Died",
+                    ""
+            ));
+
+            return gameCompletions;
         });
 
         get("/getGameCompletion", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             String game = req.queryParams("game");
 
-            return "Not made";
+            return  new GameCompletion(
+                    "Starcraft 2",
+                    "aleks",
+                    "",
+                    "totallyRealStatus"
+            );
         });
 
         get("/getGameCompletionCategories", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
+
+            ArrayList<GameCompletionCategory> gameCompletionCategories = new ArrayList<>();
+
+            gameCompletionCategories.add(new GameCompletionCategory(
+                    "Starcraft 2",
+                    username,
+                    "red",
+                    1)
+            );
+            gameCompletionCategories.add(new GameCompletionCategory(
+                    "Starcraft 2",
+                    username,
+                    "blue",
+                    2)
+            );
 
             return "Not made";
         });
 
         get("/updateGameCompletionCategoryName", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             String oldName = req.queryParams("oldName");
             String newName = req.queryParams("newName");
@@ -130,7 +200,11 @@ public class Main {
         });
 
         get("/updateGameCompletionCategoryColour", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             String name = req.queryParams("name");
             String colour = req.queryParams("colour");
@@ -139,7 +213,11 @@ public class Main {
         });
 
         get("/updateGameCompletionBuiltin", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             String game = req.queryParams("colour");
             String completionCategory = req.queryParams("completionCategory");
@@ -148,7 +226,11 @@ public class Main {
         });
 
         get("/updateGameCompletionCustom", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             String game = req.queryParams("colour");
             String completionCategory = req.queryParams("completionCategory");
@@ -157,28 +239,44 @@ public class Main {
         });
 
         get("/getGameAchievements", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String game = req.queryParams("game");
 
             return "Not made";
         });
 
         get("/getUser", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
 
             return "Not made";
         });
 
         get("/getUserScore", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
 
             return "Not made";
         });
 
         get("/getUserAchievements", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             String game = req.queryParams("game");
 
@@ -186,7 +284,11 @@ public class Main {
         });
 
         get("/updateUserAchievementState", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             String achievement = req.queryParams("achievement");
             String unlocked = req.queryParams("game");
@@ -195,7 +297,11 @@ public class Main {
         });
 
         get("/getUserTimelineEntries", "application/json", (req,res)->{
-            String authToken = req.queryParams("auth");
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
             String username = req.queryParams("username");
             
             return "Not made";
