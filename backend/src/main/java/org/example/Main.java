@@ -93,7 +93,12 @@ public class Main {
                             "various fictional races of StarCraft."
             ));
 
-            return gameList;
+            ArrayList<JSONObject> ojs = new ArrayList<>();
+            for (Game game : gameList){
+                ojs.add(game.toReturn());
+            }
+
+            return ojs;
         });
 
         get("/getGame", "application/json", (req,res)->{
@@ -112,7 +117,7 @@ public class Main {
                     "Blizzard Entertainment",
                     "Set in the future, the game centers on a galactic struggle for dominance among the " +
                             "various fictional races of StarCraft."
-            );
+            ).toReturn();
         });
 
         get("/getGameCompletions", "application/json", (req,res)->{
@@ -140,7 +145,12 @@ public class Main {
                     ""
             ));
 
-            return gameCompletions;
+            ArrayList<JSONObject> ojs = new ArrayList<>();
+            for (GameCompletion gameCompletion : gameCompletions){
+                ojs.add(gameCompletion.toReturn());
+            }
+
+            return ojs;
         });
 
         get("/getGameCompletion", "application/json", (req,res)->{
@@ -157,7 +167,7 @@ public class Main {
                     "aleks",
                     "",
                     "totallyRealStatus"
-            );
+            ).toReturn();
         });
 
         get("/getGameCompletionCategories", "application/json", (req,res)->{
@@ -183,7 +193,12 @@ public class Main {
                     2)
             );
 
-            return "Not made";
+            ArrayList<JSONObject> ojs = new ArrayList<>();
+            for (GameCompletionCategory gameCompletionCategory : gameCompletionCategories){
+                ojs.add(gameCompletionCategory.toReturn());
+            }
+
+            return ojs;
         });
 
         get("/updateGameCompletionCategoryName", "application/json", (req,res)->{
