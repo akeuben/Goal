@@ -34,10 +34,16 @@ public class Main {
     private static boolean checkAuth(String auth){
         return true;
     }
+    
+    private static void setHeaders(Response res) {
+        res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    }
 
     public static void main(String[] args) {
 
         get("/sql", (req, res)->{
+            setHeaders(res);
+
             JSONObject returnObject = new JSONObject();
 
             try{
@@ -65,6 +71,8 @@ public class Main {
 
         // https://github.com/Kappabyte/471-Project/tree/ui/frontend/src/types
         get("/getGameList", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -102,6 +110,8 @@ public class Main {
         });
 
         get("/getGame", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -121,6 +131,8 @@ public class Main {
         });
 
         get("/getGameCompletions", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -154,6 +166,8 @@ public class Main {
         });
 
         get("/getGameCompletion", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -171,6 +185,8 @@ public class Main {
         });
 
         get("/getGameCompletionCategories", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -202,6 +218,8 @@ public class Main {
         });
 
         get("/updateGameCompletionCategoryName", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -211,10 +229,14 @@ public class Main {
             String oldName = req.queryParams("oldName");
             String newName = req.queryParams("newName");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/updateGameCompletionCategoryColour", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -224,10 +246,14 @@ public class Main {
             String name = req.queryParams("name");
             String colour = req.queryParams("colour");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/updateGameCompletionBuiltin", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -237,10 +263,14 @@ public class Main {
             String game = req.queryParams("colour");
             String completionCategory = req.queryParams("completionCategory");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/updateGameCompletionCustom", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -250,10 +280,14 @@ public class Main {
             String game = req.queryParams("colour");
             String completionCategory = req.queryParams("completionCategory");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/getGameAchievements", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -261,10 +295,14 @@ public class Main {
 
             String game = req.queryParams("game");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/getUser", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -272,10 +310,14 @@ public class Main {
 
             String username = req.queryParams("username");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/getUserScore", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -283,10 +325,14 @@ public class Main {
 
             String username = req.queryParams("username");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/getUserAchievements", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -295,10 +341,14 @@ public class Main {
             String username = req.queryParams("username");
             String game = req.queryParams("game");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/updateUserAchievementState", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -308,10 +358,14 @@ public class Main {
             String achievement = req.queryParams("achievement");
             String unlocked = req.queryParams("game");
 
+            
+            res.status(501);
             return "Not made";
         });
 
         get("/getUserTimelineEntries", "application/json", (req,res)->{
+            setHeaders(res);
+
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
@@ -319,6 +373,7 @@ public class Main {
 
             String username = req.queryParams("username");
             
+            res.status(501);
             return "Not made";
         });
     }

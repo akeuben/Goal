@@ -1,6 +1,5 @@
 import { fakedata_getGameAcheivements, fakedata_getUserAcheivements, fakedata_updateUserAchievementState } from "@/fakedata/achievements";
 import { fakedata_getCompletion, fakedata_getCompletionCategories, fakedata_getCompletions, fakedata_updateGameCompletionBuiltin, fakedata_updateGameCompletionCategoryColour, fakedata_updateGameCompletionCategoryName, fakedata_updateGameCompletionCustom } from "@/fakedata/completion";
-import { fakedata_getGame, fakedata_getGameList } from "@/fakedata/games";
 import { fakedata_getUserTimelineEntries } from "@/fakedata/timeline";
 import { fakedata_getUser, fakedata_getUserScore } from "@/fakedata/users";
 import { Achievement } from "@/types/achievements";
@@ -8,14 +7,22 @@ import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { Game, GameListFilter, GameListSearch, GameListSort } from "@/types/games";
 import { Fail, MakeResultFromNull, Result, Success } from "@/types/result";
 
-export const getGameList = async (sort: GameListSort, filter: GameListFilter, search: GameListSearch): Promise<Result<Game[], undefined>> => {
-    return Success(await fakedata_getGameList(sort, filter, search));
+export const getGameList = async (_sort: GameListSort, _filter: GameListFilter, _search: GameListSearch): Promise<Result<Game[], Error>> => {
+    const response = await fetch("http://localhost:4567/getGameList");
+    if(response.status != 200) {
+        return Fail(Error(`Failed to fetch game list with status code ${response.status}: ${response.statusText}`));
+    }
+    const data = (await response.json()) as Game[];
+    return Success(data);
 }
 
 export const getGame = async(identifier: string) => {
-    const game = await fakedata_getGame(identifier);
-
-    return MakeResultFromNull(game, "No such game");
+    const response = await fetch(`http://localhost:4567/getGame?game=${encodeURIComponent(identifier)}`);
+    if(response.status != 200) {
+        return Fail(Error(`Failed to fetch game ${identifier} with status code ${response.status}: ${response.statusText}`));
+    }
+    const data = (await response.json()) as Game[];
+    return Success(data);
 }
 
 export const getGameCompletions = async (username: string, sort: GameListSort, filter: GameListFilter, search: GameListSearch): Promise<Result<GameCompletion[], undefined>> => {
