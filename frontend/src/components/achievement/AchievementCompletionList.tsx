@@ -27,7 +27,6 @@ export const AchievementCompletionList = ({user, game, canEdit = true}: {user: U
 
     const toggleAchievement = (a: Achievement, v: boolean) => {
         updateUserAchievementState(user.username, a.identifier, v).then(result => {
-            console.log("result success");
             if(result.success) {
                 let clone = structuredClone(userAchievements);
                 clone = clone.filter(a2 => a.identifier !== a2.identifier);

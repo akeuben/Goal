@@ -1,11 +1,13 @@
 import { fakedata_getGameAcheivements, fakedata_getUserAcheivements, fakedata_updateUserAchievementState } from "@/fakedata/achievements";
 import { fakedata_getCompletion, fakedata_getCompletionCategories, fakedata_getCompletions, fakedata_updateGameCompletionBuiltin, fakedata_updateGameCompletionCategoryColour, fakedata_updateGameCompletionCategoryName, fakedata_updateGameCompletionCustom } from "@/fakedata/completion";
+import { fakedata_getGameReview, fakedata_setGameReviewRating, fakedata_setGameReviewText } from "@/fakedata/review";
 import { fakedata_getUserTimelineEntries } from "@/fakedata/timeline";
 import { fakedata_getUser, fakedata_getUserScore } from "@/fakedata/users";
 import { Achievement } from "@/types/achievements";
 import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { Game, GameListFilter, GameListSearch, GameListSort } from "@/types/games";
 import { Fail, MakeResultFromNull, Result, Success } from "@/types/result";
+import { GameReview } from "@/types/review";
 
 export const getGameList = async (_sort: GameListSort, _filter: GameListFilter, _search: GameListSearch): Promise<Result<Game[], Error>> => {
     const response = await fetch("http://localhost:4567/getGameList");
@@ -16,12 +18,12 @@ export const getGameList = async (_sort: GameListSort, _filter: GameListFilter, 
     return Success(data);
 }
 
-export const getGame = async(identifier: string) => {
+export const getGame = async(identifier: string): Promise<Result<Game, Error>> => {
     const response = await fetch(`http://localhost:4567/getGame?game=${encodeURIComponent(identifier)}`);
     if(response.status != 200) {
         return Fail(Error(`Failed to fetch game ${identifier} with status code ${response.status}: ${response.statusText}`));
     }
-    const data = (await response.json()) as Game[];
+    const data = (await response.json()) as Game;
     return Success(data);
 }
 
@@ -29,12 +31,13 @@ export const getGameCompletions = async (username: string, sort: GameListSort, f
     return Success(await fakedata_getCompletions(username, sort, filter, search));
 }
 
-export const getGameCompletion = async (username: string, game: string) => {
-    const completion = await fakedata_getCompletion(username, game);
-
-    console.log(completion);
-
-    return MakeResultFromNull(completion, "No such user completion");
+export const getGameCompletion = async (username: string, game: string): Promise<Result<GameCompletion, Error>> => {
+    const response = await fetch(`http://localhost:4567/getGameCompletion?username=${encodeURIComponent(username)}&game=${encodeURIComponent(game)}`);
+    if(response.status != 200) {
+        return Fail(Error(`Failed to fetch game ${game} completion for user ${username} with status code ${response.status}: ${response.statusText}`));
+    }
+    const data = (await response.json()) as GameCompletion;
+    return Success(data);
 }
 
 export const getGameCompletionCategories = async (username: string): Promise<Result<GameCompletionCategory[], undefined>> => {
@@ -87,4 +90,16 @@ export const updateUserAchievementState = async (user: string, achievement: numb
 export const getUserTimelineEntries = async (user: string) => {
     const entries = await fakedata_getUserTimelineEntries(user);
     return MakeResultFromNull(entries, "No such timeline entries");
+}
+
+export const getGameReview = async(user: string, game: string): Promise<Result<GameReview, Error>> => {
+    return Success(await fakedata_getGameReview(game, user));
+}
+
+export const setGameReviewText = async(user: string, game: string, text: string): Promise<Result<undefined, void>> => {
+    return Fail(await fakedata_setGameReviewText(game, user, text));
+}
+
+export const setGameReviewRating = async(user: string, game: string, rating: number): Promise<Result<undefined, void>> => {
+    return Fail(await fakedata_setGameReviewRating(game, user, rating));
 }

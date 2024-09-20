@@ -13,8 +13,6 @@ export default function Page({params}: {params: {game: string}}) {
     if(!user.success) notFound();
     if(!game.success) notFound();
 
-    console.log("a");
-
     const completion = use(getGameCompletion("test", game.value.identifier));
     const customCompletionCategoriesRaw = use(getGameCompletionCategories(user.value.username));
     let customCompletionCategories: GameCompletionCategory[] = [];
