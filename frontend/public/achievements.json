@@ -1,0 +1,26 @@
+[
+    {
+        "identifier": 1,
+        "game": "portal",
+        "name": "Aperature Science",
+        "description": "Earn gold medals on al Portal challenges",
+        "spoiler": false,
+        "score": 100
+    },
+    {
+        "identifier": 2,
+        "game": "portal",
+        "name": "Basic Science",
+        "description": "Earn bronze medals on al Portal challenges",
+        "spoiler": false,
+        "score": 10
+    },
+    {
+        "identifier": 3,
+        "game": "portal",
+        "name": "Lab Rat",
+        "description": "Acquire the fully powered Aperature Science Handheld Portal Device",
+        "spoiler": true,
+        "score": 5
+    }
+]

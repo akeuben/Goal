@@ -1,0 +1,31 @@
+.gamecard {
+    display: grid;
+    background: #323232;
+    gap: 20px;
+    padding: 20px;
+    grid-template-columns: 100px auto 100px 100px;
+}
+
+.details {
+    flex-grow: 2;
+}
+
+.details>h1 {
+    font-size: 1.5em;
+}
+
+.details>i {
+    color: gray;
+}
+
+.coverart {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    background-size: cover;
+    background-position: center center;
+}
+
+.gamecard>a>button {
+    height: 100%;
+    width: 100%;
+}

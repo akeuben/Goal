@@ -1,0 +1,8 @@
+.page {
+    margin: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-evenly;
+}
