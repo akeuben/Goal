@@ -70,6 +70,7 @@ public class Main {
                 return null;
             };
 
+            String sort = req.queryParams("sort");
             String filter = req.queryParams("filter");
             String search = req.queryParams("search");
 
@@ -126,8 +127,9 @@ public class Main {
                 return null;
             };
 
-            String username = req.queryParams("username");
             String filter = req.queryParams("filter");
+            String username = req.queryParams("username");
+            String sort = req.queryParams("sort");
             String search = req.queryParams("search");
 
             ArrayList<GameCompletion> gameCompletions = new ArrayList<>();
@@ -211,7 +213,12 @@ public class Main {
             String oldName = req.queryParams("oldName");
             String newName = req.queryParams("newName");
 
-            return "Not made";
+            return new GameCompletionCategory(
+                    username,
+                    newName,
+                    "420A55",
+                    5
+            ).toReturn();
         });
 
         get("/updateGameCompletionCategoryColour", "application/json", (req,res)->{
@@ -224,7 +231,12 @@ public class Main {
             String name = req.queryParams("name");
             String colour = req.queryParams("colour");
 
-            return "Not made";
+            return new GameCompletionCategory(
+                    username,
+                    name,
+                    colour,
+                    5
+            ).toReturn();
         });
 
         get("/updateGameCompletionBuiltin", "application/json", (req,res)->{
@@ -237,7 +249,12 @@ public class Main {
             String game = req.queryParams("colour");
             String completionCategory = req.queryParams("completionCategory");
 
-            return "Not made";
+            return new GameCompletionCategory(
+                    username,
+                    "Test",
+                    "677A52",
+                    5
+            ).toReturn();
         });
 
         get("/updateGameCompletionCustom", "application/json", (req,res)->{
@@ -250,7 +267,12 @@ public class Main {
             String game = req.queryParams("colour");
             String completionCategory = req.queryParams("completionCategory");
 
-            return "Not made";
+            return new GameCompletionCategory(
+                    username,
+                    "Test but again",
+                    "A52677",
+                    5
+            ).toReturn();
         });
 
         get("/getGameAchievements", "application/json", (req,res)->{
@@ -261,7 +283,32 @@ public class Main {
 
             String game = req.queryParams("game");
 
-            return "Not made";
+            ArrayList<Achievement> achievements = new ArrayList<>();
+
+            achievements.add(new Achievement(
+                5,
+                "Overwatch",
+                "Start",
+                "Open the game",
+                true,
+                -1
+            ));
+
+            achievements.add(new Achievement(
+                6,
+                "Overwatch",
+                "Close The Game",
+                "Realize this game has died",
+                false,
+                5
+            ));
+
+            ArrayList<JSONObject> ojs = new ArrayList<>();
+            for (Achievement achievement : achievements){
+                ojs.add(achievement.toReturn());
+            }
+
+            return ojs;
         });
 
         get("/getUser", "application/json", (req,res)->{
@@ -272,18 +319,57 @@ public class Main {
 
             String username = req.queryParams("username");
 
-            return "Not made";
-        });
+            ArrayList<Achievement> achievements = new ArrayList<>();
+            achievements.add(new Achievement(
+                    5,
+                    "Overwatch",
+                    "Start",
+                    "Open the game",
+                    true,
+                    8
+            ));
+            achievements.add(new Achievement(
+                    6,
+                    "Starcraft 2",
+                    "Addicted",
+                    "Unlock protoss from the selection",
+                    false,
+                    5
+            ));
+            ArrayList<JSONObject> achievementsOjs = new ArrayList<>();
+            for (Achievement achievement : achievements){
+                achievementsOjs.add(achievement.toReturn());
+            }
 
-        get("/getUserScore", "application/json", (req,res)->{
-            if (!checkAuth(req.headers("Authorization"))){
-                res.status(401);
-                return null;
-            };
+            ArrayList<Game> gameList = new ArrayList<>();
+            gameList.add(new Game(
+                    "aleksSecondFavoriteGame",
+                    "Starcraft 2",
+                    2016,
+                    "Iron Galaxy",
+                    "Blizzard Entertainment",
+                    "Overwatch was a 2016 team-based multiplayer first-person shooter game by Blizzard " +
+                            "Entertainment."
+            ));
+            gameList.add(new Game(
+                    "aleksIsSadTheyKilledIt",
+                    "Overwatch",
+                    2010,
+                    "Blizzard",
+                    "Blizzard Entertainment",
+                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                            "various fictional races of StarCraft."
+            ));
+            ArrayList<JSONObject> gameOjs = new ArrayList<>();
+            for (Game game : gameList){
+                gameOjs.add(game.toReturn());
+            }
 
-            String username = req.queryParams("username");
-
-            return "Not made";
+            return new User(
+                    username,
+                    achievementsOjs,
+                    gameOjs
+            ).toReturn();
         });
 
         get("/getUserAchievements", "application/json", (req,res)->{
@@ -294,8 +380,32 @@ public class Main {
 
             String username = req.queryParams("username");
             String game = req.queryParams("game");
+            ArrayList<Achievement> achievements = new ArrayList<>();
 
-            return "Not made";
+            achievements.add(new Achievement(
+                    5,
+                    "Overwatch",
+                    "Start",
+                    "Open the game",
+                    true,
+                    8
+            ));
+
+            achievements.add(new Achievement(
+                    6,
+                    "Starcraft 2",
+                    "Addicted",
+                    "Unlock protoss from the selection",
+                    false,
+                    5
+            ));
+
+            ArrayList<JSONObject> ojs = new ArrayList<>();
+            for (Achievement achievement : achievements){
+                ojs.add(achievement.toReturn());
+            }
+
+            return ojs;
         });
 
         get("/updateUserAchievementState", "application/json", (req,res)->{
@@ -308,7 +418,14 @@ public class Main {
             String achievement = req.queryParams("achievement");
             String unlocked = req.queryParams("game");
 
-            return "Not made";
+            return new Achievement(
+                    6,
+                    "Starcraft 2",
+                    achievement,
+                    "Unlock protoss from the selection",
+                    false,
+                    5
+            );
         });
 
         get("/getUserTimelineEntries", "application/json", (req,res)->{
@@ -318,8 +435,29 @@ public class Main {
             };
 
             String username = req.queryParams("username");
-            
-            return "Not made";
+
+            ArrayList<TimelineEntry> timelineEntries = new ArrayList<>();
+
+            timelineEntries.add(new TimelineEntry(
+                    username,
+                    "2024-09-29 20:22:05",
+                    "achievement",
+                    6
+            ));
+
+            timelineEntries.add(new TimelineEntry(
+                    username,
+                    "2024-12-25 18:00:37",
+                    "achievement",
+                    1
+            ));
+
+            ArrayList<JSONObject> ojs = new ArrayList<>();
+            for (TimelineEntry timelineEntry : timelineEntries){
+                ojs.add(timelineEntry.toReturn());
+            }
+
+            return ojs;
         });
     }
 }

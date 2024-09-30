@@ -2,8 +2,8 @@ package org.example;
 
 import org.json.JSONException;
 
-public class Achievements extends ApiReturn {
-    Achievements(
+public class Achievement extends ApiReturn {
+    Achievement(
             int identifier,
             String game,
             String name,
