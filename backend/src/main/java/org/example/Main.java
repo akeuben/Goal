@@ -99,6 +99,7 @@ public class Main {
                 ojs.add(game.toReturn());
             }
 
+            res.status(200);
             return ojs;
         });
 
@@ -110,6 +111,7 @@ public class Main {
 
             String game = req.queryParams("game");
 
+            res.status(200);
             return new Game(
                     "ABCXYZ",
                     "Starcraft 2",
@@ -136,13 +138,13 @@ public class Main {
 
             gameCompletions.add(new GameCompletion(
                     "Starcraft 2",
-                    "aleks",
+                    "test",
                     "",
                     "totallyRealStatus"
             ));
             gameCompletions.add(new GameCompletion(
                     "Overwatch",
-                    "aleks",
+                    "test",
                     "Died",
                     ""
             ));
@@ -152,6 +154,7 @@ public class Main {
                 ojs.add(gameCompletion.toReturn());
             }
 
+            res.status(200);
             return ojs;
         });
 
@@ -164,9 +167,10 @@ public class Main {
             String username = req.queryParams("username");
             String game = req.queryParams("game");
 
+            res.status(200);
             return  new GameCompletion(
                     "Starcraft 2",
-                    "aleks",
+                    "test",
                     "",
                     "totallyRealStatus"
             ).toReturn();
@@ -200,6 +204,7 @@ public class Main {
                 ojs.add(gameCompletionCategory.toReturn());
             }
 
+            res.status(200);
             return ojs;
         });
 
@@ -213,12 +218,8 @@ public class Main {
             String oldName = req.queryParams("oldName");
             String newName = req.queryParams("newName");
 
-            return new GameCompletionCategory(
-                    username,
-                    newName,
-                    "420A55",
-                    5
-            ).toReturn();
+            res.status(200);
+            return null;
         });
 
         get("/updateGameCompletionCategoryColour", "application/json", (req,res)->{
@@ -231,12 +232,8 @@ public class Main {
             String name = req.queryParams("name");
             String colour = req.queryParams("colour");
 
-            return new GameCompletionCategory(
-                    username,
-                    name,
-                    colour,
-                    5
-            ).toReturn();
+            res.status(200);
+            return null;
         });
 
         get("/updateGameCompletionBuiltin", "application/json", (req,res)->{
@@ -249,12 +246,8 @@ public class Main {
             String game = req.queryParams("colour");
             String completionCategory = req.queryParams("completionCategory");
 
-            return new GameCompletionCategory(
-                    username,
-                    "Test",
-                    "677A52",
-                    5
-            ).toReturn();
+            res.status(200);
+            return null;
         });
 
         get("/updateGameCompletionCustom", "application/json", (req,res)->{
@@ -267,12 +260,8 @@ public class Main {
             String game = req.queryParams("colour");
             String completionCategory = req.queryParams("completionCategory");
 
-            return new GameCompletionCategory(
-                    username,
-                    "Test but again",
-                    "A52677",
-                    5
-            ).toReturn();
+            res.status(200);
+            return null;
         });
 
         get("/getGameAchievements", "application/json", (req,res)->{
@@ -308,6 +297,7 @@ public class Main {
                 ojs.add(achievement.toReturn());
             }
 
+            res.status(200);
             return ojs;
         });
 
@@ -365,6 +355,7 @@ public class Main {
                 gameOjs.add(game.toReturn());
             }
 
+            res.status(200);
             return new User(
                     username,
                     achievementsOjs,
@@ -405,6 +396,7 @@ public class Main {
                 ojs.add(achievement.toReturn());
             }
 
+            res.status(200);
             return ojs;
         });
 
@@ -418,14 +410,8 @@ public class Main {
             String achievement = req.queryParams("achievement");
             String unlocked = req.queryParams("game");
 
-            return new Achievement(
-                    6,
-                    "Starcraft 2",
-                    achievement,
-                    "Unlock protoss from the selection",
-                    false,
-                    5
-            );
+            res.status(200);
+            return null;
         });
 
         get("/getUserTimelineEntries", "application/json", (req,res)->{
@@ -457,6 +443,7 @@ public class Main {
                 ojs.add(timelineEntry.toReturn());
             }
 
+            res.status(200);
             return ojs;
         });
     }
