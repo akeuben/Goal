@@ -168,9 +168,9 @@ public class Main {
             String game = req.queryParams("game");
 
             res.status(200);
-            return  new GameCompletion(
+            return new GameCompletion(
                     "Starcraft 2",
-                    "test",
+                    username,
                     "",
                     "totallyRealStatus"
             ).toReturn();
@@ -427,15 +427,25 @@ public class Main {
             timelineEntries.add(new TimelineEntry(
                     username,
                     "2024-09-29 20:22:05",
-                    "achievement",
-                    6
+                    new GameCompletion(
+                            "Starcraft 2",
+                            username,
+                            "",
+                            "totallyRealStatus"
+                    )
             ));
 
             timelineEntries.add(new TimelineEntry(
                     username,
                     "2024-12-25 18:00:37",
-                    "achievement",
-                    1
+                    new Achievement(
+                        6,
+                        "Starcraft 2",
+                        "Addicted",
+                        "Unlock protoss from the selection",
+                        false,
+                        5
+                    )
             ));
 
             ArrayList<JSONObject> ojs = new ArrayList<>();
