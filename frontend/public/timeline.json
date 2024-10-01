@@ -1,0 +1,24 @@
+[
+    {
+        "user": "test",
+        "timestamp": 1726258004004,
+        "type": "game",
+        "game": "botw",
+        "status": "custom",
+        "customStatus": "100%"
+    },
+    {
+        "user": "test",
+        "timestamp": 1726259929661,
+        "type": "achievement",
+        "game": "portal",
+        "achievement": 1
+    },
+    {
+        "user": "test",
+        "timestamp": 172625995527,
+        "type": "achievement",
+        "game": "portal",
+        "achievement": 3
+    }
+]
