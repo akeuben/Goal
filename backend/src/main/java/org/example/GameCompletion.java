@@ -4,14 +4,25 @@ import org.json.JSONException;
 
 public class GameCompletion extends ApiReturn {
     GameCompletion(
-            String game,
+            Game game,
             String user,
             String status,
-            String customStatus
+            GameCompletionCategory customStatus
     ) throws JSONException {
-        this.jo.put("game", game);
+        this.jo.put("game", game.toReturn());
         this.jo.put("user", user);
         this.jo.put("status", status);
-        this.jo.put("customStatus", customStatus);
+        this.jo.put("customStatus", customStatus.toReturn());
+    }
+
+    GameCompletion(
+            Game game,
+            String user,
+            String status
+    ) throws JSONException {
+        this.jo.put("game", game.toReturn());
+        this.jo.put("user", user);
+        this.jo.put("status", status);
+        this.jo.put("customStatus", "");
     }
 }

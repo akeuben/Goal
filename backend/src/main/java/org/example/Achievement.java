@@ -5,7 +5,7 @@ import org.json.JSONException;
 public class Achievement extends ApiReturn {
     Achievement(
             int identifier,
-            String game,
+            Game game,
             String name,
             String description,
             boolean spoiler,

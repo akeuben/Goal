@@ -13,7 +13,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static spark.Spark.*;
 
@@ -149,16 +148,40 @@ public class Main {
             ArrayList<GameCompletion> gameCompletions = new ArrayList<>();
 
             gameCompletions.add(new GameCompletion(
-                    "Starcraft 2",
+                    new Game(
+                            "ABCXYZ",
+                            "Starcraft 2",
+                            2010,
+                            "Blizzard",
+                            "Blizzard Entertainment",
+                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                    "various fictional races of StarCraft."
+                    ),
                     "test",
                     "",
-                    "totallyRealStatus"
+                    new GameCompletionCategory(
+                        username,
+                        "myStatus",
+                        "red",
+                        1)
             ));
             gameCompletions.add(new GameCompletion(
-                    "Overwatch",
-                    "test",
+                    new Game(
+                        "aleksIsSadTheyKilledIt",
+                        "Overwatch",
+                        2010,
+                        "Blizzard",
+                        "Blizzard Entertainment",
+                        "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                "various fictional races of StarCraft."
+                    ),
+                    username,
                     "Died",
-                    ""
+                    new GameCompletionCategory(
+                            username,
+                            "myStatus2",
+                            "blue",
+                            3)
             ));
 
             ArrayList<JSONObject> ojs = new ArrayList<>();
@@ -183,10 +206,22 @@ public class Main {
 
             res.status(200);
             return new GameCompletion(
-                    "Starcraft 2",
+                    new Game(
+                            "ABCXYZ",
+                            "Starcraft 2",
+                            2010,
+                            "Blizzard",
+                            "Blizzard Entertainment",
+                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                    "various fictional races of StarCraft."
+                    ),
                     username,
                     "",
-                    "totallyRealStatus"
+                    new GameCompletionCategory(
+                            "Starcraft 2",
+                            username,
+                            "red",
+                            1)
             ).toReturn();
         });
 
@@ -302,7 +337,15 @@ public class Main {
 
             achievements.add(new Achievement(
                 5,
-                "Overwatch",
+                    new Game(
+                            "aleksIsSadTheyKilledIt",
+                            "Overwatch",
+                            2010,
+                            "Blizzard",
+                            "Blizzard Entertainment",
+                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                    "various fictional races of StarCraft."
+                    ),
                 "Start",
                 "Open the game",
                 true,
@@ -311,7 +354,15 @@ public class Main {
 
             achievements.add(new Achievement(
                 6,
-                "Overwatch",
+                    new Game(
+                            "aleksIsSadTheyKilledIt",
+                            "Overwatch",
+                            2010,
+                            "Blizzard",
+                            "Blizzard Entertainment",
+                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                    "various fictional races of StarCraft."
+                    ),
                 "Close The Game",
                 "Realize this game has died",
                 false,
@@ -338,7 +389,15 @@ public class Main {
             ArrayList<Achievement> achievements = new ArrayList<>();
             achievements.add(new Achievement(
                     5,
-                    "Overwatch",
+                    new Game(
+                            "aleksIsSadTheyKilledIt",
+                            "Overwatch",
+                            2010,
+                            "Blizzard",
+                            "Blizzard Entertainment",
+                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                    "various fictional races of StarCraft."
+                    ),
                     "Start",
                     "Open the game",
                     true,
@@ -346,7 +405,15 @@ public class Main {
             ));
             achievements.add(new Achievement(
                     6,
-                    "Starcraft 2",
+                    new Game(
+                            "ABCXYZ",
+                            "Starcraft 2",
+                            2010,
+                            "Blizzard",
+                            "Blizzard Entertainment",
+                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                    "various fictional races of StarCraft."
+                    ),
                     "Addicted",
                     "Unlock protoss from the selection",
                     false,
@@ -403,7 +470,15 @@ public class Main {
 
             achievements.add(new Achievement(
                     5,
-                    "Overwatch",
+                    new Game(
+                            "aleksIsSadTheyKilledIt",
+                            "Overwatch",
+                            2010,
+                            "Blizzard",
+                            "Blizzard Entertainment",
+                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                    "various fictional races of StarCraft."
+                    ),
                     "Start",
                     "Open the game",
                     true,
@@ -412,7 +487,15 @@ public class Main {
 
             achievements.add(new Achievement(
                     6,
-                    "Starcraft 2",
+                    new Game(
+                            "ABCXYZ",
+                            "Starcraft 2",
+                            2010,
+                            "Blizzard",
+                            "Blizzard Entertainment",
+                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                    "various fictional races of StarCraft."
+                    ),
                     "Addicted",
                     "Unlock protoss from the selection",
                     false,
@@ -457,25 +540,43 @@ public class Main {
 
             timelineEntries.add(new TimelineEntry(
                     username,
-                    "2024-09-29 20:22:05",
-                    new GameCompletion(
-                            "Starcraft 2",
-                            username,
-                            "",
-                            "totallyRealStatus"
+                    "2024-12-25 18:00:37",
+                    new Achievement(
+                        6,
+                            new Game(
+                                    "ABCXYZ",
+                                    "Starcraft 2",
+                                    2010,
+                                    "Blizzard",
+                                    "Blizzard Entertainment",
+                                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                            "various fictional races of StarCraft."
+                            ),
+                        "Addicted",
+                        "Unlock protoss from the selection",
+                        false,
+                        5
                     )
             ));
 
             timelineEntries.add(new TimelineEntry(
                     username,
-                    "2024-12-25 18:00:37",
+                    "2024-12-25 19:00:37",
                     new Achievement(
-                        6,
-                        "Starcraft 2",
-                        "Addicted",
-                        "Unlock protoss from the selection",
-                        false,
-                        5
+                            6,
+                            new Game(
+                                    "ABCXYZ",
+                                    "Starcraft 2",
+                                    2010,
+                                    "Blizzard",
+                                    "Blizzard Entertainment",
+                                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
+                                            "various fictional races of StarCraft."
+                            ),
+                            "Sad",
+                            "Lose with protoss",
+                            false,
+                            5
                     )
             ));
 

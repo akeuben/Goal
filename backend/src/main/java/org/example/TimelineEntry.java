@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class TimelineEntry extends ApiReturn {
     TimelineEntry(
-            String user,
+            User user,
             String timestamp,
             GameCompletion gameCompletion
     ) throws JSONException {
