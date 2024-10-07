@@ -18,7 +18,7 @@ public class TimelineEntry extends ApiReturn {
     }
 
     TimelineEntry(
-            String user,
+            User user,
             String timestamp,
             Achievement achievement
     ) throws JSONException {

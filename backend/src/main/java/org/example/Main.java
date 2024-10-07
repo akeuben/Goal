@@ -132,6 +132,20 @@ public class Main {
             ).toReturn();
         });
 
+        get("/getUserScore", "application/json", (req,res)->{
+            setHeaders(res);
+
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
+            String username = req.queryParams("username");
+
+            res.status(200);
+            return new Score(5).toReturn();
+        });
+
         get("/getGameCompletions", "application/json", (req,res)->{
             setHeaders(res);
 
