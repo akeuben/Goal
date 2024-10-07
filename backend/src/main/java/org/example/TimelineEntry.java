@@ -7,14 +7,24 @@ import java.util.ArrayList;
 
 public class TimelineEntry extends ApiReturn {
     TimelineEntry(
-            String user,
+            User user,
             String timestamp,
-            String type,
-            int achievement
+            GameCompletion gameCompletion
     ) throws JSONException {
         this.jo.put("user", user);
         this.jo.put("timestamp", timestamp);
-        this.jo.put("type", type);
-        this.jo.put("achievement", achievement);
+        this.jo.put("type", "gameCompletion");
+        this.jo.put("gameCompletion", gameCompletion.toReturn());
+    }
+
+    TimelineEntry(
+            String user,
+            String timestamp,
+            Achievement achievement
+    ) throws JSONException {
+        this.jo.put("user", user);
+        this.jo.put("timestamp", timestamp);
+        this.jo.put("type", "achievement");
+        this.jo.put("gameCompletion", achievement.toReturn());
     }
 }
