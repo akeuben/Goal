@@ -9,7 +9,7 @@ export function GameCompletionCard({gameCompletion, setCompletion, categories}: 
         <div className={styles.coverart} style={{backgroundImage: `url(/assets/gameart/${gameCompletion.game.identifier}.jpg)`}} />
         <h1>{gameCompletion.game.name}</h1>
         <i>{gameCompletion.game.releaseYear}</i>
-        <div className={styles.status} style={{"--dot-color": CompletionToColor(gameCompletion.status, gameCompletion.customStatus, categories), border: "none"} as React.CSSProperties}>
+        <div className={styles.status} style={{"--dot-color": CompletionToColor(gameCompletion.status, gameCompletion.status === "custom" ? gameCompletion.customStatus.name : null, categories), border: "none"} as React.CSSProperties}>
             <select disabled={!setCompletion} onChange={(e) => {
                 const selectElement = e.target;
                 const value = selectElement.selectedOptions[0].value as 'not_started' | 'in_progress' | 'complete';
@@ -32,10 +32,11 @@ export function GameCompletionCard({gameCompletion, setCompletion, categories}: 
                     } else if(gameCompletion.status !== "custom"){
                         selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === gameCompletion.status)[0]?.index || 0;
                     } else {
-                        selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === "custom/" + gameCompletion.customStatus)[0]?.index || 0;
+                        console.log(gameCompletion);
+                        selectElement.selectedIndex = ([].slice.call(selectElement.options) as HTMLOptionElement[]).filter(a => a.value === "custom/" + gameCompletion.customStatus.name)[0]?.index || 0;
                     }
                 })
-            }} defaultValue={gameCompletion.status === "custom" ? `custom/${gameCompletion.customStatus}` : gameCompletion.status}>
+            }} defaultValue={gameCompletion.status === "custom" ? `custom/${gameCompletion.customStatus.name}` : gameCompletion.status}>
                 <optgroup label="Default Categories">
                     <option value="not_started">Not Started</option>
                     <option value="in_progress">In Progress</option>

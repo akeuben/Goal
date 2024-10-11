@@ -23,10 +23,12 @@ export default function Page({params}: {params: {game: string}}) {
     const achievements = use(getGameAchievements(game.value.identifier));
     const userAchievements = use(getUserAchievements("test", game.value.identifier));
 
+
     let unlocked: Achievement[] = [];
     let locked: Achievement[] = [];
 
     if(achievements.success && userAchievements.success) {
+        console.log(userAchievements.value);
         const unlockedIdentifiers = userAchievements.value.map(a => a.identifier);
         unlocked = userAchievements.value;
         locked = achievements.value.filter(a => !unlockedIdentifiers.includes(a.identifier));

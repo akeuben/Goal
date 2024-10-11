@@ -166,7 +166,7 @@ export const getUserScore = async (username: string): Promise<Result<number, Err
 }
 
 export const getUserAchievements = async (username: string, game: string): Promise<Result<Achievement[], Error>> => {
-    const response = await fetch(buildURL("getUserScore", {
+    const response = await fetch(buildURL("getUserAchievements", {
         username,
         game
     }));
@@ -225,7 +225,7 @@ export const setGameReviewText = async(username: string, game: string, text: str
 }
 
 export const setGameReviewRating = async(username: string, game: string, rating: number): Promise<Result<undefined, Error>> => {
-    const response = await fetch(buildURL("setGameReviewText", {
+    const response = await fetch(buildURL("setGameReviewRating", {
         username,
         game,
         rating
