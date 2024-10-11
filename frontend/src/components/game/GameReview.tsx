@@ -6,7 +6,7 @@ import { GameReview } from "@/types/review";
 import { User } from "@/types/user";
 import { useEffect, useState } from "react";
 
-export const GameReviewComponent = ({user, game}: {user: User, game: Game}) => {
+export const GameReviewComponent = ({user, game, canEdit}: {user: User, game: Game, canEdit: boolean}) => {
     const [oldReview, setOldReview] = useState<null|GameReview>(null);
     const [review, setReview] = useState<null|GameReview>(null);
 
@@ -15,14 +15,24 @@ export const GameReviewComponent = ({user, game}: {user: User, game: Game}) => {
             if(res.success) {
                 setReview(res.value);
                 setOldReview(res.value);
+            } else {
+                console.log("set fake review");
+                setReview({
+                    rating: -1,
+                    text: ""
+                })
+                setOldReview({
+                    rating: -1,
+                    text: ""
+                });
             }
         })
     }, [setReview, setOldReview])
 
-    if(!review) return <></>
+    if(!review) return <p>No review</p>
 
     return <>
-        <select value={"" + review.rating} onChange={(e) => {
+        <select value={"" + review.rating} disabled={!canEdit} onChange={(e) => {
             const newReview = structuredClone(review);
             newReview.rating = parseInt(e.target.value);
 
@@ -42,7 +52,7 @@ export const GameReviewComponent = ({user, game}: {user: User, game: Game}) => {
             <option value={"4"}>4 Star</option>
             <option value={"5"}>5 Star</option>
         </select>
-        <textarea key={"a"} value={review.text} onChange={(e) => {
+        <textarea key={"a"} disabled={!canEdit} value={review.text} onChange={(e) => {
             const newReview = structuredClone(review);
             newReview.text = e.target.value;
             setReview(newReview);

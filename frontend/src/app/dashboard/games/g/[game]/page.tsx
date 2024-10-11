@@ -1,5 +1,6 @@
 import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements } from "@/api/api";
 import { AchievementCompletionList } from "@/components/achievement/AchievementCompletionList";
+import { GameReviewComponent } from "@/components/game/GameReview";
 import { WrappedGameCompletionCard } from "@/components/game/WrappedGameCompletionCard";
 import { Achievement } from "@/types/achievements";
 import { GameCompletionCategory } from "@/types/completion";
@@ -39,5 +40,6 @@ export default function Page({params}: {params: {game: string}}) {
     return <div>
         <WrappedGameCompletionCard initialCompletion={completion.value} categories={customCompletionCategories} />
         <AchievementCompletionList user={user.value} game={game.value}/>
+        <GameReviewComponent user={user.value} game={game.value} canEdit={true}/>
     </div>
 }
