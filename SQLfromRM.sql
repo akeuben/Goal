@@ -107,7 +107,12 @@ CREATE TABLE IF NOT EXISTS goal.custom_game_statuses(
   FOREIGN KEY (username, game_id) REFERENCES owned_games(username, game_id),
   FOREIGN KEY (username, game_id) REFERENCES timeline_entries(username, game_id));
   
-  
+CREATE TABLE IF NOT EXISTS goal.completed_games(
+  username VARCHAR(255) NOT NULL,
+  game_id INT NOT NULL,
+  PRIMARY KEY (username, game_id),
+  FOREIGN KEY (username) REFERENCES users(username),
+  FOREIGN KEY (game_id) REFERENCES games(game_id));
   
   
   
