@@ -4,6 +4,7 @@ package org.example;
 //https://www.baeldung.com/spark-framework-rest-api
 //https://www.youtube.com/watch?v=9ntKSLLDeSs
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import spark.Response;
 import spark.Response.*;
@@ -120,7 +121,7 @@ public class Main {
             String username = req.queryParams("username");
 
             res.status(200);
-            return new Score(5).toReturn();
+            return "5";
         });
 
         get("/getGameCompletions", "application/json", (req,res)->{
@@ -147,7 +148,7 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            return new JSONArray(ojs);
         });
 
         get("/getGameCompletion", "application/json", (req,res)->{
@@ -186,7 +187,7 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            return new JSONArray(ojs);
         });
 
         get("/updateGameCompletionCategoryName", "application/json", (req,res)->{
@@ -274,7 +275,7 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            return new JSONArray(ojs);
         });
 
         get("/getUser", "application/json", (req,res)->{
@@ -309,7 +310,8 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            JSONArray array = new JSONArray(ojs);
+            return array;
         });
 
         get("/updateUserAchievementState", "application/json", (req,res)->{
@@ -348,7 +350,7 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            return new JSONArray(ojs);
         });
     }
 }

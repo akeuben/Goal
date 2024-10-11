@@ -11,7 +11,7 @@ public class User extends ApiReturn {
             String email,
             String password
     ) throws JSONException {
-        this.jo.put("user", user);
+        this.jo.put("username", user);
         this.jo.put("email", email);
         this.jo.put("password", password);
     }

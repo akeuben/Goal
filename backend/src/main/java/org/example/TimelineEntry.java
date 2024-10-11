@@ -13,7 +13,18 @@ public class TimelineEntry extends ApiReturn {
     ) throws JSONException {
         this.jo.put("user", user);
         this.jo.put("timestamp", timestamp);
-        this.jo.put("type", "gameCompletion");
-        this.jo.put("gameCompletion", gameCompletion.toReturn());
+        this.jo.put("type", "game");
+        this.jo.put("completion", gameCompletion.toReturn());
+    }
+
+    TimelineEntry(
+            User user,
+            String timestamp,
+            Achievement achievement
+    ) throws JSONException {
+        this.jo.put("user", user);
+        this.jo.put("timestamp", timestamp);
+        this.jo.put("type", "achievement");
+        this.jo.put("achievement", achievement.toReturn());
     }
 }

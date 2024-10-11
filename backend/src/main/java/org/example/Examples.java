@@ -32,15 +32,15 @@ public class Examples {
         return new GameCompletionCategory(
                 username,
                 "myStatus",
-                "red",
+                "#FF0000",
                 1);
     }
 
     public static GameCompletionCategory game_completion_category_2(String username) throws JSONException{
         return new GameCompletionCategory(
                 username,
-                "myStatus2",
-                "blue",
+                "Died",
+                "#00FF00",
                 8);
     }
 
@@ -48,7 +48,7 @@ public class Examples {
         return new GameCompletion(
                 Examples.game_sc2(),
                 Examples.user(),
-                "",
+                "custom",
                 Examples.game_completion_category_1(username)
         );
     }
@@ -57,7 +57,7 @@ public class Examples {
         return new GameCompletion(
                 Examples.game_ow(),
                 Examples.user(),
-                "Died",
+                "custom",
                 Examples.game_completion_category_2(username)
         );
     }
