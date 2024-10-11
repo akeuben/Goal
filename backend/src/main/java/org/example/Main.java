@@ -4,6 +4,7 @@ package org.example;
 //https://www.baeldung.com/spark-framework-rest-api
 //https://www.youtube.com/watch?v=9ntKSLLDeSs
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import spark.Response;
 import spark.Response.*;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import static spark.Spark.*;
 
 public class Main {
+
     private static ResultSet getQuery(String query) throws Exception{
         Class.forName("com.mysql.jdbc.Driver");
 
@@ -82,24 +84,8 @@ public class Main {
             String search = req.queryParams("search");
 
             ArrayList<Game> gameList = new ArrayList<>();
-            gameList.add(new Game(
-                    "aleksSecondFavoriteGame",
-                    "Starcraft 2",
-                    2016,
-                    "Iron Galaxy",
-                    "Blizzard Entertainment",
-                    "Overwatch was a 2016 team-based multiplayer first-person shooter game by Blizzard " +
-                            "Entertainment."
-            ));
-            gameList.add(new Game(
-                    "aleksIsSadTheyKilledIt",
-                    "Overwatch",
-                    2010,
-                    "Blizzard",
-                    "Blizzard Entertainment",
-                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                            "various fictional races of StarCraft."
-            ));
+            gameList.add(Examples.game_sc2());
+            gameList.add(Examples.game_ow());
 
             ArrayList<JSONObject> ojs = new ArrayList<>();
             for (Game game : gameList){
@@ -121,15 +107,21 @@ public class Main {
             String game = req.queryParams("game");
 
             res.status(200);
-            return new Game(
-                    "ABCXYZ",
-                    "Starcraft 2",
-                    2010,
-                    "Blizzard",
-                    "Blizzard Entertainment",
-                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                            "various fictional races of StarCraft."
-            ).toReturn();
+            return Examples.game_sc2().toReturn();
+        });
+
+        get("/getUserScore", "application/json", (req,res)->{
+            setHeaders(res);
+
+            if (!checkAuth(req.headers("Authorization"))){
+                res.status(401);
+                return null;
+            };
+
+            String username = req.queryParams("username");
+
+            res.status(200);
+            return "5";
         });
 
         get("/getGameCompletions", "application/json", (req,res)->{
@@ -147,42 +139,8 @@ public class Main {
 
             ArrayList<GameCompletion> gameCompletions = new ArrayList<>();
 
-            gameCompletions.add(new GameCompletion(
-                    new Game(
-                            "ABCXYZ",
-                            "Starcraft 2",
-                            2010,
-                            "Blizzard",
-                            "Blizzard Entertainment",
-                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                    "various fictional races of StarCraft."
-                    ),
-                    "test",
-                    "",
-                    new GameCompletionCategory(
-                        username,
-                        "myStatus",
-                        "red",
-                        1)
-            ));
-            gameCompletions.add(new GameCompletion(
-                    new Game(
-                        "aleksIsSadTheyKilledIt",
-                        "Overwatch",
-                        2010,
-                        "Blizzard",
-                        "Blizzard Entertainment",
-                        "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                "various fictional races of StarCraft."
-                    ),
-                    username,
-                    "Died",
-                    new GameCompletionCategory(
-                            username,
-                            "myStatus2",
-                            "blue",
-                            3)
-            ));
+            gameCompletions.add(Examples.game_completion_sc2(username));
+            gameCompletions.add(Examples.game_completion_ow(username));
 
             ArrayList<JSONObject> ojs = new ArrayList<>();
             for (GameCompletion gameCompletion : gameCompletions){
@@ -190,7 +148,7 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            return new JSONArray(ojs);
         });
 
         get("/getGameCompletion", "application/json", (req,res)->{
@@ -205,24 +163,7 @@ public class Main {
             String game = req.queryParams("game");
 
             res.status(200);
-            return new GameCompletion(
-                    new Game(
-                            "ABCXYZ",
-                            "Starcraft 2",
-                            2010,
-                            "Blizzard",
-                            "Blizzard Entertainment",
-                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                    "various fictional races of StarCraft."
-                    ),
-                    username,
-                    "",
-                    new GameCompletionCategory(
-                            "Starcraft 2",
-                            username,
-                            "red",
-                            1)
-            ).toReturn();
+            return Examples.game_completion_sc2(username).toReturn();
         });
 
         get("/getGameCompletionCategories", "application/json", (req,res)->{
@@ -237,18 +178,8 @@ public class Main {
 
             ArrayList<GameCompletionCategory> gameCompletionCategories = new ArrayList<>();
 
-            gameCompletionCategories.add(new GameCompletionCategory(
-                    "Starcraft 2",
-                    username,
-                    "red",
-                    1)
-            );
-            gameCompletionCategories.add(new GameCompletionCategory(
-                    "Starcraft 2",
-                    username,
-                    "blue",
-                    2)
-            );
+            gameCompletionCategories.add(Examples.game_completion_category_1(username));
+            gameCompletionCategories.add(Examples.game_completion_category_2(username));
 
             ArrayList<JSONObject> ojs = new ArrayList<>();
             for (GameCompletionCategory gameCompletionCategory : gameCompletionCategories){
@@ -256,7 +187,7 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            return new JSONArray(ojs);
         });
 
         get("/updateGameCompletionCategoryName", "application/json", (req,res)->{
@@ -335,39 +266,8 @@ public class Main {
 
             ArrayList<Achievement> achievements = new ArrayList<>();
 
-            achievements.add(new Achievement(
-                5,
-                    new Game(
-                            "aleksIsSadTheyKilledIt",
-                            "Overwatch",
-                            2010,
-                            "Blizzard",
-                            "Blizzard Entertainment",
-                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                    "various fictional races of StarCraft."
-                    ),
-                "Start",
-                "Open the game",
-                true,
-                -1
-            ));
-
-            achievements.add(new Achievement(
-                6,
-                    new Game(
-                            "aleksIsSadTheyKilledIt",
-                            "Overwatch",
-                            2010,
-                            "Blizzard",
-                            "Blizzard Entertainment",
-                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                    "various fictional races of StarCraft."
-                    ),
-                "Close The Game",
-                "Realize this game has died",
-                false,
-                5
-            ));
+            achievements.add(Examples.achievement_ow());
+            achievements.add(Examples.achievement_sc2());
 
             ArrayList<JSONObject> ojs = new ArrayList<>();
             for (Achievement achievement : achievements){
@@ -375,7 +275,7 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            return new JSONArray(ojs);
         });
 
         get("/getUser", "application/json", (req,res)->{
@@ -386,74 +286,8 @@ public class Main {
 
             String username = req.queryParams("username");
 
-            ArrayList<Achievement> achievements = new ArrayList<>();
-            achievements.add(new Achievement(
-                    5,
-                    new Game(
-                            "aleksIsSadTheyKilledIt",
-                            "Overwatch",
-                            2010,
-                            "Blizzard",
-                            "Blizzard Entertainment",
-                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                    "various fictional races of StarCraft."
-                    ),
-                    "Start",
-                    "Open the game",
-                    true,
-                    8
-            ));
-            achievements.add(new Achievement(
-                    6,
-                    new Game(
-                            "ABCXYZ",
-                            "Starcraft 2",
-                            2010,
-                            "Blizzard",
-                            "Blizzard Entertainment",
-                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                    "various fictional races of StarCraft."
-                    ),
-                    "Addicted",
-                    "Unlock protoss from the selection",
-                    false,
-                    5
-            ));
-            ArrayList<JSONObject> achievementsOjs = new ArrayList<>();
-            for (Achievement achievement : achievements){
-                achievementsOjs.add(achievement.toReturn());
-            }
-
-            ArrayList<Game> gameList = new ArrayList<>();
-            gameList.add(new Game(
-                    "aleksSecondFavoriteGame",
-                    "Starcraft 2",
-                    2016,
-                    "Iron Galaxy",
-                    "Blizzard Entertainment",
-                    "Overwatch was a 2016 team-based multiplayer first-person shooter game by Blizzard " +
-                            "Entertainment."
-            ));
-            gameList.add(new Game(
-                    "aleksIsSadTheyKilledIt",
-                    "Overwatch",
-                    2010,
-                    "Blizzard",
-                    "Blizzard Entertainment",
-                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                            "various fictional races of StarCraft."
-            ));
-            ArrayList<JSONObject> gameOjs = new ArrayList<>();
-            for (Game game : gameList){
-                gameOjs.add(game.toReturn());
-            }
-
             res.status(200);
-            return new User(
-                    username,
-                    achievementsOjs,
-                    gameOjs
-            ).toReturn();
+            return Examples.user().toReturn();
         });
 
         get("/getUserAchievements", "application/json", (req,res)->{
@@ -468,39 +302,7 @@ public class Main {
             String game = req.queryParams("game");
             ArrayList<Achievement> achievements = new ArrayList<>();
 
-            achievements.add(new Achievement(
-                    5,
-                    new Game(
-                            "aleksIsSadTheyKilledIt",
-                            "Overwatch",
-                            2010,
-                            "Blizzard",
-                            "Blizzard Entertainment",
-                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                    "various fictional races of StarCraft."
-                    ),
-                    "Start",
-                    "Open the game",
-                    true,
-                    8
-            ));
-
-            achievements.add(new Achievement(
-                    6,
-                    new Game(
-                            "ABCXYZ",
-                            "Starcraft 2",
-                            2010,
-                            "Blizzard",
-                            "Blizzard Entertainment",
-                            "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                    "various fictional races of StarCraft."
-                    ),
-                    "Addicted",
-                    "Unlock protoss from the selection",
-                    false,
-                    5
-            ));
+            achievements.add(Examples.achievement_sc2());
 
             ArrayList<JSONObject> ojs = new ArrayList<>();
             for (Achievement achievement : achievements){
@@ -508,7 +310,8 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            JSONArray array = new JSONArray(ojs);
+            return array;
         });
 
         get("/updateUserAchievementState", "application/json", (req,res)->{
@@ -538,47 +341,8 @@ public class Main {
             String username = req.queryParams("username");
             ArrayList<TimelineEntry> timelineEntries = new ArrayList<>();
 
-            timelineEntries.add(new TimelineEntry(
-                    username,
-                    "2024-12-25 18:00:37",
-                    new Achievement(
-                        6,
-                            new Game(
-                                    "ABCXYZ",
-                                    "Starcraft 2",
-                                    2010,
-                                    "Blizzard",
-                                    "Blizzard Entertainment",
-                                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                            "various fictional races of StarCraft."
-                            ),
-                        "Addicted",
-                        "Unlock protoss from the selection",
-                        false,
-                        5
-                    )
-            ));
-
-            timelineEntries.add(new TimelineEntry(
-                    username,
-                    "2024-12-25 19:00:37",
-                    new Achievement(
-                            6,
-                            new Game(
-                                    "ABCXYZ",
-                                    "Starcraft 2",
-                                    2010,
-                                    "Blizzard",
-                                    "Blizzard Entertainment",
-                                    "Set in the future, the game centers on a galactic struggle for dominance among the " +
-                                            "various fictional races of StarCraft."
-                            ),
-                            "Sad",
-                            "Lose with protoss",
-                            false,
-                            5
-                    )
-            ));
+            timelineEntries.add(Examples.timelineEntry_1());
+            timelineEntries.add(Examples.timelineEntry_2());
 
             ArrayList<JSONObject> ojs = new ArrayList<>();
             for (TimelineEntry timelineEntry : timelineEntries){
@@ -586,7 +350,7 @@ public class Main {
             }
 
             res.status(200);
-            return ojs;
+            return new JSONArray(ojs);
         });
     }
 }
