@@ -1,13 +1,10 @@
-import { fakedata_getGameAcheivements, fakedata_getUserAcheivements, fakedata_updateUserAchievementState } from "@/fakedata/achievements";
-import { fakedata_getCompletionCategories, fakedata_updateGameCompletionBuiltin, fakedata_updateGameCompletionCategoryColour, fakedata_updateGameCompletionCategoryName, fakedata_updateGameCompletionCustom } from "@/fakedata/completion";
-import { fakedata_getGameReview, fakedata_setGameReviewRating, fakedata_setGameReviewText } from "@/fakedata/review";
-import { fakedata_getUserTimelineEntries } from "@/fakedata/timeline";
-import { fakedata_getUser, fakedata_getUserScore } from "@/fakedata/users";
 import { Achievement } from "@/types/achievements";
 import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { Game, GameListFilter, GameListSearch, GameListSort } from "@/types/games";
-import { Fail, MakeResultFromNull, NullSuccess, Result, Success } from "@/types/result";
+import { Fail, NullSuccess, Result, Success } from "@/types/result";
 import { GameReview } from "@/types/review";
+import { TimelineEntry } from "@/types/timeline";
+import { User } from "@/types/user";
 
 const BACKEND_URL = "http://localhost:4567";
 
@@ -99,7 +96,7 @@ export const updateGameCompletionCategoryName = async (username: string, oldName
     return NullSuccess();
 }
 
-export const updateGameCompletionCategoryColour = async (username: string, name: string, colour: string) => {
+export const updateGameCompletionCategoryColour = async (username: string, name: string, colour: string): Promise<Result<undefined, Error>> => {
     const response = await fetch(buildURL("updateGameCompletionCategoryName", {
         username,
         name,
@@ -111,7 +108,7 @@ export const updateGameCompletionCategoryColour = async (username: string, name:
     return NullSuccess();
 }
 
-export const updateGameCompletionBuiltin = async (username: string, game: string, completionCategory: GameCompletion["status"]) => {
+export const updateGameCompletionBuiltin = async (username: string, game: string, completionCategory: GameCompletion["status"]): Promise<Result<undefined, Error>> => {
     const response = await fetch(buildURL("updateGameCompletionBuiltin", {
         username,
         game,
@@ -123,7 +120,7 @@ export const updateGameCompletionBuiltin = async (username: string, game: string
     return NullSuccess();
 }
 
-export const updateGameCompletionCustom = async (username: string, game: string, completionCategory: string) => {
+export const updateGameCompletionCustom = async (username: string, game: string, completionCategory: string): Promise<Result<undefined, Error>>  => {
     const response = await fetch(buildURL("updateGameCompletionCustom", {
         username,
         game,
@@ -135,7 +132,7 @@ export const updateGameCompletionCustom = async (username: string, game: string,
     return NullSuccess();
 }
 
-export const getGameAchievements = async (game: string) => {
+export const getGameAchievements = async (game: string): Promise<Result<Achievement[], Error>>  => {
     const response = await fetch(buildURL("getGameAchievements", {
         game,
     }));
@@ -146,18 +143,18 @@ export const getGameAchievements = async (game: string) => {
     return Success(data);
 }
 
-export const getUser = async (username: string) => {
+export const getUser = async (username: string): Promise<Result<User,Error>> => {
     const response = await fetch(buildURL("getUser", {
         username
     }));
     if(response.status != 200) {
         return Fail(Error(`Failed to fetch user ${username} with status code ${response.status}: ${response.statusText}`));
     }
-    const data = (await response.json()) as Achievement[];
+    const data = (await response.json()) as User;
     return Success(data);
 }
 
-export const getUserScore = async (username: string) => {
+export const getUserScore = async (username: string): Promise<Result<number, Error>> => {
     const response = await fetch(buildURL("getUserScore", {
         username
     }));
@@ -180,7 +177,7 @@ export const getUserAchievements = async (username: string, game: string): Promi
     return Success(data);
 }
 
-export const updateUserAchievementState = async (username: string, achievement: number, unlocked: boolean) => {
+export const updateUserAchievementState = async (username: string, achievement: number, unlocked: boolean): Promise<Result<undefined, Error>> => {
     const response = await fetch(buildURL("updateUserAchievementState", {
         username,
         achievement,
@@ -192,14 +189,14 @@ export const updateUserAchievementState = async (username: string, achievement: 
     return NullSuccess();
 }
 
-export const getUserTimelineEntries = async (username: string) => {
+export const getUserTimelineEntries = async (username: string): Promise<Result<TimelineEntry[], Error>> => {
     const response = await fetch(buildURL("getUserTimelineEntries", {
         username,
     }));
     if(response.status != 200) {
         return Fail(Error(`Failed to fetch timeline for ${username} with status code ${response.status}: ${response.statusText}`));
     }
-    const data = (await response.json()) as Achievement[];
+    const data = (await response.json()) as TimelineEntry[];
     return Success(data);
 }
 

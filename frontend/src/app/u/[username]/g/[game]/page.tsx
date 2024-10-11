@@ -1,9 +1,8 @@
-import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements } from "@/api/api"
+import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements } from "@/api/api";
 import { AchievementCompletionList } from "@/components/achievement/AchievementCompletionList";
 import { GameReviewComponent } from "@/components/game/GameReview";
 import { WrappedGameCompletionCard } from "@/components/game/WrappedGameCompletionCard";
 import { Achievement } from "@/types/achievements";
-import { GameCompletionCategory } from "@/types/completion";
 import { notFound } from "next/navigation";
 import { use } from "react";
 
@@ -15,11 +14,10 @@ export default function Page({params}: {params: {username: string, game: string}
     if(!game.success) notFound();
 
     const completion = use(getGameCompletion(user.value.username, game.value.identifier));
-    const customCompletionCategoriesRaw = use(getGameCompletionCategories(user.value.username));
-    let customCompletionCategories: GameCompletionCategory[] = [];
-    if(customCompletionCategoriesRaw.success) customCompletionCategories = customCompletionCategoriesRaw.value;
+    const customCompletionCategories = use(getGameCompletionCategories(user.value.username));
     
     if(!completion.success) notFound();
+    if(!customCompletionCategories.success) notFound();
 
     const achievements = use(getGameAchievements(game.value.identifier));
     const userAchievements = use(getUserAchievements("test", game.value.identifier));
@@ -36,8 +34,8 @@ export default function Page({params}: {params: {username: string, game: string}
     }
 
     return <div>
-        <WrappedGameCompletionCard initialCompletion={completion.value} categories={customCompletionCategories} canEdit={false}/>
+        <WrappedGameCompletionCard initialCompletion={completion.value} categories={customCompletionCategories.value} canEdit={false}/>
         <AchievementCompletionList user={user.value} game={game.value} canEdit={false}/>
-        <GameReviewComponent user={user} game={game} />
+        <GameReviewComponent user={user.value} game={game.value} />
     </div>
 }

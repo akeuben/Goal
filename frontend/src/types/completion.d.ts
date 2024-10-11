@@ -4,7 +4,7 @@ export type GameCompletion = {
     game: Game,
     user: string,
     status: 'not_started' | 'in_progress' | 'complete' | 'custom'
-    customStatus: string | null
+    customStatus: GameCompletionCategory | null
 }
 
 export type GameCompletionCategory = {
