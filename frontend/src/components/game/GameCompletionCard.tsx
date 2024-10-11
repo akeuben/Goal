@@ -5,6 +5,7 @@ import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { updateGameCompletionBuiltin, updateGameCompletionCustom } from "@/api/api";
 
 export function GameCompletionCard({gameCompletion, setCompletion, categories}: {gameCompletion: GameCompletion, setCompletion?: (game: string, status: GameCompletion['status'], customStatus: string | null) => void, categories: GameCompletionCategory[]}) {
+    console.dir(gameCompletion);
     return <div className={styles.card}>
         <div className={styles.coverart} style={{backgroundImage: `url(/assets/gameart/${gameCompletion.game.identifier}.jpg)`}} />
         <h1>{gameCompletion.game.name}</h1>

@@ -1,0 +1,29 @@
+.entry {
+    display: flex;
+    flex-direction: row;
+    background: #333;
+    padding: 20px;
+}
+
+.entry>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.entry>div>input:first-child {
+    font-weight: 900;
+}
+.entry>div>input {
+    padding: 5px;
+}
+
+.entry>* {
+    flex: 0;
+}
+
+.entry input[type="text"] {
+    background: none;
+    color: white;
+    border: none;
+}

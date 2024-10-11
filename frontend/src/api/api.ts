@@ -19,16 +19,12 @@ const buildURL = (fn: string, args: Record<string, string | number | boolean | u
     return `${BACKEND_URL}/${fn}?${encodedArgs.join("&")}`;
 }
 
-const safeFetch = async(url: string): Promise<Response|{
-    status: 600
-}> => {
+const safeFetch = async(url: string): Promise<Response|Error> => {
     let result;
     try {
         result = await fetch(url);
-    } catch(e) {
-        return {
-            status: 600
-        }
+    } catch(e: any) {
+        return Error(e);
     }
     return result;
 }
@@ -42,6 +38,9 @@ export const getGameList = async (sort: GameListSort, filter: GameListFilter, se
         filterHasAchievements: filter.hasAchievements,
         search: search
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch game list with status code ${response.status}: ${response.statusText}`));
     }
@@ -53,6 +52,9 @@ export const getGame = async(game: string): Promise<Result<Game, Error>> => {
     const response = await safeFetch(buildURL("getGame", {
         game
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch game ${game} with status code ${response.status}: ${response.statusText}`));
     }
@@ -70,6 +72,9 @@ export const getGameCompletions = async (username: string, sort: GameListSort, f
         filterHasAchievements: filter.hasAchievements,
         search: search
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch game completions for user ${username} with status code ${response.status}: ${response.statusText}`));
     }
@@ -82,6 +87,9 @@ export const getGameCompletion = async (username: string, game: string): Promise
         username,
         game
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch game completions for user ${username} with status code ${response.status}: ${response.statusText}`));
     }
@@ -93,6 +101,9 @@ export const getGameCompletionCategories = async (username: string): Promise<Res
     const response = await safeFetch(buildURL("getGameCompletionCategories", {
         username,
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch game completion categories for user ${username} with status code ${response.status}: ${response.statusText}`));
     }
@@ -106,6 +117,9 @@ export const updateGameCompletionCategoryName = async (username: string, oldName
         oldName,
         newName
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to update game completion category for user ${username} with status code ${response.status}: ${response.statusText}`));
     }
@@ -118,6 +132,9 @@ export const updateGameCompletionCategoryColour = async (username: string, name:
         name,
         colour
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to update game completion category for user ${username} with status code ${response.status}: ${response.statusText}`));
     }
@@ -130,6 +147,9 @@ export const updateGameCompletionBuiltin = async (username: string, game: string
         game,
         completionCategory
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to update game completion category for user ${username} for game ${game} with status code ${response.status}: ${response.statusText}`));
     }
@@ -142,6 +162,9 @@ export const updateGameCompletionCustom = async (username: string, game: string,
         game,
         completionCategory
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to update game completion category for user ${username} for game ${game} with status code ${response.status}: ${response.statusText}`));
     }
@@ -152,6 +175,9 @@ export const getGameAchievements = async (game: string): Promise<Result<Achievem
     const response = await safeFetch(buildURL("getGameAchievements", {
         game,
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch game achievements for ${game} with status code ${response.status}: ${response.statusText}`));
     }
@@ -163,6 +189,9 @@ export const getUser = async (username: string): Promise<Result<User,Error>> => 
     const response = await safeFetch(buildURL("getUser", {
         username
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch user ${username} with status code ${response.status}: ${response.statusText}`));
     }
@@ -174,6 +203,9 @@ export const getUserScore = async (username: string): Promise<Result<number, Err
     const response = await safeFetch(buildURL("getUserScore", {
         username
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch user ${username}'s score with status code ${response.status}: ${response.statusText}`));
     }
@@ -186,6 +218,9 @@ export const getUserAchievements = async (username: string, game: string): Promi
         username,
         game
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch achievements for ${username} for ${game} with status code ${response.status}: ${response.statusText}`));
     }
@@ -199,6 +234,9 @@ export const updateUserAchievementState = async (username: string, achievement: 
         achievement,
         unlocked,
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to update achievement for ${username} for achievement ${achievement} with status code ${response.status}: ${response.statusText}`));
     }
@@ -209,6 +247,9 @@ export const getUserTimelineEntries = async (username: string): Promise<Result<T
     const response = await safeFetch(buildURL("getUserTimelineEntries", {
         username,
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch timeline for ${username} with status code ${response.status}: ${response.statusText}`));
     }
@@ -221,6 +262,9 @@ export const getGameReview = async(username: string, game: string): Promise<Resu
         username,
         game,
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to safeFetch review for ${game} by ${username} with status code ${response.status}: ${response.statusText}`));
     }
@@ -234,6 +278,9 @@ export const setGameReviewText = async(username: string, game: string, text: str
         game,
         text
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to update review for ${username} for game ${game} with status code ${response.status}: ${response.statusText}`));
     }
@@ -246,6 +293,9 @@ export const setGameReviewRating = async(username: string, game: string, rating:
         game,
         rating
     }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
     if(response.status != 200) {
         return Fail(Error(`Failed to update review for ${username} for game ${game} with status code ${response.status}: ${response.statusText}`));
     }
@@ -278,5 +328,13 @@ export const addUserTodoListEntry = async(username: string, game: string, list: 
 }
 
 export const addUserTodoList = async(username: string, game: string, name: string): Promise<Result<undefined, Error>> => {
+    return Fail(Error("Not implemented!"));
+}
+
+export const removeUserTodoListEntry = async(username: string, game: string, list: string, entry: string): Promise<Result<undefined,Error>> => {
+    return Fail(Error("Not implemented!"));
+}
+
+export const removeUserTodoList = async(username: string, game: string, list: string): Promise<Result<undefined,Error>> => {
     return Fail(Error("Not implemented!"));
 }

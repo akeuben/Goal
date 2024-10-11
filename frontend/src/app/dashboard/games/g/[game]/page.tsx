@@ -1,7 +1,8 @@
-import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements } from "@/api/api";
+import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements, getUserTodoLists } from "@/api/api";
 import { AchievementCompletionList } from "@/components/achievement/AchievementCompletionList";
 import { GameReviewComponent } from "@/components/game/GameReview";
 import { WrappedGameCompletionCard } from "@/components/game/WrappedGameCompletionCard";
+import { ListList } from "@/components/list/ListList";
 import { Achievement } from "@/types/achievements";
 import { GameCompletionCategory } from "@/types/completion";
 import { notFound } from "next/navigation";
@@ -24,7 +25,6 @@ export default function Page({params}: {params: {game: string}}) {
     const achievements = use(getGameAchievements(game.value.identifier));
     const userAchievements = use(getUserAchievements("test", game.value.identifier));
 
-
     let unlocked: Achievement[] = [];
     let locked: Achievement[] = [];
 
@@ -41,5 +41,6 @@ export default function Page({params}: {params: {game: string}}) {
         <WrappedGameCompletionCard initialCompletion={completion.value} categories={customCompletionCategories} />
         <AchievementCompletionList user={user.value} game={game.value}/>
         <GameReviewComponent user={user.value} game={game.value} canEdit={true}/>
+        <ListList user={user.value} game={game.value} canEdit={true} />
     </div>
 }
