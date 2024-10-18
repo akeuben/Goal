@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS goal.users(
   password_hash VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   member_since DATE,
-  is_developer BOOLEAN,
+  user_type VARCHAR(255) NOT NULL,
   PRIMARY KEY (username));
   
 CREATE TABLE IF NOT EXISTS goal.user_sessions(
