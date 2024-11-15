@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS goal.completed_achievements(
   achievement_number INT NOT NULL,
   PRIMARY KEY (username, achievement_number),
   FOREIGN KEY (username) REFERENCES users(username),
-  FOREIGN KEY (achievement_number) REFERENCES achievements(achievement_number));
+  FOREIGN KEY (achievement_number) REFERENCES achievements(achievement_number) ON DELETE CASCADE);
   
 CREATE TABLE IF NOT EXISTS goal.game_reviews(
   username VARCHAR(255) NOT NULL,
