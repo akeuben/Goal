@@ -305,36 +305,53 @@ public class Main {
             return new JSONArray(ojs);
         });
 
-        get("/updateGameCompletionCategoryName", "application/json", (req,res)->{
+        get("/updateGameCompletionCustom", "application/json", (req,res)->{
             setHeaders(res);
 
+            // Authorize
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
-            };
+            }
 
+            // Get query parameters
             String username = req.queryParams("username");
-            String oldName = req.queryParams("oldName");
-            String newName = req.queryParams("newName");
-
-            res.status(200);
-            return null;
-        });
-
-        get("/updateGameCompletionCategoryColour", "application/json", (req,res)->{
-            setHeaders(res);
-
-            if (!checkAuth(req.headers("Authorization"))){
-                res.status(401);
-                return null;
-            };
-
-            String username = req.queryParams("username");
-            String name = req.queryParams("name");
+            int gameId = Integer.parseInt(req.queryParams("gameId"));
+            String category = req.queryParams("category");
             String colour = req.queryParams("colour");
+            int ordering = Integer.parseInt(req.queryParams("ordering"));
 
-            res.status(200);
-            return null;
+            // Objects used in querying
+            String rawStatement;
+
+            // Execute query
+            try(FileInputStream inputStream = new FileInputStream(System.getProperty("user.dir") + "/" + "sql/updateGameCompletionCustom.sql")) {
+                // Get raw statements (still has ?'s in it)
+                rawStatement = IOUtils.toString(inputStream);
+
+                // Turn into and execute prepared statement
+                PreparedStatement preparedStatement;
+                preparedStatement = getConnection().prepareStatement(rawStatement);
+
+                preparedStatement.setString(1, username);
+                preparedStatement.setInt(2, gameId);
+                preparedStatement.setString(3, category);
+                preparedStatement.setString(4, colour);
+                preparedStatement.setInt(5, ordering);
+
+                preparedStatement.setString(6, category);
+                preparedStatement.setString(7, colour);
+                preparedStatement.setInt(8, ordering);
+                preparedStatement.executeQuery();
+
+
+                res.status(200);
+                return null;
+            } catch (Exception e){
+                // Uh oh
+                res.status(500);
+                return e.toString();
+            }
         });
 
         get("/updateGameCompletionBuiltin", "application/json", (req,res)->{
@@ -353,7 +370,7 @@ public class Main {
             return null;
         });
 
-        get("/updateGameCompletionCustom", "application/json", (req,res)->{
+        get("/updateGameCompletionCategory", "application/json", (req,res)->{
             setHeaders(res);
 
             if (!checkAuth(req.headers("Authorization"))){
@@ -522,17 +539,40 @@ public class Main {
         get("/updateUserAchievementState", "application/json", (req,res)->{
             setHeaders(res);
 
+            // Authorize
             if (!checkAuth(req.headers("Authorization"))){
                 res.status(401);
                 return null;
-            };
+            }
 
+            // Get query parameters
             String username = req.queryParams("username");
-            String achievement = req.queryParams("achievement");
-            String unlocked = req.queryParams("game");
+            int achievement = Integer.parseInt(req.queryParams("achievement"));
 
-            res.status(200);
-            return null;
+            // Objects used in querying
+            String rawStatement;
+
+            // Execute query
+            try(FileInputStream inputStream = new FileInputStream(System.getProperty("user.dir") + "/" + "sql/updateUserAchievementState.sql")) {
+                // Get raw statements (still has ?'s in it)
+                rawStatement = IOUtils.toString(inputStream);
+
+                // Turn into and execute prepared statement
+                PreparedStatement preparedStatement;
+                preparedStatement = getConnection().prepareStatement(rawStatement);
+
+                preparedStatement.setString(1, username);
+                preparedStatement.setInt(2, achievement);
+                preparedStatement.executeQuery();
+
+
+                res.status(200);
+                return null;
+            } catch (Exception e){
+                // Uh oh
+                res.status(500);
+                return e.toString();
+            }
         });
 
         get("/getUserTimelineEntries", "application/json", (req,res)->{
