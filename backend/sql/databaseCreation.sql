@@ -36,11 +36,12 @@ CREATE TABLE IF NOT EXISTS goal.todo_lists(
 CREATE TABLE IF NOT EXISTS goal.tasks(
   username VARCHAR(255) NOT NULL,
   list_name VARCHAR(255) NOT NULL,
+  game_id INT NOT NULL,
   name VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   is_complete BOOLEAN NOT NULL,
-  PRIMARY KEY (username, list_name, name),
-  FOREIGN KEY(username, list_name) REFERENCES todo_lists(username, list_name));
+  PRIMARY KEY (username, list_name, game_id, name),
+  FOREIGN KEY(username, list_name, game_id) REFERENCES todo_lists(username, list_name, game_id) ON DELETE CASCADE ON UPDATE CASCADE);
   
 CREATE TABLE IF NOT EXISTS goal.achievements(
   achievement_number INT AUTO_INCREMENT NOT NULL,
