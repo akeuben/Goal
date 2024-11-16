@@ -1,2 +1,3 @@
-INSERT INTO goal.custom_game_statuses (username, name, category, colour, ordering)
-values (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE category=?, colour=?, ordering=?;
+UPDATE goal.owned_games as og
+SET og.status=?
+WHERE og.username=? AND og.game_id=?

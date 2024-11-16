@@ -1,0 +1,1 @@
+SELECT g.* FROM goal.completed_games as cg, games as g WHERE cg.game_id=g.game_id AND cg.username=?;

@@ -1,0 +1,1 @@
+get all custome cateogires for a user
