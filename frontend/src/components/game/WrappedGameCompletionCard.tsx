@@ -10,7 +10,9 @@ export const WrappedGameCompletionCard = ({initialCompletion, categories, canEdi
         const newCompletion = structuredClone(completion);
 
         newCompletion.status = status;
-        newCompletion.customStatus = customStatus;
+        if(newCompletion.status === "custom") {
+            newCompletion.customStatus = categories?.filter((c) => c.name == customStatus)[0] as GameCompletionCategory;
+        }
 
         setCompletion(newCompletion);
     }

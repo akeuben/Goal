@@ -5,50 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be59d20c-222e-4077-aabc-7cc18e237d9d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/addCustomCompletion.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/createDatabaseUser.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/getGameCompletionCategory.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/getGameDevelopers.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/removeCustomCompletion.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/AbstractRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameCompletion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameCompletionCategories.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameCompletions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionBuiltin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Completion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/CompletionCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Mappings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/addGameBuiltinTimelineEntry.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/addGameCustomTimelineEntry.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/getAchievement.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/getCompletionCategory.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/getGameReview.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/updateCompletionCategoryName.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameAchievements.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameReview.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetUserAchievements.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetUserScore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetUserTimelineEntries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryColour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateReviewRating.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateReviewText.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserAchievementState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Achievement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Review.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Timeline.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/databaseCreation.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/databaseCreation.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/getGame.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/getGame.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/getGameCompletion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/getGameCompletion.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/getGameCompletionCategories.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/getGameCompletionCategories.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/getGameCompletions.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/getGameCompletions.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/getUser.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/getUser.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/getUserAchievements.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/getUserAchievements.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/getUserTimelineEntries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/getUserTimelineEntries.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/updateAchievementTimelineEntry.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/addAchievementTimelineEntry.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/updateGameCompletionCategory.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/updateGameCompletionCategory.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/updateGameCompletionCustom.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/updateGameCompletionCustom.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Achievement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ApiReturn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Examples.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GameCompletion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GameCompletionCategory.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Score.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TimelineEntry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionBuiltin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionBuiltin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCustom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/CompletionCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/CompletionCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/Mappings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Mappings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/games/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/games/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/g/[game]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/g/[game]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/GameList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/GameList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/categories/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/categories/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/games/g/[game]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/games/g/[game]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/WrappedGameCompletionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/WrappedGameCompletionCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/navigation/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/navigation/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/types/games.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/types/games.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/timeline/Timeline.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/timeline/Timeline.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/timeline/TimelineEntry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/timeline/TimelineEntry.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/types/user.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/types/user.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,12 +78,15 @@
     "Maven.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "backendRewrite",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/mnt/storage/code/projects/school/471-Project/backend"
+    "last_opened_file_path": "/mnt/storage/code/projects/school/471-Project/backend/sql"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sql" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.example.requests" />
     </key>

@@ -11,14 +11,18 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class SQLManager {
+    private static Connection connection = null;
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
+        if(connection != null) return connection;
         Class.forName("com.mysql.jdbc.Driver");
 
-        return DriverManager.getConnection(
+        connection = DriverManager.getConnection(
                 "jdbc:mysql://127.0.0.1:3306/goal?allowPublicKeyRetrieval=true&useSSL=false",
                 "username",
                 "password"
         );
+
+        return connection;
     }
 
     public static JSONArray mapResults(ResultSet result, HashMap<String, String> databaseToAPIMap) {
@@ -85,12 +89,26 @@ public class SQLManager {
         return object;
     }
 
+    public static int mapResultInt(ResultSet result, String attribute) {
+        int r = 0;
+        while(true) {
+            try {
+                if (!result.next()) break;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                r += result.getInt(attribute);
+            } catch (SQLException ignored) {}
+        }
+        return r;
+    }
+
     public static Optional<ResultSet> fetchFromDatabase(String queryFile, String... parameters) {
         try(FileInputStream inputStream = new FileInputStream( "sql/" + queryFile + ".sql")) {
             // Get raw statements (still has ?'s in it)
             String rawStatement = IOUtils.toString(inputStream);
-
-            System.out.println(rawStatement);
 
             // Turn into and execute prepared statement
             PreparedStatement preparedStatement = getConnection().prepareStatement(rawStatement);
@@ -100,6 +118,7 @@ public class SQLManager {
             ResultSet resultSet = preparedStatement.executeQuery();
             return Optional.of(resultSet);
         } catch(Exception e) {
+            e.printStackTrace();
             return Optional.empty();
         }
     }
@@ -109,18 +128,15 @@ public class SQLManager {
             // Get raw statements (still has ?'s in it)
             String rawStatement = IOUtils.toString(inputStream);
 
-            System.out.println(rawStatement);
-
             // Turn into and execute prepared statement
             PreparedStatement preparedStatement = getConnection().prepareStatement(rawStatement);
             for(int i = 0; i < parameters.length; i++) {
                 preparedStatement.setString(i+1, parameters[i]);
             }
-            System.out.println(preparedStatement);
-            System.out.println(preparedStatement.executeUpdate());
-            getConnection().commit();
-            return true;
+            int count = preparedStatement.executeUpdate();
+            return count > 0;
         } catch(Exception ignored) {
+            ignored.printStackTrace();
             return false;
         }
     }

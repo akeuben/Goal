@@ -63,5 +63,16 @@ public class Main {
         new GetGameCompletionCategories().register("getGameCompletionCategories");
         new UpdateGameCompletionBuiltin().register("updateGameCompletionBuiltin");
         new UpdateGameCompletionCustom().register("updateGameCompletionCustom");
+        new UpdateGameCompletionCategoryName().register("updateGameCompletionCategoryName");
+        new UpdateGameCompletionCategoryColour().register("updateGameCompletionCategoryColour");
+        new GetGameAchievements().register("getGameAchievements");
+        new GetUser().register("getUser");
+        new GetUserScore().register("getUserScore");
+        new GetUserAchievements().register("getUserAchievements");
+        new UpdateUserAchievementState().register("updateUserAchievementState");
+        new GetUserTimelineEntries().register("getUserTimelineEntries");
+        new GetGameReview().register("getGameReview");
+        new UpdateReviewText().register("setGameReviewText");
+        new UpdateReviewRating().register("setGameReviewRating");
     }
 }

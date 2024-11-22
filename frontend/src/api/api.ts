@@ -22,7 +22,9 @@ const buildURL = (fn: string, args: Record<string, string | number | boolean | u
 const safeFetch = async(url: string): Promise<Response|Error> => {
     let result;
     try {
-        result = await fetch(url);
+        result = await fetch(url, {
+            cache: "no-cache",
+        });
     } catch(e: any) {
         return Error(e);
     }
@@ -127,7 +129,7 @@ export const updateGameCompletionCategoryName = async (username: string, oldName
 }
 
 export const updateGameCompletionCategoryColour = async (username: string, name: string, colour: string): Promise<Result<undefined, Error>> => {
-    const response = await safeFetch(buildURL("updateGameCompletionCategoryName", {
+    const response = await safeFetch(buildURL("updateGameCompletionCategoryColour", {
         username,
         name,
         colour

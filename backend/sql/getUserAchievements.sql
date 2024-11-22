@@ -1,1 +1,1 @@
-select a.* from goal.completed_achievements as ca, goal.achievements as a where ca.achievement_number = a.achievement_number and ca.username=? and a.gameId=?
+select a.* from goal.completed_achievements as ca, goal.achievements as a where ca.achievement_number = a.achievement_number and ca.username=? and a.game_id=?

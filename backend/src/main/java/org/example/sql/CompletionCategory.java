@@ -10,8 +10,17 @@ import java.util.Optional;
 public class CompletionCategory {
 
     public static JSONObject fetchCompletionCategoryForGame(String username, String game) throws JSONException {
-        System.out.println("Fetching for " + username + " @ " + game);
         Optional<ResultSet> result = SQLManager.fetchFromDatabase("getGameCompletionCategory", username, game);
+
+        if(result.isEmpty()) {
+            throw new RuntimeException("Internal Database Error.");
+        }
+
+        return SQLManager.mapResult(result.get(), Mappings.COMPLETION_CATEGORY_MAPPINGS);
+    }
+
+    public static JSONObject fetchCompletionCategory(String username, String name) throws JSONException {
+        Optional<ResultSet> result = SQLManager.fetchFromDatabase("getCompletionCategory", username, name);
 
         if(result.isEmpty()) {
             throw new RuntimeException("Internal Database Error.");
@@ -24,7 +33,7 @@ public class CompletionCategory {
         Optional<ResultSet> result = SQLManager.fetchFromDatabase("getGameCompletionCategories", username);
 
         if(result.isEmpty()) {
-            throw new RuntimeException("Internal Database Error.");
+             throw new RuntimeException("Internal Database Error. A");
         }
 
         return SQLManager.mapResults(result.get(), Mappings.COMPLETION_CATEGORY_MAPPINGS);

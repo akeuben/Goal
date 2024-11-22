@@ -10,12 +10,12 @@ import { use } from "react";
 
 export default function Page({params}: {params: {game: string}}) {
     const game = use(getGame(params.game));
-    const user = use(getUser("test"));
+    const user = use(getUser("avery"));
     
     if(!user.success) notFound();
     if(!game.success) notFound();
 
-    const completion = use(getGameCompletion("test", game.value.identifier));
+    const completion = use(getGameCompletion("avery", game.value.identifier));
     const customCompletionCategoriesRaw = use(getGameCompletionCategories(user.value.username));
     let customCompletionCategories: GameCompletionCategory[] = [];
     if(customCompletionCategoriesRaw.success) customCompletionCategories = customCompletionCategoriesRaw.value;
@@ -23,7 +23,7 @@ export default function Page({params}: {params: {game: string}}) {
     if(!completion.success) notFound();
 
     const achievements = use(getGameAchievements(game.value.identifier));
-    const userAchievements = use(getUserAchievements("test", game.value.identifier));
+    const userAchievements = use(getUserAchievements("avery", game.value.identifier));
 
     let unlocked: Achievement[] = [];
     let locked: Achievement[] = [];

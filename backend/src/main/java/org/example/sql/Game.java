@@ -32,6 +32,7 @@ public class Game {
         Optional<ResultSet> result = SQLManager.fetchFromDatabase("getGameList", search);
 
         if(result.isEmpty()) {
+            System.out.println("Initial result is empty");
             throw new RuntimeException("Internal Database Error.");
         }
 
@@ -41,6 +42,7 @@ public class Game {
             Optional<ResultSet> developers = SQLManager.fetchFromDatabase("getGameDevelopers", object.getString("identifier"));
 
             if (developers.isEmpty()) {
+                System.out.println("Developer result is empty");
                 throw new RuntimeException("Internal Database Error.");
             }
 

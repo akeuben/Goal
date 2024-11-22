@@ -16,7 +16,7 @@ export default function Page() {
     const [oldNames, setOldNames] = useState<string[]>([]);
 
     useEffect(() => {
-        getGameCompletionCategories("test").then(value => {
+        getGameCompletionCategories("avery").then(value => {
             value.success ? setCompletionCategories(value.value) : null;
             setOldNames(value.success ? value.value.map(c => c.name) : []);
         })

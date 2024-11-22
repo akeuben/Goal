@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 const links: Record<string, string> = {
     "Home": "/",
     "Games": "/games",
-    "Dashboard": "/dashboard",
-    "Profile": "/u/test"
 }
 
 export default function Navbar() {
