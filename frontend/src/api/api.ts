@@ -338,3 +338,17 @@ export const removeUserTodoListEntry = async(username: string, game: string, lis
 export const removeUserTodoList = async(username: string, game: string, list: string): Promise<Result<undefined,Error>> => {
     return Fail(Error("Not implemented!"));
 }
+
+export const sendLoginRequest = async(username: string, password: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("login", {
+        username,
+        password
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}

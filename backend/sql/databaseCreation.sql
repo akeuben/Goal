@@ -105,7 +105,6 @@ CREATE TABLE IF NOT EXISTS goal.achievement_timeline_entries(
 CREATE TABLE IF NOT EXISTS goal.custom_game_statuses(
   username VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
-  category VARCHAR(255) NOT NULL,
   colour VARCHAR(255) NOT NULL,
   ordering INT NOT NULL,
   PRIMARY KEY (username, name),
@@ -122,21 +121,7 @@ CREATE TABLE IF NOT EXISTS goal.custom_status_used(
   username VARCHAR(255) NOT NULL,
   game_id INT NOT NULL,
   name VARCHAR(255) NOT NULL,
-  PRIMARY KEY (username, game_id, name),
+  PRIMARY KEY (username, game_id),
   FOREIGN KEY (username, name) REFERENCES custom_game_statuses(username, name),
   FOREIGN KEY (username) REFERENCES users(username),
   FOREIGN KEY (game_id) REFERENCES games(game_id));
-  
-CREATE TABLE IF NOT EXISTS goal.completed_games(
-  username VARCHAR(255) NOT NULL,
-  game_id INT NOT NULL,
-  PRIMARY KEY (username, game_id),
-  FOREIGN KEY (username) REFERENCES users(username),
-  FOREIGN KEY (game_id) REFERENCES games(game_id));
-  
-
-  
-  
-  
-  
-  

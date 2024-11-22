@@ -1,1 +1,2 @@
-get all custome cateogires for a user
+SELECT * FROM goal.custom_game_statuses
+WHERE username=?;

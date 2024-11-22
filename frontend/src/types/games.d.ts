@@ -2,7 +2,7 @@ export type Game = {
     identifier: string,
     name: string,
     releaseYear: number,
-    developer: string,
+    developers: string[],
     publisher: string,
     description: string,
 }
