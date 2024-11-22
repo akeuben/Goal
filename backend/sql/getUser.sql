@@ -1,0 +1,1 @@
+SELECT u.username, u.password_hash, u.email FROM goal.users as u WHERE u.username=?;

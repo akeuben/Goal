@@ -1,0 +1,1 @@
+SELECT g.* FROM goal.games as g WHERE g.name=?;

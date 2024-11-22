@@ -1,0 +1,1 @@
+SELECT a.* FROM goal.achievements as a WHERE a.game_id=?;

@@ -1,0 +1,1 @@
+DELETE FROM goal.owned_games as og WHERE og.username=? AND og.game_id=?
