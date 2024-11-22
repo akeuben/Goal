@@ -9,6 +9,8 @@ public class Mappings {
     public static final HashMap<String, String> ACHIEVEMENT_MAPPINGS = new HashMap<>();
     public static final HashMap<String, String> USER_MAPPINGS = new HashMap<>();
     public static final HashMap<String, String> GAME_REVIEW_MAPPINGS = new HashMap<>();
+    public static final HashMap<String, String> TASK_MAPPINGS = new HashMap<>();
+    public static final HashMap<String, String> TODO_MAPPINGS = new HashMap<>();
 
     static {
         GAME_MAPPINGS.put("game_id", "identifier");
@@ -40,5 +42,11 @@ public class Mappings {
 
         GAME_REVIEW_MAPPINGS.put("text", "text");
         GAME_REVIEW_MAPPINGS.put("rating", "rating");
+
+        TASK_MAPPINGS.put("name", "name");
+        TASK_MAPPINGS.put("description", "description");
+        TASK_MAPPINGS.put("is_complete", "complete");
+
+        TODO_MAPPINGS.put("list_name", "name");
     }
 }

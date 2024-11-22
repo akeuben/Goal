@@ -349,12 +349,34 @@ export const setGameReviewRating = async(username: string, game: string, rating:
 }
 
 export const getUserTodoLists = async(username: string, game: string): Promise<Result<TodoList[], Error>> => {
-    const data = await fakedata_getUserTodoLists(username, game);
-    return Success(data);
+    const response = await safeFetch(buildURL("getUserTodoLists", {
+        username,
+        game,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Failed to get todo lists for user ${username} for game ${game} with status code ${response.status}: ${response.statusText}`));
+    }
+    const result = await response.json() as TodoList[];
+    return Success(result);
 }
 
 export const updateUserTodoListName = async(username: string, game: string, list: string, name: string): Promise<Result<undefined,Error>> => {
-    return Fail(Error("Not implemented!"));
+    const response = await safeFetch(buildURL("updateUserTodoListName", {
+        username,
+        game,
+        list,
+        name,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Failed to update list for ${username} for game ${game} with status code ${response.status}: ${response.statusText}`));
+    }
+    return NullSuccess();
 }
 
 export const updateUserTodoListEntryName = async(username: string, game: string, list: string, entry: string, name: string): Promise<Result<undefined,Error>> => {
@@ -373,8 +395,19 @@ export const addUserTodoListEntry = async(username: string, game: string, list: 
     return Fail(Error("Not implemented!"));
 }
 
-export const addUserTodoList = async(username: string, game: string, name: string): Promise<Result<undefined, Error>> => {
-    return Fail(Error("Not implemented!"));
+export const addUserTodoList = async(username: string, game: string, list: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("createUserTodoList", {
+        username,
+        game,
+        list,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Failed to create list for ${username} for game ${game} with status code ${response.status}: ${response.statusText}`));
+    }
+    return NullSuccess();
 }
 
 export const removeUserTodoListEntry = async(username: string, game: string, list: string, entry: string): Promise<Result<undefined,Error>> => {
@@ -382,7 +415,18 @@ export const removeUserTodoListEntry = async(username: string, game: string, lis
 }
 
 export const removeUserTodoList = async(username: string, game: string, list: string): Promise<Result<undefined,Error>> => {
-    return Fail(Error("Not implemented!"));
+    const response = await safeFetch(buildURL("removeUserTodoList", {
+        username,
+        game,
+        list,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Failed to create list for ${username} for game ${game} with status code ${response.status}: ${response.statusText}`));
+    }
+    return NullSuccess();
 }
 
 export const sendLoginRequest = async(username: string, password: string): Promise<Result<undefined, Error>> => {

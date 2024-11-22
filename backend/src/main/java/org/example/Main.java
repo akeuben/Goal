@@ -38,5 +38,9 @@ public class Main {
         new CreateGameCompletionCategory().register("createGameCompletionCategory");
         new RemoveGameCompletionCategory().register("removeGameCompletionCategory");
         new UpdateGameCompletionCategoryOrder().register("updateGameCompletionCategoryOrder");
+        new GetUserTodoLists().register("getUserTodoLists");
+        new UpdateUserTodoListName().register("updateUserTodoListName");
+        new CreateUserTodoList().register("createUserTodoList");
+        new RemoveUserTodoList().register("removeUserTodoList");
     }
 }

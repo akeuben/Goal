@@ -5,19 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be59d20c-222e-4077-aabc-7cc18e237d9d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sql/removeGameCompletionCategory.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGameCompletionCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveGameCompletionCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/getListItems.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/getLists.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateUserTodoList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetUserTodoLists.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveUserTodoList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Todo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/databaseCreation.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/databaseCreation.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/removeList.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/removeList.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/renameList.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/renameList.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/Mappings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Mappings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/categories/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/categories/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/lib/completions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/lib/completions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/types/completion.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/types/completion.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
