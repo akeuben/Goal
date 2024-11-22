@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS goal.users(
   password_hash VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   member_since DATE,
-  user_type VARCHAR(255),
+  user_type VARCHAR(256),
   PRIMARY KEY (username));
   
 CREATE TABLE IF NOT EXISTS goal.user_sessions(
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS goal.custom_game_timeline_entries(
   datetime TIMESTAMP NOT NULL,
   name VARCHAR(255) NOT NULL,
   PRIMARY KEY (username, datetime, name),
-  FOREIGN KEY (username, name) REFERENCES custom_game_statuses(username, name),
+  FOREIGN KEY (username, name) REFERENCES custom_game_statuses(username, name) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (game_id) REFERENCES games(game_id));
 
 CREATE TABLE IF NOT EXISTS goal.custom_status_used(
@@ -125,6 +125,6 @@ CREATE TABLE IF NOT EXISTS goal.custom_status_used(
   game_id INT NOT NULL,
   name VARCHAR(255) NOT NULL,
   PRIMARY KEY (username, game_id),
-  FOREIGN KEY (username, name) REFERENCES custom_game_statuses(username, name) ON UPDATE CASCADE,
+  FOREIGN KEY (username, name) REFERENCES custom_game_statuses(username, name) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (username) REFERENCES users(username),
   FOREIGN KEY (game_id) REFERENCES games(game_id) );

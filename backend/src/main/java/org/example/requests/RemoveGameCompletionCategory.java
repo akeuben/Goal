@@ -1,20 +1,19 @@
 package org.example.requests;
 
+import org.example.sql.CompletionCategory;
 import org.example.sql.SQLManager;
+import org.json.JSONArray;
 import org.json.JSONException;
 import spark.Request;
 import spark.Response;
 
-public class UpdateGameCompletionCategoryName extends AbstractRequest {
+public class RemoveGameCompletionCategory extends AbstractRequest {
     @Override
     protected Object handleRequest(Request request, Response response) throws JSONException {
         String username = request.queryParams("username");
-        String oldName = request.queryParams("oldName");
-        String newName = request.queryParams("newName");
+        String name = request.queryParams("name");
 
-        System.out.println("Request: " + username + ", " + oldName + ", " + newName);
-
-        if(!SQLManager.postToDatabase("updateCompletionCategoryName", newName, username, oldName)) {
+        if(!SQLManager.postToDatabase("removeGameCompletionCategory", username, name)) {
             throw new RuntimeException("Failed to update");
         }
         return true;

@@ -143,6 +143,50 @@ export const updateGameCompletionCategoryColour = async (username: string, name:
     return NullSuccess();
 }
 
+export const updateGameCompletionCategoryOrder = async (username: string, name: string, direction: "next" | "prev"): Promise<Result<GameCompletionCategory[], Error>> => {
+    const response = await safeFetch(buildURL("updateGameCompletionCategoryOrder", {
+        username,
+        name,
+        direction
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Failed to update game completion category for user ${username} with status code ${response.status}: ${response.statusText}`));
+    }
+    const data = (await response.json()) as GameCompletionCategory[];
+    return Success(data);
+}
+
+export const createGameCompletionCategory = async (username: string, name: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("createGameCompletionCategory", {
+        username,
+        name,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Failed to update create completion category for user ${username} with status code ${response.status}: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
+export const removeGameCompletionCategory = async (username: string, name: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("removeGameCompletionCategory", {
+        username,
+        name,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Failed to remove completion category for user ${username} with status code ${response.status}: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
 export const updateGameCompletionBuiltin = async (username: string, game: string, completionCategory: GameCompletion["status"]): Promise<Result<undefined, Error>> => {
     const response = await safeFetch(buildURL("updateGameCompletionBuiltin", {
         username,
