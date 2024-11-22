@@ -13,6 +13,13 @@ export function Success<V,E>(value: V): Result<V, E> {
     }
 }
 
+export function NullSuccess<E>(): Result<undefined, E> {
+    return {
+        success: true,
+        value: undefined
+    }
+}
+
 export function Fail<V,E>(error: E): Result<V, E> {
     return {
         success: false,
