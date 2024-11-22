@@ -1,0 +1,15 @@
+.list input {
+    border: none;
+    background: none;
+    padding: 5px;
+    color: white;
+}
+
+.list {
+    margin: 20px;
+}
+
+.new {
+    background: #333;
+    padding: 20px;
+}

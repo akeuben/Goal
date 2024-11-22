@@ -6,6 +6,11 @@ import { CompletionToColor } from "@/lib/completions";
 import { GameCompletionCategory } from "@/types/completion";
 import { useEffect, useState } from "react";
 
+const trace = (a: any) => {
+    console.log(a)
+    return a;
+}
+
 export default function Page() {
     const [customCompletionCategories, setCompletionCategories] = useState<GameCompletionCategory[]|null>(null);
     const [oldNames, setOldNames] = useState<string[]>([]);
@@ -26,7 +31,7 @@ export default function Page() {
         <p><input type="color" defaultValue={CompletionToColor('complete', null, [])} disabled={true} /><input type="text" disabled={true} value="Complete"/></p>
         <h2>Your Categories</h2>
         {
-            customCompletionCategories.map((c, i) => <p key={c.order}><input type="color" defaultValue={c.colour} onChange={(e) => {
+            customCompletionCategories.map((c, i) => <p key={c.order}><input type="color" defaultValue={trace(c.colour)} onChange={(e) => {
                 const value = "" + e.target.value;
                 updateGameCompletionCategoryColour(c.user, c.name, value).then(result => {
                     if(!result.success) {

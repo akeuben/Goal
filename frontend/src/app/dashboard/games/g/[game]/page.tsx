@@ -1,6 +1,8 @@
-import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements } from "@/api/api";
+import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements, getUserTodoLists } from "@/api/api";
 import { AchievementCompletionList } from "@/components/achievement/AchievementCompletionList";
+import { GameReviewComponent } from "@/components/game/GameReview";
 import { WrappedGameCompletionCard } from "@/components/game/WrappedGameCompletionCard";
+import { ListList } from "@/components/list/ListList";
 import { Achievement } from "@/types/achievements";
 import { GameCompletionCategory } from "@/types/completion";
 import { notFound } from "next/navigation";
@@ -27,6 +29,7 @@ export default function Page({params}: {params: {game: string}}) {
     let locked: Achievement[] = [];
 
     if(achievements.success && userAchievements.success) {
+        console.log(userAchievements.value);
         const unlockedIdentifiers = userAchievements.value.map(a => a.identifier);
         unlocked = userAchievements.value;
         locked = achievements.value.filter(a => !unlockedIdentifiers.includes(a.identifier));
@@ -37,5 +40,7 @@ export default function Page({params}: {params: {game: string}}) {
     return <div>
         <WrappedGameCompletionCard initialCompletion={completion.value} categories={customCompletionCategories} />
         <AchievementCompletionList user={user.value} game={game.value}/>
+        <GameReviewComponent user={user.value} game={game.value} canEdit={true}/>
+        <ListList user={user.value} game={game.value} canEdit={true} />
     </div>
 }
