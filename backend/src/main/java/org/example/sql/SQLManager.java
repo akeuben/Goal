@@ -128,6 +128,8 @@ public class SQLManager {
             // Get raw statements (still has ?'s in it)
             String rawStatement = IOUtils.toString(inputStream);
 
+            System.out.println(rawStatement);
+
             // Turn into and execute prepared statement
             PreparedStatement preparedStatement = getConnection().prepareStatement(rawStatement);
             for(int i = 0; i < parameters.length; i++) {

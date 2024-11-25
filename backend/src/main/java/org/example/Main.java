@@ -42,5 +42,12 @@ public class Main {
         new UpdateUserTodoListName().register("updateUserTodoListName");
         new CreateUserTodoList().register("createUserTodoList");
         new RemoveUserTodoList().register("removeUserTodoList");
+        new UpdateUserTodoListEntryName().register("updateUserTodoListEntryName");
+        new UpdateUserTodoListEntryDescription().register("updateUserTodoListEntryDescription");
+        new UpdateUserTodoListEntryComplete().register("updateUserTodoListEntryComplete");
+        new AddUserTodoListEntry().register("addUserTodoListEntry");
+        new RemoveUserTodoListEntry().register("removeUserTodoListEntry");
+        new AddGameToLibrary().register("addGameToLibrary");
+        new RemoveGameFromLibrary().register("removeGameFromLibrary");
     }
 }

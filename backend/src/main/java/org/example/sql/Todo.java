@@ -49,4 +49,15 @@ public class Todo {
 
         return SQLManager.mapResults(result.get(), Mappings.TASK_MAPPINGS);
     }
+
+    public static JSONObject getTaskForList(String username, String game, String list, String entry) {
+        Optional<ResultSet> result = SQLManager.fetchFromDatabase("getListItem", username, game, list, entry);
+
+        if(result.isEmpty()) {
+            System.out.println("Initial result is empty");
+            throw new RuntimeException("Internal Database Error.");
+        }
+
+        return SQLManager.mapResult(result.get(), Mappings.TASK_MAPPINGS);
+    }
 }

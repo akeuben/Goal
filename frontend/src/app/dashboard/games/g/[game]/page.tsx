@@ -1,6 +1,7 @@
-import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements, getUserTodoLists } from "@/api/api";
+import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements, getUserTodoLists, removeGameFromLibrary } from "@/api/api";
 import { AchievementCompletionList } from "@/components/achievement/AchievementCompletionList";
 import { GameReviewComponent } from "@/components/game/GameReview";
+import { RemoveGameButton } from "@/components/game/RemoveGameButton";
 import { WrappedGameCompletionCard } from "@/components/game/WrappedGameCompletionCard";
 import { ListList } from "@/components/list/ListList";
 import { Achievement } from "@/types/achievements";
@@ -42,5 +43,6 @@ export default function Page({params}: {params: {game: string}}) {
         <AchievementCompletionList user={user.value} game={game.value}/>
         <GameReviewComponent user={user.value} game={game.value} canEdit={true}/>
         <ListList user={user.value} game={game.value} canEdit={true} />
+        <RemoveGameButton username={user.value.username} game={game.value.identifier} />
     </div>
 }
