@@ -49,5 +49,14 @@ public class Main {
         new RemoveUserTodoListEntry().register("removeUserTodoListEntry");
         new AddGameToLibrary().register("addGameToLibrary");
         new RemoveGameFromLibrary().register("removeGameFromLibrary");
+
+        new CreateGame().register("createGame");
+        new UpdateGameDescription().register("updateGameDescription");
+        new UpdateGameName().register("updateGameName");
+        new UpdateGamePublisher().register("updateGamePublisher");
+        new UpdateGameReleaseYear().register("updateGameReleaseYear");
+        new AddAchievement().register("addAchievement");
+        new RemoveAchievement().register("removeAchievement");
+        new UpdateAchievement().register("updateAchievement");
     }
 }

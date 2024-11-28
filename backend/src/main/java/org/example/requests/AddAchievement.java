@@ -14,7 +14,9 @@ public class AddAchievement extends AbstractRequest {
         String score = request.queryParams("score");
         String is_spoiler = request.queryParams("is_spoiler");
 
-        SQLManager.postToDatabase("addAchievement", game_id, name, description, score, is_spoiler);
+        if(!SQLManager.postToDatabase("addAchievement", game_id, name, description, score, is_spoiler)) {
+            throw new RuntimeException("Failed to add achievement!");
+        }
 
         return true;
     }

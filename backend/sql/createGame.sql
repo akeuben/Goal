@@ -1,2 +1,2 @@
 INSERT INTO goal.games
-VALUES (?,?,?,?);
+VALUES (NULL, ?,?,?,?);

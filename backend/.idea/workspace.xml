@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be59d20c-222e-4077-aabc-7cc18e237d9d" name="Changes" comment="" />
+    <list default="true" id="be59d20c-222e-4077-aabc-7cc18e237d9d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/addAchievement.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/addAchievement.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/createGame.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/createGame.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/updateAchievement.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/updateAchievement.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/AddAchievement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/AddAchievement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateAchievement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateAchievement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

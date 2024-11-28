@@ -8,6 +8,7 @@ import spark.utils.IOUtils;
 import java.io.FileInputStream;
 import java.sql.*;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class SQLManager {
@@ -25,7 +26,7 @@ public class SQLManager {
         return connection;
     }
 
-    public static JSONArray mapResults(ResultSet result, HashMap<String, String> databaseToAPIMap) {
+    public static JSONArray mapResults(ResultSet result, Map<String, String> databaseToAPIMap) {
         JSONArray array = new JSONArray();
         while(true) {
             try {
@@ -67,7 +68,7 @@ public class SQLManager {
         return array;
     }
 
-    public static JSONObject mapResult(ResultSet result, HashMap<String, String> databaseToAPIMap) {
+    public static JSONObject mapResult(ResultSet result, Map<String, String> databaseToAPIMap) {
         try {
             if (!result.next()) return null;
         } catch (SQLException e) {

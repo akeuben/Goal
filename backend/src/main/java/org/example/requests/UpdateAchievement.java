@@ -15,7 +15,7 @@ public class UpdateAchievement extends AbstractRequest {
         String score = request.queryParams("score");
         String is_spoiler = request.queryParams("is_spoiler");
 
-        if(!SQLManager.postToDatabase("updateGameDescription", achievement_number, game_id, name, description, score, is_spoiler)) {
+        if(!SQLManager.postToDatabase("updateAchievement", achievement_number, game_id, name, description, score, is_spoiler)) {
             throw new RuntimeException("Failed to update");
         }
         return true;
