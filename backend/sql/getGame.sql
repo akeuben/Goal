@@ -1,1 +1,1 @@
-SELECT g.* FROM goal.games as g WHERE g.name=?;
+SELECT g.* FROM goal.games as g WHERE g.game_id=?;

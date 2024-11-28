@@ -6,6 +6,8 @@ import styles from "./ListEntry.module.css"
 export const ListEntry = ({initialEntry, list, onDelete, canEdit}: {initialEntry: TodoListEntry, list: TodoList, onDelete: () => void, canEdit: boolean}) => {
     const [entry, setEntry] = useState(initialEntry);
 
+    console.log(entry);
+
     return <div className={styles.entry}>
         <div>
             <input type="text" disabled={!canEdit} defaultValue={entry.name} onBlur={(e) => {
@@ -33,12 +35,12 @@ export const ListEntry = ({initialEntry, list, onDelete, canEdit}: {initialEntry
                 })
             }}/>
         </div>
-        <input type="checkbox" disabled={!canEdit} checked={entry.complete} onClick={(e) => {
+        <input type="checkbox" disabled={!canEdit} checked={entry.complete === "1"} onClick={(e) => {
             const checked = e.currentTarget.checked;
             updateUserTodoListEntryComplete(list.user.username, list.game.identifier, list.name, entry.name, checked).then(result => {
                 if(result.success) {
                     const newEntry = structuredClone(entry);
-                    newEntry.complete = checked;
+                    newEntry.complete = checked ? "1" : "0";
                     setEntry(newEntry);
                 }
             })

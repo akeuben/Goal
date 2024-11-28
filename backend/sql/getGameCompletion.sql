@@ -1,7 +1,1 @@
-SELECT CASE WHEN EXISTS (
-    SELECT cg.username, cg.game_id
-	FROM goal.completed_games AS cg
-	WHERE cg.username=? AND cg.game_id=?
-)
-THEN "true"
-ELSE "false" END AS gameCompleted
+SELECT cg.* FROM goal.owned_games as cg, games as g WHERE cg.game_id=g.game_id AND cg.username=? AND cg.game_id=?;

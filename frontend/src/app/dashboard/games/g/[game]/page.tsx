@@ -1,6 +1,7 @@
-import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements, getUserTodoLists } from "@/api/api";
+import { getGame, getGameAchievements, getGameCompletion, getGameCompletionCategories, getUser, getUserAchievements, getUserTodoLists, removeGameFromLibrary } from "@/api/api";
 import { AchievementCompletionList } from "@/components/achievement/AchievementCompletionList";
 import { GameReviewComponent } from "@/components/game/GameReview";
+import { RemoveGameButton } from "@/components/game/RemoveGameButton";
 import { WrappedGameCompletionCard } from "@/components/game/WrappedGameCompletionCard";
 import { ListList } from "@/components/list/ListList";
 import { Achievement } from "@/types/achievements";
@@ -10,12 +11,12 @@ import { use } from "react";
 
 export default function Page({params}: {params: {game: string}}) {
     const game = use(getGame(params.game));
-    const user = use(getUser("test"));
+    const user = use(getUser("avery"));
     
     if(!user.success) notFound();
     if(!game.success) notFound();
 
-    const completion = use(getGameCompletion("test", game.value.identifier));
+    const completion = use(getGameCompletion("avery", game.value.identifier));
     const customCompletionCategoriesRaw = use(getGameCompletionCategories(user.value.username));
     let customCompletionCategories: GameCompletionCategory[] = [];
     if(customCompletionCategoriesRaw.success) customCompletionCategories = customCompletionCategoriesRaw.value;
@@ -23,7 +24,7 @@ export default function Page({params}: {params: {game: string}}) {
     if(!completion.success) notFound();
 
     const achievements = use(getGameAchievements(game.value.identifier));
-    const userAchievements = use(getUserAchievements("test", game.value.identifier));
+    const userAchievements = use(getUserAchievements("avery", game.value.identifier));
 
     let unlocked: Achievement[] = [];
     let locked: Achievement[] = [];
@@ -42,5 +43,6 @@ export default function Page({params}: {params: {game: string}}) {
         <AchievementCompletionList user={user.value} game={game.value}/>
         <GameReviewComponent user={user.value} game={game.value} canEdit={true}/>
         <ListList user={user.value} game={game.value} canEdit={true} />
+        <RemoveGameButton username={user.value.username} game={game.value.identifier} />
     </div>
 }

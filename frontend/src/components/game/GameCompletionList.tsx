@@ -19,7 +19,9 @@ export function GameCompletionList({username, sort, filter, search, canEdit, det
         for(const c of newCompletions) {
             if(c.game.identifier === game) {
                 c.status = status;
-                c.customStatus = customStatus;
+                if(c.status === "custom") {
+                    c.customStatus = customCompletionCategories?.filter((c) => c.name == customStatus)[0] as GameCompletionCategory;
+                }
             }
         }
 

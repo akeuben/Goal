@@ -6,11 +6,11 @@ interface BaseGameCompletion<T> {
     status: T
 }
 
-interface BuiltinGameCompletion extends BaseGameCompletion<'not_started' | 'in_progress' | 'complete'> {
+interface BuiltinGameCompletion extends BaseGameCompletion<'not_started' | 'in_progress' | 'complete' | 'limbo'> {
 }
 
 interface CustomGameCompletion extends BaseGameCompletion<'custom'> {
-    customStatus: GameCompletionCategory
+    customStatus?: GameCompletionCategory
 }
 
 export type GameCompletion = BuiltinGameCompletion | CustomGameCompletion;

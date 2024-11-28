@@ -11,5 +11,5 @@ export type TodoList = {
 export type TodoListEntry = {
     name: string,
     description: string,
-    complete: boolean
+    complete: string
 };

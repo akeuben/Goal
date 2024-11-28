@@ -1,7 +1,7 @@
 "use client"
 
 import styles from "./page.module.css";
-import { getGameCompletionCategories, updateGameCompletionCategoryColour, updateGameCompletionCategoryName } from "@/api/api";
+import { createGameCompletionCategory, getGameCompletionCategories, removeGameCompletionCategory, updateGameCompletionCategoryColour, updateGameCompletionCategoryName, updateGameCompletionCategoryOrder } from "@/api/api";
 import { CompletionToColor } from "@/lib/completions";
 import { GameCompletionCategory } from "@/types/completion";
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ export default function Page() {
     const [oldNames, setOldNames] = useState<string[]>([]);
 
     useEffect(() => {
-        getGameCompletionCategories("test").then(value => {
+        getGameCompletionCategories("avery").then(value => {
             value.success ? setCompletionCategories(value.value) : null;
             setOldNames(value.success ? value.value.map(c => c.name) : []);
         })
@@ -31,7 +31,7 @@ export default function Page() {
         <p><input type="color" defaultValue={CompletionToColor('complete', null, [])} disabled={true} /><input type="text" disabled={true} value="Complete"/></p>
         <h2>Your Categories</h2>
         {
-            customCompletionCategories.map((c, i) => <p key={c.order}><input type="color" defaultValue={trace(c.colour)} onChange={(e) => {
+            customCompletionCategories.toSorted((a, b) => a.order - b.order).map((c, i) => <p key={c.order}><input type="color" defaultValue={trace(c.colour)} onChange={(e) => {
                 const value = "" + e.target.value;
                 updateGameCompletionCategoryColour(c.user, c.name, value).then(result => {
                     if(!result.success) {
@@ -59,7 +59,50 @@ export default function Page() {
                         setOldNames(old);
                     }
                 });
-            }}/></p>)
+            }}/>
+            <button onClick={() => {
+                removeGameCompletionCategory(c.user, c.name).then(result => {
+                    if(result.success) {
+                        const newCategories = structuredClone(customCompletionCategories).filter(c2 => c.name != c2.name);
+                        setCompletionCategories(newCategories);
+                        const newOldNames = structuredClone(oldNames).filter(n => n !== c.name);
+                        setOldNames(newOldNames);
+                    }
+                });
+            }}>Delete</button>
+            <button onClick={() => {
+                updateGameCompletionCategoryOrder(c.user, c.name, "prev").then(result => {
+                    if(result.success) {
+                        setCompletionCategories(result.value);
+                        setOldNames(result.value.map(a => a.name));
+                    }
+                });
+            }}>Up</button>
+            <button onClick={() => {
+                updateGameCompletionCategoryOrder(c.user, c.name, "next").then(result => {
+                    if(result.success) {
+                        setCompletionCategories(result.value);
+                        setOldNames(result.value.map(a => a.name));
+                    }
+                });
+            }}>Down</button></p>)
         }
+        <input type="text" placeholder="New Category" onBlur={e => {
+            const target = e.currentTarget;
+            createGameCompletionCategory("avery", e.currentTarget.value).then(result => {
+                if(result.success) {
+                    const old: GameCompletionCategory[] = [...customCompletionCategories, {
+                        user: "avery",
+                        name: target.value,
+                        order: customCompletionCategories.length + 1,
+                        colour: "#000000",
+                    }];
+                    setCompletionCategories(old);
+                    const newOldNames = [...oldNames, target.value];
+                    setOldNames(newOldNames);
+                }
+                target.value = "";
+            })
+        }}/>
     </div>
 }

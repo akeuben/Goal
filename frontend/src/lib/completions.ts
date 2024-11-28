@@ -8,6 +8,10 @@ export const CompletionToColor = (status: GameCompletion['status'], customStatus
         case "not_started": return "#777777";
         case "in_progress": return "#000077";
         case "complete": return "#007700";
-        case "custom": return customCategories.filter(c => c.name === customStatus)[0].colour;
+        case "custom": {
+            const categories = customCategories.filter(c => c.name === customStatus);
+            if(categories.length === 0) return "#777777";
+            return categories[0].colour;
+        }
     }
 }

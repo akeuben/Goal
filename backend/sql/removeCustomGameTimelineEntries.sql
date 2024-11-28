@@ -1,0 +1,1 @@
+DELETE FROM goal.custom_game_timeline_entries WHERE username=? AND game_id=?;

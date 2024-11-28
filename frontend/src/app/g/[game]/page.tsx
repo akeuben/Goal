@@ -5,7 +5,9 @@ import { use } from 'react';
 import styles from "./page.module.css";
 
 export default function GamePage({params}: {params: {game: string}}) {
-    const game = use(getGame(params.game));
+    const game = use(getGame(params.game + ""));
+
+    console.log(JSON.stringify(game));
     
     if(!game.success) notFound();
 
@@ -17,7 +19,7 @@ export default function GamePage({params}: {params: {game: string}}) {
             <div className={styles.details}>
                 <h1>{game.value.name}</h1>
                 <p>Release Date: <i>{game.value.releaseYear}</i></p>
-                <p>Developer: <i>{game.value.developer}</i></p>
+                <p>Developers: <i>{game.value.developers?.join(", ")}</i></p>
                 <p>Publisher: <i>{game.value.publisher}</i></p>
                 <p>{game.value.description}</p>
             </div>

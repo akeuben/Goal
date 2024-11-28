@@ -1,5 +1,6 @@
 export type User = {
     username: string,
     email: string,
-    passwordHash: string
+    member_since: Date,
+    type: 'player' | 'developer'
 }

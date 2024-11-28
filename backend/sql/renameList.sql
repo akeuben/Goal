@@ -1,5 +1,5 @@
 UPDATE goal.todo_lists
-SET name=?
+SET list_name=?
 WHERE username=?
 AND list_name=?
 AND game_id=?;

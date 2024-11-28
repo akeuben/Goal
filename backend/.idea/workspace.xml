@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be59d20c-222e-4077-aabc-7cc18e237d9d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sql/updateTask.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/addAchievement.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/addAchievement.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/createGame.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/createGame.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/updateAchievement.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/updateAchievement.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/AddAchievement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/AddAchievement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateAchievement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateAchievement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +34,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2m1efhA7OoPaaGsfFkqkIDDfyaT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -36,11 +46,20 @@
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Maven.Unnamed.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;setupBackend&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;backendRewrite&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/mnt/storage/code/projects/school/471-Project/backend&quot;
+    &quot;last_opened_file_path&quot;: &quot;/home/avery/code/projects/school/471-Project/backend/sql&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sql" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.requests" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
