@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS goal.achievement_timeline_entries(
   datetime TIMESTAMP NOT NULL,
   PRIMARY KEY (username, achievement_number, datetime),
   FOREIGN KEY (username) REFERENCES users(username),
-  FOREIGN KEY (achievement_number) REFERENCES achievements(achievement_number));
+  FOREIGN KEY (achievement_number) REFERENCES achievements(achievement_number) ON DELETE CASCADE ON UPDATE CASCADE);
   
 CREATE TABLE IF NOT EXISTS goal.custom_game_statuses(
   username VARCHAR(255) NOT NULL,

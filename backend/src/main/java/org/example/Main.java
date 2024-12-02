@@ -58,5 +58,6 @@ public class Main {
         new AddAchievement().register("addAchievement");
         new RemoveAchievement().register("removeAchievement");
         new UpdateAchievement().register("updateAchievement");
+        new GetGamesByDeveloper().register("getGamesByDeveloper");
     }
 }

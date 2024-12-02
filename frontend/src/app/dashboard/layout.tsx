@@ -12,7 +12,7 @@ export default function Layout({children}: {children: ReactNode[]}) {
             <h1>Dashboard</h1>
             <Link className={path === "/dashboard/games" ? styles.active : undefined} href="/dashboard/games"><button>Your Games</button></Link>
             <Link className={path === "/dashboard/categories" ? styles.active : undefined} href="/dashboard/categories"><button>Categories</button></Link>
-            <Link className={path === "/dashboard/account" ? styles.active : undefined} href="/dashboard/account"><button>Account</button></Link>
+            <Link className={path === "/dashboard/developer" ? styles.active : undefined} href="/dashboard/developer"><button>Developer</button></Link>
         </nav>
         <div>
             <h1>{path.split("/").findLast(() => true)}</h1>

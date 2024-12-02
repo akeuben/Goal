@@ -534,3 +534,138 @@ export const sendLoginRequest = async(username: string, password: string): Promi
     }
     return NullSuccess();
 }
+
+export const getGamesByDeveloper = async(developer: string): Promise<Result<Game[], Error>> => {
+    const response = await safeFetch(buildURL("getGamesByDeveloper", {
+        developer,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    const result = await response.json() as Game[];
+    return Success(result);
+}
+
+export const updateGameName = async(game_id: string, name: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("updateGameName", {
+        game_id,
+        name
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
+export const updateGameDescription = async(game_id: string, description: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("updateGameDescription", {
+        game_id,
+        description
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
+export const updateGameReleaseYear = async(game_id: string, release_year: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("updateGameReleaseYear", {
+        game_id,
+        release_year
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
+export const updateGamePublisher = async(game_id: string, publisher: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("updateGamePublisher", {
+        game_id,
+        publisher
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
+export const updateAchievement = async(achievement_number: string, game_id: string, name: string, description: string, score: number, is_spoiler: boolean): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("updateAchievement", {
+        achievement_number,
+        game_id,
+        name,
+        description,
+        score,
+        is_spoiler: is_spoiler ? "1" : "0",
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
+export const addAchievement = async(game_id: string, name: string, description: string, score: number, is_spoiler: boolean): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("addAchievement", {
+        game_id,
+        name,
+        description,
+        score,
+        is_spoiler: is_spoiler ? "1" : "0",
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
+export const removeAchievement = async(achievement_number: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("removeAchievement", {
+        achievement_number,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
+
+export const createGame = async(developer: string, name: string, description: string, release_year: number, publisher: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("createGame", {
+        developer,
+        name,
+        description,
+        release_year,
+        publisher,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(`Authentication error: ${response.statusText}`));
+    }
+    return NullSuccess();
+}
