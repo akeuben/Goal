@@ -9,5 +9,9 @@ export const Timeline = ({user}: {user: User}) => {
 
     if(!entries.success) return <p>No timeline entries yet!</p>
 
-    return entries.value.toSorted((a,b) => b.timestamp - a.timestamp).map(entry => <TimelineEntryComponent key={btoa(JSON.stringify(entry))} entry={entry} categories={categories.success ? categories.value : []} />);
+    return entries.value.toSorted((a,b) => {
+        console.log(a);
+        console.log(b);
+        return b.timestamp - a.timestamp
+    }).map(entry => <TimelineEntryComponent key={entry.timestamp} entry={entry} categories={categories.success ? categories.value : []} />);
 }

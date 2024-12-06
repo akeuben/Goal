@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navigation/Navbar";
 
 export const metadata: Metadata = {
-    title: "CPSC 471 Project",
+    title: "Goal",
     description: "",
 };
 
