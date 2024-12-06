@@ -41,7 +41,7 @@ mvn package && mvn exec:java
 ```
 
 > [!IMPORTANT]
-> Before running the backend, the database must be set up. See [Database Setup](#Database Setup)
+> Before running the backend, the database must be set up. See [Database Setup](#database-setup)
 
 ## Repository Layout
 The repository has two main directories, `frontend` which holds 
