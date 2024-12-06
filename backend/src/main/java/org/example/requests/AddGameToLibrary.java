@@ -2,6 +2,7 @@ package org.example.requests;
 
 import org.example.sql.Auth;
 import org.example.sql.SQLManager;
+import org.example.sql.Timeline;
 import org.json.JSONException;
 import spark.Request;
 import spark.Response;
@@ -17,6 +18,8 @@ public class AddGameToLibrary extends AbstractRequest {
         }
 
         SQLManager.postToDatabase("addOwnedGame", username, game, "not_started", "not_started");
+
+        Timeline.postGameTimelineEntry(username, game, "not_started");
 
         return true;
     }

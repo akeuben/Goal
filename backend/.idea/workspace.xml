@@ -5,107 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be59d20c-222e-4077-aabc-7cc18e237d9d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sql/getUserSession.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/aleksInsertStatement.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/getGameList.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/getGameList.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/getUserSessions.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/AbstractRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/AbstractRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/AddAchievement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/AddAchievement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/databaseCreation.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/databaseCreation.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/AddGameToLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/AddGameToLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/AddUserTodoListEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/AddUserTodoListEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGameCompletionCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateGameCompletionCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateUserTodoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/CreateUserTodoList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameAchievements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameAchievements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetGameList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/GetUserAchievements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/GetUserAchievements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveAchievement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveAchievement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveGameCompletionCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveGameCompletionCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveGameFromLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveGameFromLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveUserTodoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveUserTodoList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveUserTodoListEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/RemoveUserTodoListEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateAchievement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateAchievement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionBuiltin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionBuiltin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryColour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryColour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCategoryOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameCompletionCustom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameDescription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameDescription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGamePublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGamePublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameReleaseYear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateGameReleaseYear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateReviewRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateReviewRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateReviewText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateReviewText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserAchievementState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserAchievementState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListEntryComplete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListEntryComplete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListEntryDescription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListEntryDescription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListEntryName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListEntryName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/requests/UpdateUserTodoListName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/Achievement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Achievement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/Mappings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/Mappings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/sql/SQLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/next.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/achievements.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/assets/gameart/aleksIsSadTheyKilledIt.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/assets/gameart/aleksSecondFavoriteGame.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/assets/gameart/botw.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/assets/gameart/portal.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/assets/gameart/portal_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/assets/gameart/talos.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/assets/gameart/talos2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/assets/gameart/totk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/category.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/completion.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/games.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/reviews.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/timeline.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/user_achievements.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/users.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/account/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/categories/page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/categories/page.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/categories/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/categories/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/developer/g/[game]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/developer/g/[game]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/developer/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/developer/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/games/g/[game]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/games/g/[game]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/games/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/games/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/layout.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/layout.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/dashboard/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/dashboard/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/g/[game]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/g/[game]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/logout/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/register/page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/register/page.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/register/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/u/[username]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/u/[username]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/achievement/AchievementCard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/achievement/AchievementCard.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/achievement/AchievementCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/achievement/AchievementCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/achievement/AchievementCompletionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/achievement/AchievementCompletionCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/developer/CreateGamePane.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/developer/CreateGamePane.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/GameCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/GameCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionCard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionCard.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionList.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionList.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/GameCompletionList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/game/GameReview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/game/GameReview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/list/List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/list/List.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/list/ListEntry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/list/ListEntry.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/list/ListList.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/list/ListList.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/navigation/Navbar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/navigation/Navbar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/navigation/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/navigation/Navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/timeline/TimelineEntry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/timeline/TimelineEntry.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/fakedata/achievements.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/fakedata/completion.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/fakedata/games.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/fakedata/review.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/fakedata/todolist.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/fakedata/users.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/lib/completions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/lib/completions.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

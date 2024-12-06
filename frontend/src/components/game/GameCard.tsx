@@ -17,7 +17,7 @@ export function GameCard({game, hideDetails}: {game: Game, hideDetails: boolean}
 
     return <div className={styles.gamecard}>
         <h1>{game.name}</h1>
-        <i>{game.releaseYear}</i>
+        <i>{game.releaseYear} - {game.developers.join(", ")} - Published By {game.publisher}</i>
         <p>{game.description}</p>
         <div className={styles.actions}>
             {!hideDetails && <Link href={`/g/${game.identifier}`}><button>Details</button></Link>}

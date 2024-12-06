@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS goal.user_sessions(
 CREATE TABLE IF NOT EXISTS goal.games(
   game_id INT AUTO_INCREMENT NOT NULL,
   name VARCHAR(255) NOT NULL,
-  description VARCHAR(255),
+  description VARCHAR(2048),
   release_year INT NOT NULL,
   publisher VARCHAR(255) NOT NULL,
   PRIMARY KEY (game_id));
