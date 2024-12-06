@@ -13,7 +13,7 @@ The frontend requiures the following dependencies to run:
 - `nodejs` version `20` or later
 The backend requiures the following dependencies to run:
 - `OpenJDK` version `21` or later
-- `maven` version ``
+- `maven` version `3.9.8` or later
 
 ## Setup/Usage
 ### Frontend
