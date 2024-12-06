@@ -17,5 +17,5 @@ export const WrappedGameCompletionCard = ({initialCompletion, categories, canEdi
         setCompletion(newCompletion);
     }
 
-    return <GameCompletionCard gameCompletion={completion} categories={categories} setCompletion={canEdit ? updateCompletion : undefined} />
+    return <GameCompletionCard gameCompletion={completion} categories={categories} setCompletion={canEdit ? updateCompletion : undefined} detailsPage={""} showAchievements={false} />
 }

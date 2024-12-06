@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Achievement } from "@/types/achievements";
 import { useEffect, useState } from "react";
 
-export function GameCompletionCard({gameCompletion, setCompletion, categories, detailsPage}: {detailsPage: string, gameCompletion: GameCompletion, setCompletion?: (game: string, status: GameCompletion['status'], customStatus: string | null) => void, categories: GameCompletionCategory[]}) {
+export function GameCompletionCard({gameCompletion, setCompletion, categories, detailsPage, showAchievements}: {detailsPage: string, gameCompletion: GameCompletion, setCompletion?: (game: string, status: GameCompletion['status'], customStatus: string | null) => void, categories: GameCompletionCategory[], showAchievements: boolean}) {
     const [userAchievements, setUserAchievements] = useState<Achievement[]>([]);
     const [achievements, setAchievements] = useState<Achievement[]>([]);
 
@@ -67,11 +67,11 @@ export function GameCompletionCard({gameCompletion, setCompletion, categories, d
                     </optgroup>
                 </select>
             </div>
-            <div className={styles.wrapper}>
+            {showAchievements && <div className={styles.wrapper}>
                 {achievements.length === 0 ? <p>This game has no achievements</p>
                     : <p>Achievements: {userAchievements.length}/{achievements.length}</p>}
                 <progress value={userAchievements.length} max={achievements.length}/>
-            </div>
+            </div>}
         </div>
         {detailsPage && <Link href={detailsPage + gameCompletion.game.identifier}><button className={styles.details}>More Details</button></Link>}
     </div>
