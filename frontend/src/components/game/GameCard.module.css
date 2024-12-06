@@ -1,31 +1,40 @@
 .gamecard {
-    display: grid;
-    background: #323232;
-    gap: 20px;
-    padding: 20px;
-    grid-template-columns: 100px auto 100px 100px;
+    background: var(--background-transparent);
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
 }
 
-.details {
-    flex-grow: 2;
+.gamecard>h1 {
+    text-wrap: wrap;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
-.details>h1 {
-    font-size: 1.5em;
+.gamecard>i {
+    color: #888;
 }
 
-.details>i {
-    color: gray;
+.gamecard button {
+    background: #77777788;
+    margin: 0px;
+    height: 40px;
+    padding: 0px 50px;
+    margin-top: 20px;
+    width: 250px;
 }
 
-.coverart {
-    width: 100%;
-    aspect-ratio: 1 / 1.5;
-    background-size: cover;
-    background-position: center center;
+.gamecard button:hover {
+    background: #7FF48D88;
 }
 
-.gamecard>a>button {
-    height: 100%;
-    width: 100%;
+.gamecard button:hover::after {
+    content: " >";
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
 }

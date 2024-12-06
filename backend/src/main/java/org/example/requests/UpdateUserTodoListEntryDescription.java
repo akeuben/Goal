@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.SQLManager;
 import org.example.sql.Todo;
 import org.json.JSONException;
@@ -15,6 +16,10 @@ public class UpdateUserTodoListEntryDescription extends AbstractRequest {
         String list = request.queryParams("list");
         String entry = request.queryParams("entry");
         String description = request.queryParams("description");
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         JSONObject object = Todo.getTaskForList(username, game, list, entry);
 

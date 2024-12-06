@@ -1,15 +1,42 @@
-.list input {
-    border: none;
-    background: none;
-    padding: 5px;
-    color: white;
+.new {
+    margin: 30px;
 }
 
 .list {
-    margin: 20px;
+    background: var(--background-transparent);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 1px;
 }
 
-.new {
-    background: #333;
-    padding: 20px;
+.list span {
+    margin-left: 20px;
 }
+
+.list input {
+    background: none !important;
+}
+
+.list input::before {
+    display: block;
+    content: "asdjk" !important;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 1.2em;
+    margin-top: 20px !important;
+    margin-left: 0px !important;
+}
+
+.list a {
+    font-size: 1.2em;
+    height: min-content;
+    margin-left: 20px;
+    color: white;
+}
+
+.new input {
+    background: #77777788 !important;
+}
+

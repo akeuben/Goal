@@ -12,8 +12,6 @@ export const TimelineEntryComponent = ({entry}: {entry: TimelineEntry}) => {
 }
 
 const GameTimelineEntryComponent = ({entry}: {entry: TimelineEntry & {type: 'game'}}) => {
-    console.log("ENTRY:");
-    console.dir(entry.completion.game.name);
     return <div>
         <p>{entry.user.username} moved <Link href={`/g/${entry.completion.game.identifier}`}>{entry.completion.game.name}</Link> to the {entry.completion.status === 'custom' ? entry.completion.customStatus.name : entry.completion.status} category</p>
     </div>

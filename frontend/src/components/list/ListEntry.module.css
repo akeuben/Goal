@@ -1,8 +1,11 @@
 .entry {
     display: flex;
     flex-direction: row;
-    background: #333;
+    align-items: center;
     padding: 20px;
+    background: #161616aa;
+    margin: 20px;
+    border-radius: 10px;
 }
 
 .entry>div {
@@ -11,19 +14,10 @@
     flex-direction: column;
 }
 
-.entry>div>input:first-child {
+.title {
     font-weight: 900;
-}
-.entry>div>input {
-    padding: 5px;
 }
 
 .entry>* {
     flex: 0;
-}
-
-.entry input[type="text"] {
-    background: none;
-    color: white;
-    border: none;
 }

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class SQLManager {
     private static Connection connection = null;
-    private static Connection getConnection() throws ClassNotFoundException, SQLException {
+    static Connection getConnection() throws ClassNotFoundException, SQLException {
         if(connection != null) return connection;
         Class.forName("com.mysql.jdbc.Driver");
 
@@ -104,6 +104,17 @@ public class SQLManager {
             } catch (SQLException ignored) {}
         }
         return r;
+    }
+
+    public static String mapResultString(ResultSet result, String attribute) {
+        try {
+            if (result.next()) {
+                return result.getString(attribute);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
     public static Optional<ResultSet> fetchFromDatabase(String queryFile, String... parameters) {

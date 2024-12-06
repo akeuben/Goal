@@ -13,9 +13,6 @@ export default function ProfilePage({params}: {params: {username: string}}) {
     let realScore = 0;
     if(score.success) realScore = score.value;
 
-    console.log("USER");
-    console.log(user);
-
     return <div>
         <h1>{params.username}</h1>
         <p>Score: {realScore}</p>

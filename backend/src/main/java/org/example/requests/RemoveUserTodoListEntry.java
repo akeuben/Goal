@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.SQLManager;
 import org.json.JSONException;
 import spark.Request;
@@ -12,6 +13,10 @@ public class RemoveUserTodoListEntry extends AbstractRequest {
         String game = request.queryParams("game");
         String list = request.queryParams("list");
         String entry = request.queryParams("entry");
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         if(!SQLManager.postToDatabase("removeListItem", username, list, game, entry)) {
             throw new RuntimeException("Failed to update");

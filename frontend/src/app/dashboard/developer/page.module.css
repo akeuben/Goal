@@ -1,0 +1,34 @@
+.gamecard {
+    background: var(--background-transparent);
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.gamecard>h1 {
+    text-wrap: wrap;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.gamecard>i {
+    color: #888;
+}
+
+.gamecard button {
+    background: #77777788;
+    margin: 0px;
+    height: 40px;
+    padding: 0px 50px;
+    margin-top: 20px;
+    width: 200px;
+}
+
+.gamecard button:hover {
+    background: #7FF48D88;
+}
+
+.gamecard button:hover::after {
+    content: " >";
+}

@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.CompletionCategory;
 import org.example.sql.SQLManager;
 import org.json.JSONException;
@@ -13,6 +14,10 @@ public class UpdateGameCompletionCategoryColour extends AbstractRequest {
         String username = request.queryParams("username");
         String name = request.queryParams("name");
         String colour = request.queryParams("colour");
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         JSONObject category = CompletionCategory.fetchCompletionCategory(username, name);
         String order = "" + category.getInt("order");

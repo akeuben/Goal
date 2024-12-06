@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.CompletionCategory;
 import org.example.sql.SQLManager;
 import org.json.JSONArray;
@@ -13,6 +14,10 @@ public class CreateGameCompletionCategory extends AbstractRequest {
         String username = request.queryParams("username");
         String name = request.queryParams("name");
         String colour = "#000000";
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         int order = 0;
         JSONArray currentCategories = CompletionCategory.fetchCompletionCategories(username);

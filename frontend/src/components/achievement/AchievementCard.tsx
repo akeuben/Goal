@@ -5,7 +5,7 @@ export const AchievementCard = ({achievement}: {achievement: Achievement}) => {
     return <div className={styles.card}>
         <div>
             <b>{achievement.name}</b>
-            <p>{achievement.description}</p>
+            <p>{achievement.spoiler ? "<hidden>" : achievement.description}</p>
         </div>
         <p>{achievement.score} Points</p>
     </div>

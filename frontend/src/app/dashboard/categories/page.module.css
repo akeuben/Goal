@@ -1,20 +1,40 @@
 .page input[type = "color"] {
     border: none;
     padding: 0px;
-    width: 30px;
+    width: 40px;
+    height: 40px;
     aspect-ratio: 1;
     background: none;
 }
 
-.page input[type = "text"] {
-    background: white;
-    border: none;
-    height: 30px;
+.section {
+    background: var(--background-transparent);
+    padding: 25px;
+    margin: 20px;
+    border-radius: 10px;
 }
 
-.page>p {
+.section>h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.category {
     display: flex;
     align-items: center;
-    gap: 20px;
-    margin-left: 20px;
+    margin: 20px 0px;
+}
+
+.category>span {
+    flex: 1;
+}
+
+.category>a {
+    margin: 5px;
+    font-size: 1.2em;
+    width: min-content;
+}
+
+.new {
+    margin-left: 60px !important;
 }

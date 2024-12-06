@@ -17,6 +17,7 @@ public class Achievement {
         JSONObject object = SQLManager.mapResult(result.get(), Mappings.ACHIEVEMENT_MAPPINGS);
 
         object.put("game", Game.fetchGame(object.getString("game_id")));
+        object.put("spoiler", object.getString("is_spoiler").equals("1"));
 
         return object;
     }

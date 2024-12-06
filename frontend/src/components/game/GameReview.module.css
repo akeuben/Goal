@@ -1,0 +1,22 @@
+.review {
+    background: var(--background-transparent);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.review>select {
+    width: 200px;
+}
+
+.review>textarea {
+    margin: 20px;
+    height: 200px;
+    background: #77777788;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+}

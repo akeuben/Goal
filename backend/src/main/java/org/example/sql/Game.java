@@ -3,7 +3,10 @@ package org.example.sql;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import spark.utils.IOUtils;
 
+import java.io.FileInputStream;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Optional;
 
@@ -28,15 +31,24 @@ public class Game {
         return object;
     }
 
-    public static JSONArray fetchGames(String search) throws JSONException {
-        Optional<ResultSet> result = SQLManager.fetchFromDatabase("getGameList", search);
+    public static JSONArray fetchGames(String search, String by, boolean ascending) throws JSONException {
+        ResultSet result;
+        try(FileInputStream inputStream = new FileInputStream( "sql/getGameList.sql")) {
+            // Get raw statements (still has ?'s in it)
+            String rawStatement = IOUtils.toString(inputStream);
+            rawStatement = rawStatement.replaceAll("%col%", by).replaceAll("%asc%", ascending ? "ASC" : "DESC");
 
-        if(result.isEmpty()) {
-            System.out.println("Initial result is empty");
-            throw new RuntimeException("Internal Database Error.");
+            System.out.println(rawStatement);
+
+            // Turn into and execute prepared statement
+            PreparedStatement preparedStatement = SQLManager.getConnection().prepareStatement(rawStatement);
+            preparedStatement.setString(1, search);
+            result = preparedStatement.executeQuery();
+        } catch(Exception e) {
+            throw new RuntimeException("Failed to fetch games list");
         }
 
-        JSONArray array = SQLManager.mapResults(result.get(), Mappings.GAME_MAPPINGS);
+        JSONArray array = SQLManager.mapResults(result, Mappings.GAME_MAPPINGS);
         for(int i = 0; i < array.length(); i++) {
             JSONObject object = array.getJSONObject(i);
             Optional<ResultSet> developers = SQLManager.fetchFromDatabase("getGameDevelopers", object.getString("identifier"));

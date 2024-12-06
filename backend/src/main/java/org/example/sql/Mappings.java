@@ -32,7 +32,7 @@ public class Mappings {
         ACHIEVEMENT_MAPPINGS.put("game_id", "game_id");
         ACHIEVEMENT_MAPPINGS.put("name", "name");
         ACHIEVEMENT_MAPPINGS.put("description", "description");
-        ACHIEVEMENT_MAPPINGS.put("is_spoiler", "spoiler");
+        ACHIEVEMENT_MAPPINGS.put("is_spoiler", "is_spoiler");
         ACHIEVEMENT_MAPPINGS.put("score", "score");
 
         USER_MAPPINGS.put("username", "username");

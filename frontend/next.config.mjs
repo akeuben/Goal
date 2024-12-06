@@ -10,11 +10,6 @@ const nextConfig = {
             source: '/u',
             destination: '/',
             permanent: true
-        },
-        {
-            source: '/dashboard',
-            destination: '/dashboard/games',
-            permanent: true
         }
     ]
 };

@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.SQLManager;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +20,10 @@ public class CreateGame extends AbstractRequest {
         String description = request.queryParams("description");
         String release_year = request.queryParams("release_year");
         String publisher = request.queryParams("publisher");
+
+        if(!Auth.simpleAuthCheck(request, username, false, true)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         // I needed to add null as the game_id to make AUTO_INCREMENT work on my machine
         if(!SQLManager.postToDatabase("createGame", name, description, release_year, publisher)) {

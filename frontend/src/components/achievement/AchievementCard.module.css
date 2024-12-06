@@ -1,9 +1,13 @@
 .card {
-    background: #161616;
-    margin: 10px 50px;
+    background: var(--background-transparent);
+    border-radius: 10px;
+    margin: 0px;
+    padding: 25px;
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    margin-bottom: 20px;
 }
 
 .card>div {
@@ -13,6 +17,7 @@
     justify-content: space-around;
 }
 
-.card>div>* {
-    margin: 10px;
+.card p {
+    margin: 0px;
+    color: #aaa;
 }

@@ -36,8 +36,11 @@ export default function Page({params}: {params: {username: string, game: string}
 
     return <div>
         <WrappedGameCompletionCard initialCompletion={completion.value} categories={customCompletionCategories.value} canEdit={false}/>
+        <h2>Achievements</h2>
         <AchievementCompletionList user={user.value} game={game.value} canEdit={false}/>
+        <h2>Game Review</h2>
         <GameReviewComponent user={user.value} game={game.value} canEdit={false}/>
+        <h2>Todo Lists</h2>
         <ListList user={user.value} game={game.value} canEdit={false} />
     </div>
 }

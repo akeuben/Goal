@@ -30,7 +30,7 @@ export const ListList = ({user, game, canEdit}: {user: User, game: Game, canEdit
         { canEdit && <div className={styles.new}>
             <p>Create New List:</p>
             <input type="text" placeholder="List Name" ref={newListNameInputRef} />
-            <button onClick={() => {
+            <a onClick={() => {
                 const text = newListNameInputRef.current?.value;
                 addUserTodoList(user.username, game.identifier, text || "").then(result => {
                     if(result.success) {
@@ -44,7 +44,7 @@ export const ListList = ({user, game, canEdit}: {user: User, game: Game, canEdit
                     }
                 })
                 if(newListNameInputRef.current) newListNameInputRef.current.value = "";
-            }}>Create</button>
+            }}>✅</a>
         </div>}
     </div>
 }

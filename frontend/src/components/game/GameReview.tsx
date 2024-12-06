@@ -1,5 +1,6 @@
 "use client"
 
+import styles from "./GameReview.module.css";
 import { getGameReview, setGameReviewRating, setGameReviewText } from "@/api/api";
 import { Game } from "@/types/games";
 import { GameReview } from "@/types/review";
@@ -16,7 +17,6 @@ export const GameReviewComponent = ({user, game, canEdit}: {user: User, game: Ga
                 setReview(res.value);
                 setOldReview(res.value);
             } else {
-                console.log("set fake review");
                 setReview({
                     rating: -1,
                     text: ""
@@ -31,7 +31,7 @@ export const GameReviewComponent = ({user, game, canEdit}: {user: User, game: Ga
 
     if(!review) return <p>No review</p>
 
-    return <>
+    return <div className={styles.review}>
         <select value={"" + review.rating} disabled={!canEdit} onChange={(e) => {
             const newReview = structuredClone(review);
             newReview.rating = parseInt(e.target.value);
@@ -69,5 +69,5 @@ export const GameReviewComponent = ({user, game, canEdit}: {user: User, game: Ga
                 }
             })
         }}/>
-    </>
+    </div>
 }

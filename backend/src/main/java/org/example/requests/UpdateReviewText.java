@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.Review;
 import org.example.sql.SQLManager;
 import org.json.JSONException;
@@ -17,6 +18,10 @@ public class UpdateReviewText extends AbstractRequest {
         String username = request.queryParams("username");
         String game = request.queryParams("game");
         String text = request.queryParams("text");
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         JSONObject oldReview = Review.fetchReview(username, game);
         String rating = "0";

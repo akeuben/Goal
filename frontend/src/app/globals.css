@@ -1,25 +1,59 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
+    --background-transparent: #202020dd;
+    --background: #161616;
     --foreground: #ededed;
-  }
+    --accent: linear-gradient(90deg, rgba(100,20,120,1) 0%, rgba(85,9,97,1) 100%);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0px;
-  min-height: 100dvh;
+    color: var(--foreground);
+    background-image: linear-gradient(135deg, #16161644 0%, var(--background) 100%), url("/assets/backgrounds/background.webp");
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    min-height: 100vh;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+input[type="text"], input[type="password"], input[type="email"], button, select {
+    border: none;
+    margin: 0px 20px;
+    border-radius: 10px;
+    height: 40px;
+    background: #77777788;
+    color: white;
+    padding: 0px 20px;
+}
+
+button {
+    text-transform: capitalize;
+    flex-grow: 1;
+}
+
+button.important {
+    background: var(--accent);
+    color: white;
+}
+
+main {
+    margin: 50px auto;
+    background: var(--background-transparent);
+    width: 75%;
+    padding: 50px;
+    backdrop-filter: blur(30px);
+    border-radius: 10px;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+a {
+    color: #7f1ea6;
 }

@@ -4,19 +4,27 @@ import { GameReviewComponent } from "@/components/game/GameReview";
 import { RemoveGameButton } from "@/components/game/RemoveGameButton";
 import { WrappedGameCompletionCard } from "@/components/game/WrappedGameCompletionCard";
 import { ListList } from "@/components/list/ListList";
+import { getUserSession } from "@/lib/session";
 import { Achievement } from "@/types/achievements";
 import { GameCompletionCategory } from "@/types/completion";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { use } from "react";
 
 export default function Page({params}: {params: {game: string}}) {
+    const session = getUserSession();
+
+    if(!session) {
+        redirect("/login");
+    }
+    if(session.type !== 'player') redirect("/dashboard");
+
     const game = use(getGame(params.game));
-    const user = use(getUser("avery"));
+    const user = use(getUser(session.username));
     
     if(!user.success) notFound();
     if(!game.success) notFound();
 
-    const completion = use(getGameCompletion("avery", game.value.identifier));
+    const completion = use(getGameCompletion(session.username, game.value.identifier));
     const customCompletionCategoriesRaw = use(getGameCompletionCategories(user.value.username));
     let customCompletionCategories: GameCompletionCategory[] = [];
     if(customCompletionCategoriesRaw.success) customCompletionCategories = customCompletionCategoriesRaw.value;
@@ -24,13 +32,12 @@ export default function Page({params}: {params: {game: string}}) {
     if(!completion.success) notFound();
 
     const achievements = use(getGameAchievements(game.value.identifier));
-    const userAchievements = use(getUserAchievements("avery", game.value.identifier));
+    const userAchievements = use(getUserAchievements(session.username, game.value.identifier));
 
     let unlocked: Achievement[] = [];
     let locked: Achievement[] = [];
 
     if(achievements.success && userAchievements.success) {
-        console.log(userAchievements.value);
         const unlockedIdentifiers = userAchievements.value.map(a => a.identifier);
         unlocked = userAchievements.value;
         locked = achievements.value.filter(a => !unlockedIdentifiers.includes(a.identifier));
@@ -40,9 +47,13 @@ export default function Page({params}: {params: {game: string}}) {
 
     return <div>
         <WrappedGameCompletionCard initialCompletion={completion.value} categories={customCompletionCategories} />
+        <h2>Achievements</h2>
         <AchievementCompletionList user={user.value} game={game.value}/>
-        <GameReviewComponent user={user.value} game={game.value} canEdit={true}/>
+        <h2>Todo Lists</h2>
         <ListList user={user.value} game={game.value} canEdit={true} />
+        <h2>Review</h2>
+        <GameReviewComponent user={user.value} game={game.value} canEdit={true}/>
+        <h2>Manage</h2>
         <RemoveGameButton username={user.value.username} game={game.value.identifier} />
     </div>
 }

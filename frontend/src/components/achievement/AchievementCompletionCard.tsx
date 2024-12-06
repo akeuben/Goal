@@ -5,7 +5,7 @@ export const AchievmentCompletionCard = ({achievement, unlocked, updateAchieveme
     return <div className={styles.card}>
         <div>
             <b>{achievement.name}</b>
-            <p>{achievement.description}</p>
+            <p>{achievement.spoiler && !unlocked ? "<hidden>" : achievement.description}</p>
         </div>
         <input type="checkbox" disabled={!updateAchievementCompletion} checked={unlocked} onChange={e => updateAchievementCompletion ? updateAchievementCompletion(e.target.checked) : undefined} />
     </div>

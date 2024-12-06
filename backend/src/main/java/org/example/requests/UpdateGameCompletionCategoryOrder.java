@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.CompletionCategory;
 import org.example.sql.SQLManager;
 import org.json.JSONArray;
@@ -14,6 +15,10 @@ public class UpdateGameCompletionCategoryOrder extends AbstractRequest {
         String username = request.queryParams("username");
         String name = request.queryParams("name");
         String direction = request.queryParams("direction");
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         JSONObject other = null;
         JSONObject category = CompletionCategory.fetchCompletionCategory(username, name);

@@ -37,8 +37,7 @@ export function GameCompletionList({username, sort, filter, search, canEdit, det
 
     return <div className={styles.gamelist}>
         {gameCompletions.map(completion => <div key={completion.game.identifier}>
-            <GameCompletionCard gameCompletion={completion} setCompletion={canEdit ? updateCompletion : undefined} categories={customCompletionCategories}/>
-            {detailsPage && <Link href={detailsPage + completion.game.identifier}>More Details</Link>}
+            <GameCompletionCard gameCompletion={completion} setCompletion={canEdit ? updateCompletion : undefined} categories={customCompletionCategories} detailsPage={detailsPage}/>
         </div>)}
     </div>
 }

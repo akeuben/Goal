@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.SQLManager;
 import org.json.JSONException;
 import spark.Request;
@@ -13,6 +14,10 @@ public class UpdateUserTodoListEntryName extends AbstractRequest {
         String list = request.queryParams("list");
         String oldName = request.queryParams("entry");
         String newName = request.queryParams("name");
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         if(!SQLManager.postToDatabase("renameListItem", newName, username, list, oldName, game)) {
             throw new RuntimeException("Failed to update");

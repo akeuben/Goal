@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Spark.notFound((request, response) -> {
             response.status(404);
+            response.header("Access-Control-Allow-Origin", "*");
             return "Not found";
         });
         new GetGameList().register("getGameList");
@@ -59,5 +60,9 @@ public class Main {
         new RemoveAchievement().register("removeAchievement");
         new UpdateAchievement().register("updateAchievement");
         new GetGamesByDeveloper().register("getGamesByDeveloper");
+        new Register().register("register");
+        new CreateSession().register("createSession");
+        new GetSession().register("getSession");
+        new EndSession().register("endSession");
     }
 }

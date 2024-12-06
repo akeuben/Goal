@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.SQLManager;
 import org.json.JSONException;
 import spark.Request;
@@ -13,6 +14,10 @@ public class UpdateUserTodoListEntryComplete extends AbstractRequest {
         String list = request.queryParams("list");
         String entry = request.queryParams("entry");
         String complete = request.queryParams("complete");
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         if (complete.equals("true")) {
             if(!SQLManager.postToDatabase("markListItemComplete", username, list, game, entry)) {

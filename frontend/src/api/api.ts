@@ -1,9 +1,10 @@
-import { fakedata_getUserTodoLists } from "@/fakedata/todolist";
+import { getUserSession } from "@/lib/session";
 import { Achievement } from "@/types/achievements";
 import { GameCompletion, GameCompletionCategory } from "@/types/completion";
 import { Game, GameListFilter, GameListSearch, GameListSort } from "@/types/games";
 import { Fail, NullSuccess, Result, Success } from "@/types/result";
 import { GameReview } from "@/types/review";
+import { Session } from "@/types/session";
 import { TimelineEntry } from "@/types/timeline";
 import { TodoList } from "@/types/todo";
 import { User } from "@/types/user";
@@ -21,9 +22,15 @@ const buildURL = (fn: string, args: Record<string, string | number | boolean | u
 
 const safeFetch = async(url: string): Promise<Response|Error> => {
     let result;
+    let token = getUserSession()?.token;
     try {
         result = await fetch(url, {
             cache: "no-cache",
+            headers: new Headers(token ? {
+                'Authorization': `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*',
+            } : {}),
+            method: 'get',
         });
     } catch(e: any) {
         return Error(e);
@@ -521,20 +528,6 @@ export const removeGameFromLibrary = async(username: string, game: string): Prom
     return NullSuccess();
 }
 
-export const sendLoginRequest = async(username: string, password: string): Promise<Result<undefined, Error>> => {
-    const response = await safeFetch(buildURL("login", {
-        username,
-        password
-    }));
-    if(response instanceof Error) {
-        return Fail(response);
-    }
-    if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
-    }
-    return NullSuccess();
-}
-
 export const getGamesByDeveloper = async(developer: string): Promise<Result<Game[], Error>> => {
     const response = await safeFetch(buildURL("getGamesByDeveloper", {
         developer,
@@ -543,7 +536,7 @@ export const getGamesByDeveloper = async(developer: string): Promise<Result<Game
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
     }
     const result = await response.json() as Game[];
     return Success(result);
@@ -558,7 +551,7 @@ export const updateGameName = async(game_id: string, name: string): Promise<Resu
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
     }
     return NullSuccess();
 }
@@ -572,7 +565,7 @@ export const updateGameDescription = async(game_id: string, description: string)
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
     }
     return NullSuccess();
 }
@@ -586,7 +579,7 @@ export const updateGameReleaseYear = async(game_id: string, release_year: string
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
     }
     return NullSuccess();
 }
@@ -600,7 +593,7 @@ export const updateGamePublisher = async(game_id: string, publisher: string): Pr
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
     }
     return NullSuccess();
 }
@@ -618,7 +611,7 @@ export const updateAchievement = async(achievement_number: string, game_id: stri
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
     }
     return NullSuccess();
 }
@@ -635,7 +628,7 @@ export const addAchievement = async(game_id: string, name: string, description: 
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
     }
     return NullSuccess();
 }
@@ -648,7 +641,7 @@ export const removeAchievement = async(achievement_number: string): Promise<Resu
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
     }
     return NullSuccess();
 }
@@ -665,7 +658,50 @@ export const createGame = async(developer: string, name: string, description: st
         return Fail(response);
     }
     if(response.status != 200) {
-        return Fail(Error(`Authentication error: ${response.statusText}`));
+        return Fail(Error(await response.text()));
+    }
+    return NullSuccess();
+}
+
+export const createSession = async(username: string, password: string): Promise<Result<Session, Error>> => {
+    const response = await safeFetch(buildURL("createSession", {
+        username,
+        password
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(await response.text()));
+    }
+    return Success((await response.json()) as Session);
+}
+
+export const endSession = async(username: string): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("endSession", {
+        username,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(await response.text()));
+    }
+    return NullSuccess();
+}
+
+export const register = async(username: string, password: string, email: string, type: 'developer' | 'player'): Promise<Result<undefined, Error>> => {
+    const response = await safeFetch(buildURL("register", {
+        username,
+        password,
+        email,
+        type,
+    }));
+    if(response instanceof Error) {
+        return Fail(response);
+    }
+    if(response.status != 200) {
+        return Fail(Error(await response.text()));
     }
     return NullSuccess();
 }

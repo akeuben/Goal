@@ -27,6 +27,7 @@ public class GetUserAchievements extends AbstractRequest {
 
         for(int i = 0; i < array.length(); i++) {
             array.getJSONObject(i).put("game", Game.fetchGame(game));
+            array.getJSONObject(i).put("spoiler", array.getJSONObject(i).getString("is_spoiler").equals("1"));
         }
 
         return array;

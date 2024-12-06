@@ -1,8 +1,6 @@
 .gamelist {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
 
     gap: 20px;
-    margin: 20px;
 }

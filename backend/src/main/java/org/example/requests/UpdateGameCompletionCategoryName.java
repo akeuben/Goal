@@ -1,5 +1,6 @@
 package org.example.requests;
 
+import org.example.sql.Auth;
 import org.example.sql.SQLManager;
 import org.json.JSONException;
 import spark.Request;
@@ -11,6 +12,10 @@ public class UpdateGameCompletionCategoryName extends AbstractRequest {
         String username = request.queryParams("username");
         String oldName = request.queryParams("oldName");
         String newName = request.queryParams("newName");
+
+        if(!Auth.simpleAuthCheck(request, username, true, false)) {
+            throw new RuntimeException("Not Authorized");
+        }
 
         System.out.println("Request: " + username + ", " + oldName + ", " + newName);
 
